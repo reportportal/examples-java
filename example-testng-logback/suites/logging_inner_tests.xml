@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Inner Logging Tests" parallel="classes" thread-count="10">
+
+<!--    <test name="Parametrized Test">-->
+<!--        <parameter name="message" value="My great message"/>-->
+<!--        <classes>-->
+<!--            <class name="com.epam.reportportal.example.testng.logback.parametrized.ParametrizedTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+    <test name="Retry test">
+        <classes>
+            <class name="com.epam.reportportal.example.testng.logback.extension.RetryTest"/>
+        </classes>
+    </test>
+
+</suite>

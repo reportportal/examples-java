@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Preconditions Suite">
+    <test verbose="1" name="Failed 'Before' methods">
+        <classes>
+            <class name="com.epam.reportportal.example.testng.logback.preconditions.FailedBeforesTest"/>
+        </classes>
+    </test>
+    <test verbose="1" name="Failed 'After' methods">
+        <classes>
+            <class name="com.epam.reportportal.example.testng.logback.preconditions.FailedAftersTest"/>
+        </classes>
+    </test>
+</suite>
