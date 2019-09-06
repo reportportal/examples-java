@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Randomizer Suite">
+    <test verbose="1" name="Randomizer Boundaries Tests">
+        <classes>
+            <class name="com.epam.reportportal.example.testng.logback.randomizer.TestRandomizerBoundaries"/>
+        </classes>
+    </test>
+    <test verbose="1" name="Randomizer Logic Tests">
+        <classes>
+            <class name="com.epam.reportportal.example.testng.logback.randomizer.TestRandomizer"/>
+        </classes>
+    </test>
+</suite>
