@@ -17,6 +17,7 @@
         <module>example-jbehave</module>
         <module>example-testng-logback</module>
         <module>example-testng-log4j</module>
+        <module>example-junit5</module>
     </modules>
 
     <repositories>
