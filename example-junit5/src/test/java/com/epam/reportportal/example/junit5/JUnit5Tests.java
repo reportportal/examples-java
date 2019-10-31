@@ -1,7 +1,11 @@
 package com.epam.reportportal.example.junit5;
 
+import com.epam.reportportal.annotations.TestCaseId;
+import com.epam.reportportal.annotations.TestCaseIdKey;
+import com.epam.reportportal.junit5.ReportPortalExtension;
 import com.epam.reportportal.service.ReportPortal;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
 import rp.com.google.common.io.Files;
@@ -29,6 +33,7 @@ class JUnit5Tests {
 		System.out.println("base-class-before-each");
 	}
 
+	@TestCaseId(value = 5)
 	@Test
 	@Tag("tag1")
 	@Tag("tag2")
@@ -57,9 +62,12 @@ class JUnit5Tests {
 		System.out.println("parameterized-test-with-method-source, parameter: " + value);
 	}
 
+	@TestCaseId(isParameterized = true)
 	@ParameterizedTest
 	@CsvSource({ "first", "second", "third" })
-	void parameterizedTestWithCsvSource(String value) {
+	void parameterizedTestWithCsvSource(@TestCaseIdKey(isInteger = false) String value) {
+		System.err.println(value.hashCode());
+		System.err.println(Arrays.deepHashCode(new Object[] { value }));
 		System.out.println("parameterized-test-with-csv-source, parameter: " + value);
 	}
 

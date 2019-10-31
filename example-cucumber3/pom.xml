@@ -20,9 +20,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.epam.reportportal</groupId>
+            <groupId>com.github.reportportal</groupId>
             <artifactId>agent-java-cucumber3</artifactId>
-            <version>5.0.0-BETA-0</version>
+            <version>4f711dc</version>
         </dependency>
 
         <dependency>
