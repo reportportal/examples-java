@@ -38,8 +38,18 @@ public class CallbackTests {
 	void afterMethod(TestInfo testInfo) {
 		TestItemTree.TestItemLeaf testItemLeaf = ItemTreeUtils.retrieveLeaf(testInfo, TEST_ITEM_TREE);
 		if (testItemLeaf != null) {
+			attachLog(testItemLeaf);
 			finishWithStatus(testInfo.getDisplayName().contains("someTest") ? "FAILED" : "PASSED", testItemLeaf);
 		}
+	}
+
+	private static void attachLog(TestItemTree.TestItemLeaf testItemLeaf) {
+		ItemTreeReporter.sendLog(REPORT_PORTAL.getClient(),
+				"ERROR",
+				"Error message",
+				Calendar.getInstance().getTime(),
+				testItemLeaf
+		);
 	}
 
 	private void finishWithStatus(String status, TestItemTree.TestItemLeaf testItemLeaf) {
