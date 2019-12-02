@@ -14,9 +14,10 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.epam.reportportal</groupId>
+<!--            <groupId>com.epam.reportportal</groupId>-->
+            <groupId>com.github.reportportal</groupId>
             <artifactId>agent-java-junit</artifactId>
-            <version>5.0.0-BETA-3</version>
+            <version>3f95a9a</version>
         </dependency>
 
         <dependency>

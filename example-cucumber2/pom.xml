@@ -22,10 +22,10 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.epam.reportportal</groupId>
-            <!--<groupId>com.github.reportportal</groupId>-->
+<!--            <groupId>com.epam.reportportal</groupId>-->
+            <groupId>com.github.reportportal</groupId>
             <artifactId>agent-java-cucumber2</artifactId>
-            <version>5.0.0-BETA-1</version>
+            <version>6d3ea09</version>
         </dependency>
 
         <dependency>
