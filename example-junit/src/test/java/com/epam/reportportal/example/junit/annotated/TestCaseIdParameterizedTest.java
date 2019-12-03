@@ -1,5 +1,7 @@
-package com.epam.reportportal.example.junit;
+package com.epam.reportportal.example.junit.annotated;
 
+import com.epam.reportportal.annotations.TestCaseId;
+import com.epam.reportportal.annotations.TestCaseIdKey;
 import com.google.common.base.Optional;
 import com.nordstrom.automation.junit.ArtifactParams;
 import com.nordstrom.automation.junit.AtomIdentity;
@@ -16,20 +18,21 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(Parameterized.class)
-public class ParameterizedTest implements ArtifactParams {
+public class TestCaseIdParameterizedTest implements ArtifactParams {
 	
 	@Rule
 	public final AtomIdentity identity = new AtomIdentity(this);
 
+	@TestCaseIdKey
     private String input;
     
-    public ParameterizedTest(String input) {
+    public TestCaseIdParameterizedTest(String input) {
         this.input = input;
     }
     
     @Parameters
     public static Object[] data() {
-        return new Object[] { "first test", "second test" };
+        return new Object[] { "first", "second" };
     }
     
 	public Description getDescription() {
@@ -41,6 +44,7 @@ public class ParameterizedTest implements ArtifactParams {
     }
     
     @Test
+	@TestCaseId(parametrized = true)
     public void parameterized() {
     	Optional<Map<String, Object>> params = identity.getParameters();
     	assertTrue(params.isPresent());
