@@ -1,14 +1,11 @@
 package com.epam.reportportal.example.testng.logback.logging;
 
-import com.epam.reportportal.annotations.TestCaseId;
-import com.epam.reportportal.annotations.TestCaseIdTemplate;
 import com.epam.reportportal.example.testng.logback.LoggingUtils;
 import com.epam.reportportal.testng.ReportPortalTestNGListener;
 import com.google.common.io.Files;
 import com.google.common.io.Resources;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.ITestContext;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -30,9 +27,8 @@ public class LoggingTest {
 //        throw new RuntimeException();
     }
 
-    @TestCaseId(value = 22, isParameterized = true, pattern = "id")
     @Test
-    public void logHtml(@TestCaseIdTemplate(value = "id", isInteger = false) ITestContext testContext) throws IOException {
+    public void logHtml() throws IOException {
         File file = File.createTempFile("rp-test", ".html");
         Resources.asByteSource(Resources.getResource("files/html.html")).copyTo(Files.asByteSink(file));
         LoggingUtils.log(file, "I'm logging HTML");

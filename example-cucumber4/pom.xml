@@ -24,7 +24,7 @@
         <dependency>
             <groupId>com.github.reportportal</groupId>
             <artifactId>agent-java-cucumber4</artifactId>
-            <version>d519b88</version>
+            <version>180f40b</version>
         </dependency>
 
         <dependency>

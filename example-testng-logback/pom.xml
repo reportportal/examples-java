@@ -24,7 +24,7 @@
             <groupId>com.github.reportportal</groupId>
             <!--<groupId>com.github.reportportal</groupId>-->
             <artifactId>agent-java-testng</artifactId>
-            <version>aea994d9</version>
+            <version>fc538911</version>
         </dependency>
 
         <dependency>

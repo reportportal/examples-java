@@ -22,7 +22,7 @@
         <dependency>
             <groupId>com.github.reportportal</groupId>
             <artifactId>agent-java-cucumber3</artifactId>
-            <version>4f711dc</version>
+            <version>a56e7c3</version>
         </dependency>
 
         <dependency>

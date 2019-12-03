@@ -21,6 +21,7 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
+@ExtendWith(ReportPortalExtension.class)
 class JUnit5Tests {
 
 	@BeforeAll
@@ -33,7 +34,7 @@ class JUnit5Tests {
 		System.out.println("base-class-before-each");
 	}
 
-	@TestCaseId(value = 5)
+	@TestCaseId(value = "J5.1.0")
 	@Test
 	@Tag("tag1")
 	@Tag("tag2")
@@ -62,10 +63,10 @@ class JUnit5Tests {
 		System.out.println("parameterized-test-with-method-source, parameter: " + value);
 	}
 
-	@TestCaseId(isParameterized = true)
+	@TestCaseId(parametrized = true)
 	@ParameterizedTest
 	@CsvSource({ "first", "second", "third" })
-	void parameterizedTestWithCsvSource(@TestCaseIdKey(isInteger = false) String value) {
+	void parameterizedTestWithCsvSource(@TestCaseIdKey String value) {
 		System.err.println(value.hashCode());
 		System.err.println(Arrays.deepHashCode(new Object[] { value }));
 		System.out.println("parameterized-test-with-csv-source, parameter: " + value);

@@ -12,19 +12,19 @@ public class Stepdefs {
 
 	private Belly belly = new Belly();
 
-	@TestCaseId(isParameterized = true)
+	@TestCaseId(parametrized = true)
 	@Given("^I have (\\d+) cukes in my belly$")
-	public void I_have_cukes_in_my_belly(@TestCaseIdKey(isInteger = true) int cukes) {
+	public void I_have_cukes_in_my_belly(@TestCaseIdKey int cukes) {
 		belly.eat(cukes);
 	}
 
-	@TestCaseId(isParameterized = true)
+	@TestCaseId(parametrized = true)
 	@When("^I wait (\\d+) hour$")
 	public void I_wait(int hours) {
 		belly.wait(hours);
 	}
 
-	@TestCaseId(value = 444)
+	@TestCaseId(value = "C4.1.0")
 	@Then("^my belly should growl$")
 	public void my_belly_should_growl() {
 		assertTrue(belly.growl());

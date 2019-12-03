@@ -23,7 +23,7 @@ public class ParameterizedTest implements ArtifactParams {
 	@Rule
 	public final AtomIdentity identity = new AtomIdentity(this);
 
-	@TestCaseIdKey(isInteger = false)
+	@TestCaseIdKey
     private String input;
     
     public ParameterizedTest(String input) {
@@ -44,7 +44,7 @@ public class ParameterizedTest implements ArtifactParams {
     }
     
     @Test
-	@TestCaseId(isParameterized = true)
+	@TestCaseId(parametrized = true)
     public void parameterized() {
     	Optional<Map<String, Object>> params = identity.getParameters();
     	assertTrue(params.isPresent());

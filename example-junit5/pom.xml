@@ -16,7 +16,7 @@
         <dependency>
             <groupId>com.github.reportportal</groupId>
             <artifactId>agent-java-junit5</artifactId>
-            <version>5249f7b8</version>
+            <version>2e347356</version>
         </dependency>
 
         <dependency>
