@@ -22,7 +22,7 @@
     <dependencies>
 
         <dependency>
-<!--            <groupId>com.epam.reportportal</groupId>-->
+            <!--            <groupId>com.epam.reportportal</groupId>-->
             <groupId>com.github.reportportal</groupId>
             <artifactId>agent-java-testng</artifactId>
             <version>d962175</version>
@@ -65,9 +65,13 @@
 
                     <!-- Uncomment it if you don't want your build to be failed in case of test errors -->
                     <testFailureIgnore>true</testFailureIgnore>
+
+                    <!-- For nested steps only -->
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
+                    <!---->
+
                     <suiteXmlFiles>
                         <!--<xmlFile>suites/issue27.xml</xmlFile>-->
                         <!--<xmlFile>suites/randomizer_suite.xml</xmlFile>-->
@@ -88,11 +92,13 @@
                     <!--</properties>-->
                 </configuration>
                 <dependencies>
+                    <!-- For nested steps only -->
                     <dependency>
                         <groupId>org.aspectj</groupId>
                         <artifactId>aspectjweaver</artifactId>
                         <version>${aspectj.version}</version>
                     </dependency>
+                    <!---->
                 </dependencies>
             </plugin>
 
