@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Inner Logging Tests" parallel="classes" thread-count="10">
+<suite name="Inner Logging Tests">
 
 <!--    <test name="Parametrized Test">-->
 <!--        <parameter name="message" value="My great message"/>-->
