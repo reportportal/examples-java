@@ -4,7 +4,6 @@ import com.epam.reportportal.testng.BaseTestNGListener;
 import com.epam.reportportal.testng.TestNGService;
 import com.epam.ta.reportportal.ws.model.FinishTestItemRQ;
 import com.epam.ta.reportportal.ws.model.StartTestItemRQ;
-import com.epam.ta.reportportal.ws.model.attribute.ItemAttributesRQ;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.ITestResult;
@@ -65,12 +64,11 @@ public class ParameterizedTest {
 		protected StartTestItemRQ buildStartStepRq(ITestResult testResult) {
 			final StartTestItemRQ rq = super.buildStartStepRq(testResult);
 			if (testResult.getParameters() != null && testResult.getParameters().length != 0) {
-				Set<ItemAttributesRQ> attributes = Optional.fromNullable(rq.getAttributes()).or(new HashSet<>());
+				Set<String> attributes = Optional.fromNullable(rq.getTags()).or(new HashSet<>());
 				for (Object param : testResult.getParameters()) {
-					attributes.add(new ItemAttributesRQ(null, param.toString()));
+					attributes.add(param.toString());
 				}
-				rq.setAttributes(attributes);
-
+				rq.setTags(attributes);
 			}
 			return rq;
 		}

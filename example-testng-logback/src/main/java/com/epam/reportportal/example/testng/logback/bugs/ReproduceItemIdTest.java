@@ -67,7 +67,7 @@ public class ReproduceItemIdTest {
 
 		@Override
 		public void transform(ITestAnnotation testAnnotation, Class testClass, Constructor testConstructor, Method testMethod) {
-			IRetryAnalyzer retry = testAnnotation.getRetryAnalyzer();
+			Class<? extends IRetryAnalyzer> retry = testAnnotation.getRetryAnalyzerClass();
 
 			if (retry == null) {
 				testAnnotation.setRetryAnalyzer(RetryAnalyzer.class);

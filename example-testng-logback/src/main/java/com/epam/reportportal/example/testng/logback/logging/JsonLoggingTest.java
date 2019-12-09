@@ -25,11 +25,11 @@ public class JsonLoggingTest {
 	@Test
 	public void logJsonBase64() throws IOException {
 		/* here we are logging some binary data as BASE64 string */
-		ReportPortal.emitLaunchLog("LAUNCH LOG MESAGE", "error", new Date());
+		ReportPortal.emitLog("LAUNCH LOG MESAGE", "error", new Date());
 
 		File file = File.createTempFile("rp-test", ".css");
 		Resources.asByteSource(Resources.getResource("files/css.css")).copyTo(Files.asByteSink(file));
-		ReportPortal.emitLaunchLog("LAUNCH LOG MESAGE WITH ATTACHMENT", "error", new Date(), file);
+		ReportPortal.emitLog("LAUNCH LOG MESAGE WITH ATTACHMENT", "error", new Date(), file);
 
 		LOGGER.info(
 				"RP_MESSAGE#BASE64#{}#{}",
