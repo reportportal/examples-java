@@ -31,7 +31,7 @@ public class DummyTest {
 		// Report launch log
 		File file = File.createTempFile("rp-test", ".css");
 		Resources.asByteSource(Resources.getResource("logback.xml")).copyTo(Files.asByteSink(file));
-		ReportPortal.emitLaunchLog("LAUNCH LOG MESAGE WITH ATTACHMENT", "error", new Date(), file);
+		ReportPortal.emitLog("LAUNCH LOG MESAGE WITH ATTACHMENT", "error", new Date(), file);
 
 		Thread.sleep(100);
 		assertTrue(true);
