@@ -29,7 +29,7 @@
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>logger-java-logback</artifactId>
-            <version>4.0.3-SNAPSHOT</version>
+            <version>4.0.4</version>
         </dependency>
 
         <dependency>
