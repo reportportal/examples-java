@@ -1,6 +1,6 @@
 package com.epam.reportportal.example.testng.log4j.randomizer;
 
-import com.epam.reportportal.example.testng.logback.MagicRandomizer;
+import com.epam.reportportal.example.testng.log4j.MagicRandomizer;
 import org.testng.annotations.Test;
 
 /**

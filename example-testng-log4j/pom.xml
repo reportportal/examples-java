@@ -15,39 +15,45 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <log4j.version>2.12.1</log4j.version>
     </properties>
 
     <dependencies>
 
+        <!-- Report Portal clients -->
         <dependency>
             <groupId>com.epam.reportportal</groupId>
-            <!--<groupId>com.github.reportportal</groupId>-->
             <artifactId>agent-java-testng</artifactId>
-            <version>5.0.0-BETA-6</version>
+            <version>4.2.2-SNAPSHOT</version>
         </dependency>
-
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>logger-java-log4j</artifactId>
-            <version>5.0.0-BETA-2</version>
+            <version>4.0.2-SNAPSHOT</version>
         </dependency>
 
+        <!-- Test Framework -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>6.14.3</version>
+            <version>7.0.0</version>
         </dependency>
 
+        <!-- Logger -->
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.28</version>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-slf4j-impl</artifactId>
-            <version>2.12.1</version>
+            <version>${log4j.version}</version>
         </dependency>
 
     </dependencies>

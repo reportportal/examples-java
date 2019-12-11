@@ -1,9 +1,12 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Logging Tests" parallel="classes" thread-count="10">
-
+<suite name="Logging Tests">
     <listeners>
         <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>
     </listeners>
+
+    <suite-files>
+        <suite-file path="logging_inner_tests.xml"/>
+    </suite-files>
 
     <test verbose="1" name="Lucky Pug">
         <classes>
