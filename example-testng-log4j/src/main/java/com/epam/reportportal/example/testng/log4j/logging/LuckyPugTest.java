@@ -19,7 +19,7 @@ public class LuckyPugTest {
 	private static final Logger LOGGER = LogManager.getLogger(LuckyPugTest.class);
 
 	@Test
-	public void logImageBase64() throws IOException {
+	public void logImageBase64() throws IOException, InterruptedException {
 
 		/* Generate 10 logs with pugs. Pug may be lucky or unlucky based on randomizer */
 		for (int i = 0; i < 20; i++) {
@@ -34,6 +34,7 @@ public class LuckyPugTest {
 			);
 		}
 
+		Thread.sleep(100); // wait for file uploads
 	}
 
 	private String getImageResource(boolean lucky) {
