@@ -23,9 +23,11 @@ public class XmlLoggingTest {
 	@Test
 	public void logXmlBase64() throws IOException {
 		/* here we are logging some binary data as BASE64 string */
-		LOGGER.info("RP_MESSAGE#BASE64#{}#{}",
+		LOGGER.info(
+				"RP_MESSAGE#BASE64#{}#{}",
 				BaseEncoding.base64().encode(Resources.asByteSource(Resources.getResource(XML_FILE_PATH)).read()),
-				"I'm logging content via BASE64");
+				"I'm logging content via BASE64"
+		);
 	}
 
 	@Test

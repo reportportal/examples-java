@@ -1,7 +1,7 @@
 package com.epam.reportportal.example.testng.log4j;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import rp.com.google.common.base.Preconditions;
 import rp.com.google.common.collect.Range;
 
@@ -14,7 +14,7 @@ import java.util.Random;
  */
 public class MagicRandomizer {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(MagicRandomizer.class);
+	private static final Logger LOGGER = LogManager.getLogger(MagicRandomizer.class);
 
 	private static final Range<Integer> PROBABILITY_RANGE = Range.openClosed(0, 100);
 
