@@ -31,7 +31,6 @@ public class TestCaseIdTest {
 		Assert.assertEquals(expected, evaluated);
 	}
 
-	@TestCaseId(parametrized = true)
 	@Test(dataProvider = "numbersProvider")
 	public void parametrizedTestWithoutKey(String testCaseId, Integer expected, Integer evaluated) {
 		Assert.assertEquals(expected, evaluated);
