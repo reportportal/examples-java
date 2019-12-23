@@ -13,6 +13,9 @@ import org.testng.annotations.Test;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
+/**
+ * Test for a github issue: https://github.com/reportportal/agent-java-testNG/issues/27
+ */
 //@Listeners({ReproduceItemIdTest.RetryAnnotationListener.class, ReportPortalTestNGListener.class })
 public class ReproduceItemIdTest {
 	final Logger logger = LoggerFactory.getLogger(this.getClass());
