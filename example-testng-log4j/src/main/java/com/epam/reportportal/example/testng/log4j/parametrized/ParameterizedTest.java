@@ -2,7 +2,6 @@ package com.epam.reportportal.example.testng.log4j.parametrized;
 
 import com.epam.reportportal.annotations.ParameterKey;
 import com.epam.reportportal.annotations.UniqueID;
-import com.epam.reportportal.example.testng.log4j.extension.ParameterizedTest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.DataProvider;
@@ -19,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  *
  * @author Pavel Bortnik
  */
-public class ParametrizedTest {
+public class ParameterizedTest {
 
 	private static final Logger LOGGER = LogManager.getLogger(ParameterizedTest.class);
 
