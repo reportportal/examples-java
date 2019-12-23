@@ -7,7 +7,7 @@
     <test verbose="1" name="Test parameters">
         <parameter name="message" value="My Test message" />
         <classes>
-            <class name="com.epam.reportportal.example.testng.log4j.parametrized.ParametrizedTest"/>
+            <class name="com.epam.reportportal.example.testng.log4j.parameterized.ParameterizedTest"/>
         </classes>
     </test>
 </suite>

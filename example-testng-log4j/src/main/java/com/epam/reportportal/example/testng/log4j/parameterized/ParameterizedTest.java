@@ -1,4 +1,4 @@
-package com.epam.reportportal.example.testng.log4j.parametrized;
+package com.epam.reportportal.example.testng.log4j.parameterized;
 
 import com.epam.reportportal.annotations.ParameterKey;
 import com.epam.reportportal.annotations.UniqueID;
