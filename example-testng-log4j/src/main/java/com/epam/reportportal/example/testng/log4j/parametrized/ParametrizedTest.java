@@ -26,7 +26,7 @@ public class ParametrizedTest {
 	@Test
 	@Parameters({ "message" })
 	@UniqueID("HOOOOAA-my-very-unique-id")
-	public void testParams(String msg) throws InterruptedException {
+	public void testParams1(String msg) throws InterruptedException {
 		for (int i = 0; i < 10; i++) {
 			LOGGER.info(msg + ": " + i);
 			if (i == 1) {
@@ -36,7 +36,7 @@ public class ParametrizedTest {
 	}
 
 	@Test(threadPoolSize = 2, dataProvider = "bla-bla")
-	public void testParams(@ParameterKey("my_great_parameter") String msg, String msg2) throws InterruptedException {
+	public void testParams2(@ParameterKey("my_great_parameter") String msg, String msg2) throws InterruptedException {
 		for (int i = 0; i < 10; i++) {
 			LOGGER.info(msg + ": " + msg2);
 			if (i == 1) {
