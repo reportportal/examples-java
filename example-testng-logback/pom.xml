@@ -20,16 +20,17 @@
 
     <dependencies>
 
+        <!-- Report Portal clients -->
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>agent-java-testng</artifactId>
-            <version>4.2.2-SNAPSHOT</version>
+            <version>4.2.2</version>
         </dependency>
 
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>logger-java-logback</artifactId>
-            <version>4.0.4</version>
+            <version>4.0.5</version>
         </dependency>
 
         <dependency>
