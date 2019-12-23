@@ -29,6 +29,6 @@ public class XmlLoggingBetterTest {
 		/* here we are logging some binary data as file (useful for selenium) */
 		File file = File.createTempFile("rp-test", "xml");
 		Resources.asByteSource(Resources.getResource(XML_FILE_PATH)).copyTo(Files.asByteSink(file));
-		LoggingUtils.log(file, "I'm logging content via BASE64");
+		LoggingUtils.log(file, "I'm logging content via file");
 	}
 }
