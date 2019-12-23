@@ -1,12 +1,9 @@
 package com.epam.reportportal.example.testng.logback.feature;
 
-import com.epam.reportportal.testng.ReportPortalTestNGListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-@Listeners({ ReportPortalTestNGListener.class })
 public class TestItemDescriptionTest {
 	private static final Logger LOGGER = LoggerFactory.getLogger(TestItemDescriptionTest.class);
 

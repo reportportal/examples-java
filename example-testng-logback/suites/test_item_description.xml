@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Logging Tests" parallel="false">
+    <listeners>
+        <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>
+    </listeners>
+
+    <test verbose="1" name="Test item description">
+        <classes>
+            <class name="com.epam.reportportal.example.testng.logback.feature.TestItemDescriptionTest"/>
+        </classes>
+    </test>
+</suite>
