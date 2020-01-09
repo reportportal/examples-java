@@ -1,4 +1,4 @@
-package com.epam.reportportal.example.junit;
+package com.epam.reportportal.example.junit.parametrized;
 
 import com.google.common.base.Optional;
 import com.nordstrom.automation.junit.ArtifactParams;
