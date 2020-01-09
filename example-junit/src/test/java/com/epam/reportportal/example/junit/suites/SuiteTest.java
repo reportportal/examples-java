@@ -1,4 +1,4 @@
-package com.epam.reportportal.example.junit;
+package com.epam.reportportal.example.junit.suites;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
