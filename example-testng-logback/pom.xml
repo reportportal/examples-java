@@ -24,7 +24,7 @@
 <!--            <groupId>com.epam.reportportal</groupId>-->
             <groupId>com.github.reportportal</groupId>
             <artifactId>agent-java-testng</artifactId>
-            <version>d962175</version>
+            <version>a4475cb</version>
         </dependency>
 
         <dependency>
