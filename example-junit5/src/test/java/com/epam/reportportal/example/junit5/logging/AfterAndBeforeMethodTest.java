@@ -1,9 +1,7 @@
-package com.epam.reportportal.example.junit5;
+package com.epam.reportportal.example.junit5.logging;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
+import com.epam.reportportal.example.junit5.LoggingUtils;
+import org.junit.jupiter.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import rp.com.google.common.io.Files;
@@ -15,19 +13,23 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class AfterAndBeforeAllTest {
+public class AfterAndBeforeMethodTest {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DummyTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AfterAndBeforeMethodTest.class);
 
     @BeforeAll
     public void before() throws InterruptedException {
-        LOGGER.info("Inside Dummy beforeAll ");
-        Thread.sleep(100);
+        LOGGER.info("Inside AfterAndBeforeMethodTest beforeAll ");
     }
 
-    @Test
+    @BeforeEach
+    public void beforeEach() {
+        LOGGER.info("Inside AfterAndBeforeMethodTest beforeEach ");
+    }
+
+    @RepeatedTest(3)
     public void test1() throws IOException {
-        LOGGER.info("Inside Dummy test 1");
+        LOGGER.info("Inside AfterAndBeforeMethodTest test ");
         // Report launch log
         File file = File.createTempFile("rp-test", ".xml");
         Resources.asByteSource(Resources.getResource("logback.xml")).copyTo(Files.asByteSink(file));
@@ -41,7 +43,11 @@ public class AfterAndBeforeAllTest {
 
     @AfterAll
     public void afterClass() throws InterruptedException {
-        LOGGER.info("Inside Dummy afterAll");
-        Thread.sleep(100);
+        LOGGER.info("Inside AfterAndBeforeMethodTest afterAll");
+    }
+
+    @AfterEach
+    public void afterEach() {
+        LOGGER.info("Inside AfterAndBeforeMethodTest afterEach ");
     }
 }

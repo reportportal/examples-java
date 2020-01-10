@@ -22,12 +22,4 @@ public class LoggingUtils {
 	public static void log(File file, String message) {
 		LOGGER.info("RP_MESSAGE#FILE#{}#{}", file.getAbsolutePath(), message);
 	}
-
-	public static void log(byte[] bytes, String message) {
-		LOGGER.info("RP_MESSAGE#BASE64#{}#{}", BaseEncoding.base64().encode(bytes), message);
-	}
-
-	public static void logBase64(String base64, String message) {
-		LOGGER.info("RP_MESSAGE#BASE64#{}#{}", base64, message);
-	}
 }
