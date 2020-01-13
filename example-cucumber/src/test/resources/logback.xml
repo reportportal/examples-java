@@ -20,7 +20,7 @@
 
     <logger name="com.epam.rp" level="DEBUG"/>
 
-    <root level="INFO">
+    <root level="DEBUG">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="RP"/>
     </root>

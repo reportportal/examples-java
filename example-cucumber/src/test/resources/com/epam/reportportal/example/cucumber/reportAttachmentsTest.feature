@@ -1,5 +1,7 @@
 Feature: ReportAttachmentsTest
 
+  Background:
+
   Scenario: ReportAttachmentsTest
     Given I attach logCmd
     Given I attach logCss

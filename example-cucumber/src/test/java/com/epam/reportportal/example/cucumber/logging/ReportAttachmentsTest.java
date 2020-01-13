@@ -21,7 +21,6 @@ public class ReportAttachmentsTest {
     public static final String XML_FILE_PATH = "xml/file.xml";
     public static final String JSON_FILE_PATH = "xml/file.json";
 
-
     @Given("I attach logCss")
     public void logCss() throws IOException {
         File file = File.createTempFile("rp-test", ".css");
@@ -149,6 +148,7 @@ public class ReportAttachmentsTest {
                     "Pug is " + (happy ? "HAPPY" : "NOT HAPPY"));
         }
     }
+
     private String getImageResource(boolean lucky) {
         return "pug/" + (lucky ? "lucky.jpg" : "unlucky.jpg");
     }
