@@ -1,4 +1,4 @@
-Feature: LogLevelTest
+Feature: Test with defects
 
   @ignore
   Scenario: Test is skipped
