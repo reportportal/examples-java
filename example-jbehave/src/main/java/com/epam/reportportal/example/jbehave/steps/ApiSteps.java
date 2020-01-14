@@ -33,7 +33,7 @@ public class ApiSteps {
         // Report launch log
         File file = File.createTempFile("rp-test", ".css");
         Resources.asByteSource(Resources.getResource("files/css.css")).copyTo(Files.asByteSink(file));
-        ReportPortal.emitLaunchLog("LAUNCH LOG MESAGE WITH ATTACHMENT", "error", new Date(), file);
+        ReportPortal.emitLog("LAUNCH LOG MESAGE WITH ATTACHMENT", "error", new Date(), file);
 
         logger.info("It is a composite step which contain preparedStep1 and  preparedStep2");
     }

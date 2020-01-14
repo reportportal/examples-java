@@ -1,10 +1,10 @@
-package com.epam.reportportal.example.cucumber4.logging;
+package com.epam.reportportal.example.jbehave.steps;
 
-import com.epam.reportportal.example.cucumber4.LoggingUtils;
-import com.epam.reportportal.example.cucumber4.MagicRandomizer;
+import com.epam.reportportal.example.jbehave.LoggingUtils;
+import com.epam.reportportal.example.jbehave.MagicRandomizer;
 import com.epam.reportportal.service.ReportPortal;
 
-import io.cucumber.java.en.Given;
+import org.jbehave.core.annotations.Given;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import rp.com.google.common.io.BaseEncoding;

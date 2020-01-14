@@ -1,12 +1,32 @@
-package com.epam.reportportal.example.cucumber4.logging;
+package com.epam.reportportal.example.jbehave.steps;
 
-import io.cucumber.java.en.Given;
+import org.jbehave.core.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class LogLevelTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LogLevelTest.class);
+
+    @BeforeScenario(uponType = ScenarioType.ANY)
+    public void beforeScenario() {
+        LOGGER.info("Before Scenario");
+    }
+
+    @AfterScenario(uponType = ScenarioType.ANY)
+    public void afterScenario() {
+        LOGGER.info("After Scenario");
+    }
+
+    @BeforeStories()
+    public void beforeStories() {
+        LOGGER.info("Before stories");
+    }
+
+    @AfterStories()
+    public void afterStories() {
+        LOGGER.info("After stories");
+    }
 
     @Given("Log level test")
     public void logLevelTest() {

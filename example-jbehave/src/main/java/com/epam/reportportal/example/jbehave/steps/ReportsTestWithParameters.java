@@ -1,7 +1,8 @@
-package com.epam.reportportal.example.cucumber4.logging;
+package com.epam.reportportal.example.jbehave.steps;
 
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
+import org.jbehave.core.annotations.Given;
+import org.jbehave.core.annotations.Named;
+import org.jbehave.core.annotations.Then;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,8 +15,8 @@ public class ReportsTestWithParameters {
         LOGGER.info("It is test with parameters");
     }
 
-    @Then("I emit number {int} on level info")
-    public void infoLevel(int parameters) {
+    @Then("I emit number <number> on level info")
+    public void infoLevel(@Named("number") int parameters) {
         LOGGER.info("Test with parameters: " + parameters);
     }
 }

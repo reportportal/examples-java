@@ -1,4 +1,4 @@
-package com.epam.reportportal.example.cucumber4;
+package com.epam.reportportal.example.jbehave;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,5 +42,4 @@ public class MagicRandomizer {
         LOGGER.debug("Generating [TRUE/FALSE] with probability {}%. Result {}", probability, lucky);
         return lucky;
     }
-
 }
