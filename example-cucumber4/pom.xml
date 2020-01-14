@@ -22,10 +22,15 @@
 
     <dependencies>
         <dependency>
-<!--            <groupId>com.epam.reportportal</groupId>-->
-            <groupId>com.github.reportportal</groupId>
+            <groupId>com.epam.reportportal</groupId>
             <artifactId>agent-java-cucumber4</artifactId>
-            <version>4553c07</version>
+            <version>4.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.epam.reportportal</groupId>
+            <artifactId>logger-java-logback</artifactId>
+            <version>4.0.4</version>
         </dependency>
 
         <dependency>
@@ -50,6 +55,12 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>1.2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jbehave</groupId>
+            <artifactId>jbehave-core</artifactId>
+            <version>4.5.1</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>
