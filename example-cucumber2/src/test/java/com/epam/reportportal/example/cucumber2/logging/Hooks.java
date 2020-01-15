@@ -17,5 +17,4 @@ public class Hooks {
     public void afterScenario() {
         LOGGER.info("After scenario");
     }
-
 }

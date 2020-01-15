@@ -1,7 +1,5 @@
 package com.epam.reportportal.example.cucumber2;
 
-
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import rp.com.google.common.base.Preconditions;
@@ -44,5 +42,4 @@ public class MagicRandomizer {
         LOGGER.debug("Generating [TRUE/FALSE] with probability {}%. Result {}", probability, lucky);
         return lucky;
     }
-
 }

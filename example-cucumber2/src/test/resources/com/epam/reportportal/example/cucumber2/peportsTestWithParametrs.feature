@@ -9,6 +9,3 @@ Feature: Test with parameters
       | 123         |
       | 12345       |
       | 12312345678 |
-
-
-

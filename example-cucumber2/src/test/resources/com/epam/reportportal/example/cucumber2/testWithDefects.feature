@@ -9,4 +9,3 @@ Feature: Test with defects
 
   Scenario: Test is failed with custom message
     Given Test is failed with message
-
