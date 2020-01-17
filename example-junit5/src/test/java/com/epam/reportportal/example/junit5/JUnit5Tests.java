@@ -35,7 +35,7 @@ class JUnit5Tests {
 	void baseClassTest() throws IOException {
 		// Report launch log
 		File file = File.createTempFile("rp-test", ".css");
-		Resources.asByteSource(Resources.getResource("files/css.css")).copyTo(Files.asByteSink(file));
+		Resources.asByteSource(Resources.getResource("files/file.css")).copyTo(Files.asByteSink(file));
 		ReportPortal.emitLaunchLog("LAUNCH LOG MESAGE WITH ATTACHMENT", "error", new Date(), file);
 
 		System.out.println("base-class-test");
