@@ -39,55 +39,62 @@ import static org.jbehave.core.reporters.Format.*;
  */
 public class MyStories extends JUnitStories {
 
-    public MyStories() {
-        configuredEmbedder().embedderControls()
-                .doIgnoreFailureInStories(true)
-                .doIgnoreFailureInView(true)
-                .useThreads(1)
+	public MyStories() {
+		configuredEmbedder().embedderControls()
+				.doIgnoreFailureInStories(true)
+				.doIgnoreFailureInView(true)
+				.useThreads(1)
 				.useStoryTimeouts("60");
-        configuredEmbedder().useMetaFilters(Arrays.asList("-skip"));
-    }
+		configuredEmbedder().useMetaFilters(Arrays.asList("-skip"));
+	}
 
-    @Override
-    public Configuration configuration() {
-        Class<? extends Embeddable> embeddableClass = this.getClass();
-        // Start from default ParameterConverters instance
-        ParameterConverters parameterConverters = new ParameterConverters();
+	@Override
+	public Configuration configuration() {
+		Class<? extends Embeddable> embeddableClass = this.getClass();
+		// Start from default ParameterConverters instance
+		ParameterConverters parameterConverters = new ParameterConverters();
 
-        TableTransformers tableTransformers = new TableTransformers();
-        // factory to allow parameter conversion and loading from external resources (used by StoryParser too)
-        ExamplesTableFactory examplesTableFactory = new ExamplesTableFactory(new LocalizedKeywords(),
-                new LoadFromClasspath(embeddableClass),
-                tableTransformers
-        );
-        // add custom converters
-        parameterConverters.addConverters(new DateConverter(new SimpleDateFormat("yyyy-MM-dd")),
-                new ExamplesTableConverter(examplesTableFactory)
-        );
-        return new MostUsefulConfiguration().useStoryLoader(new LoadFromClasspath(embeddableClass))
-                .useStoryParser(new RegexStoryParser(examplesTableFactory))
-                .useStoryReporterBuilder(new StoryReporterBuilder().withCodeLocation(CodeLocations.codeLocationFromClass(embeddableClass))
-                        .withDefaultFormats()
-                        .withFormats(CONSOLE, TXT, HTML, XML, ReportPortalFormat.INSTANCE))
-                .useViewGenerator(new ReportPortalViewGenerator())
-                .useParameterConverters(parameterConverters);
-    }
+		TableTransformers tableTransformers = new TableTransformers();
+		// factory to allow parameter conversion and loading from external resources (used by StoryParser too)
+		ExamplesTableFactory examplesTableFactory = new ExamplesTableFactory(new LocalizedKeywords(),
+				new LoadFromClasspath(embeddableClass),
+				tableTransformers
+		);
+		// add custom converters
+		parameterConverters.addConverters(new DateConverter(new SimpleDateFormat("yyyy-MM-dd")),
+				new ExamplesTableConverter(examplesTableFactory)
+		);
+		return new MostUsefulConfiguration().useStoryLoader(new LoadFromClasspath(embeddableClass))
+				.useStoryParser(new RegexStoryParser(examplesTableFactory))
+				.useStoryReporterBuilder(new StoryReporterBuilder().withCodeLocation(CodeLocations.codeLocationFromClass(embeddableClass))
+						.withDefaultFormats()
+						.withFormats(CONSOLE, TXT, HTML, XML, ReportPortalFormat.INSTANCE))
+				.useViewGenerator(new ReportPortalViewGenerator())
+				.useParameterConverters(parameterConverters);
+	}
 
-    @Override
-    public InjectableStepsFactory stepsFactory() {
-        return new InstanceStepsFactory(configuration(), new LogLevelTest(), new ReportAttachmentsTest(), new ReportsStepWithDefectTest(), new ReportsTestWithParameters(), new ApiSteps());
-    }
+	@Override
+	public InjectableStepsFactory stepsFactory() {
+		return new InstanceStepsFactory(
+				configuration(),
+				new LogLevelTest(),
+				new ReportAttachmentsTest(),
+				new ReportsStepWithDefectTest(),
+				new ReportsTestWithParameters(),
+				new ApiSteps()
+		);
+	}
 
-    @Override
-    protected List<String> storyPaths() {
-        String storyProperty = System.getProperty("story");
-        String storyPatternToRun;
-        if (storyProperty == null || StringUtils.isEmpty(storyProperty)) {
-            storyPatternToRun = "**/*.story";
-        } else {
-            storyPatternToRun = "**/" + storyProperty;
-        }
-        return new StoryFinder().findPaths(codeLocationFromClass(this.getClass()), storyPatternToRun, "**/excluded*.story");
+	@Override
+	protected List<String> storyPaths() {
+		String storyProperty = System.getProperty("story");
+		String storyPatternToRun;
+		if (storyProperty == null || StringUtils.isEmpty(storyProperty)) {
+			storyPatternToRun = "**/*.story";
+		} else {
+			storyPatternToRun = "**/" + storyProperty;
+		}
+		return new StoryFinder().findPaths(codeLocationFromClass(this.getClass()), storyPatternToRun, "**/excluded*.story");
 
-    }
+	}
 }
