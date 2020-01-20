@@ -8,8 +8,7 @@ import rp.org.apache.http.impl.client.HttpClients;
 public class RpListener extends StepReporter {
 	@Override
 	protected ReportPortal buildReportPortal() {
-		return ReportPortal.builder()
-				.withHttpClient(HttpClients.custom().
+		return ReportPortal.builder().withHttpClient(HttpClients.custom().
 				setSSLHostnameVerifier(NoopHostnameVerifier.INSTANCE)).build();
 	}
 }
