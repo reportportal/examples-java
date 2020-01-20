@@ -1,7 +1,6 @@
 package com.epam.reportportal.example.jbehave;
 
-import com.epam.reportportal.example.jbehave.steps.ApiSteps;
-import com.epam.reportportal.example.jbehave.steps.MySteps;
+import com.epam.reportportal.example.jbehave.steps.*;
 import com.epam.reportportal.jbehave.ReportPortalFormat;
 import com.epam.reportportal.jbehave.ReportPortalViewGenerator;
 import org.apache.commons.lang3.StringUtils;
@@ -24,6 +23,7 @@ import org.jbehave.core.steps.ParameterConverters.DateConverter;
 import org.jbehave.core.steps.ParameterConverters.ExamplesTableConverter;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.jbehave.core.io.CodeLocations.codeLocationFromClass;
@@ -41,11 +41,11 @@ public class MyStories extends JUnitStories {
 
 	public MyStories() {
 		configuredEmbedder().embedderControls()
-				.doGenerateViewAfterStories(true)
 				.doIgnoreFailureInStories(true)
 				.doIgnoreFailureInView(true)
 				.useThreads(1)
 				.useStoryTimeouts("60");
+		configuredEmbedder().useMetaFilters(Arrays.asList("-skip"));
 	}
 
 	@Override
@@ -75,7 +75,14 @@ public class MyStories extends JUnitStories {
 
 	@Override
 	public InjectableStepsFactory stepsFactory() {
-		return new InstanceStepsFactory(configuration(), new MySteps(), new ApiSteps());
+		return new InstanceStepsFactory(
+				configuration(),
+				new LogLevelTest(),
+				new ReportAttachmentsTest(),
+				new ReportsStepWithDefectTest(),
+				new ReportsTestWithParameters(),
+				new ApiSteps()
+		);
 	}
 
 	@Override
@@ -90,5 +97,4 @@ public class MyStories extends JUnitStories {
 		return new StoryFinder().findPaths(codeLocationFromClass(this.getClass()), storyPatternToRun, "**/excluded*.story");
 
 	}
-
 }
