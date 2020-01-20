@@ -1,17 +1,20 @@
 package com.epam.reportportal.example.junit5;
 
+import ch.qos.logback.classic.Level;
+import com.epam.reportportal.example.junit5.util.Attachment;
 import com.epam.reportportal.service.ReportPortal;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.Random;
 
-import static com.epam.reportportal.example.junit5.Util.getFileFromResources;
+import static com.epam.reportportal.example.junit5.util.Util.FILE_NAME;
+import static com.epam.reportportal.example.junit5.util.Util.getFileFromResources;
 
 public class LaunchLogTest {
-
-	private static final String FILE_NAME = "file";
 
 	@BeforeAll
 	static void beforeAll() throws IOException {
@@ -22,22 +25,7 @@ public class LaunchLogTest {
 		ReportPortal.emitLaunchLog("LAUNCH LOG MESSAGE ERROR LEVEL", "error", new Date());
 		ReportPortal.emitLaunchLog("LAUNCH LOG MESSAGE CUSTOM LEVEL", "66666", new Date());
 
-		launchLogWithAttachment("info", FILE_NAME, "css");
-		launchLogWithAttachment("debug", FILE_NAME, "xml");
-		launchLogWithAttachment("trace", FILE_NAME, "js");
-		launchLogWithAttachment("warn", FILE_NAME, "json");
-		launchLogWithAttachment("error", FILE_NAME, "php");
-		launchLogWithAttachment("info", FILE_NAME, "zip");
-		launchLogWithAttachment("trace", FILE_NAME, "tar.gz");
-		launchLogWithAttachment("trace", FILE_NAME, "tar");
-		launchLogWithAttachment("error", FILE_NAME, "txt");
-		launchLogWithAttachment("info", FILE_NAME, "html");
-		launchLogWithAttachment("debug", FILE_NAME, "jpg");
-		launchLogWithAttachment("debug", FILE_NAME, "png");
-		launchLogWithAttachment("debug", FILE_NAME, "cmd");
-		launchLogWithAttachment("warn", FILE_NAME, "csv");
-		launchLogWithAttachment("warn", FILE_NAME, "pdf");
-		launchLogWithAttachment("warn", FILE_NAME, "har");
+		Arrays.stream(Attachment.values()).forEach(it -> launchLogWithAttachment(randomLogLevel(), FILE_NAME, it));
 	}
 
 	@Test
@@ -45,8 +33,12 @@ public class LaunchLogTest {
 		System.out.println("launch-log");
 	}
 
-	private static void launchLogWithAttachment(String level, String name, String extension) throws IOException {
-		String message = String.format("LAUNCH LOG MESSAGE WITH %s ATTACHMENT", extension.toUpperCase());
-		ReportPortal.emitLaunchLog(message, level, new Date(), getFileFromResources(name, extension));
+	private static void launchLogWithAttachment(String level, String name, Attachment attachment) {
+		String message = String.format("LAUNCH LOG MESSAGE WITH %s ATTACHMENT", attachment.name());
+		ReportPortal.emitLaunchLog(message, level, new Date(), getFileFromResources(name, attachment.getExtension()));
+	}
+
+	private static String randomLogLevel() {
+		return Level.fromLocationAwareLoggerInteger(new Random().nextInt(5) * 10).toString();
 	}
 }
