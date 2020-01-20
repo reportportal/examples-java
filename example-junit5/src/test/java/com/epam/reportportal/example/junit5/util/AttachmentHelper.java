@@ -6,7 +6,7 @@ import rp.com.google.common.io.Resources;
 import java.io.File;
 import java.io.IOException;
 
-public class Util {
+public class AttachmentHelper {
 
 	public static final String FILE_NAME = "file";
 

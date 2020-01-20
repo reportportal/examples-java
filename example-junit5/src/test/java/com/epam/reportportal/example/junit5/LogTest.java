@@ -7,8 +7,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 
-import static com.epam.reportportal.example.junit5.util.Util.FILE_NAME;
-import static com.epam.reportportal.example.junit5.util.Util.getFileFromResources;
+import static com.epam.reportportal.example.junit5.util.AttachmentHelper.FILE_NAME;
+import static com.epam.reportportal.example.junit5.util.AttachmentHelper.getFileFromResources;
 
 public class LogTest {
 
