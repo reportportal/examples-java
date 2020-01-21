@@ -19,7 +19,6 @@
         <module>example-testng-log4j</module>
         <module>example-junit</module>
         <module>example-junit5</module>
-        <module>example-junit</module>
     </modules>
 
     <repositories>

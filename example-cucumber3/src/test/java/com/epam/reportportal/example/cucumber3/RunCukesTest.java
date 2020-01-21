@@ -8,5 +8,3 @@ import org.junit.runner.RunWith;
 @CucumberOptions(plugin = {"pretty", "com.epam.reportportal.cucumber.StepReporter"}, tags = "~@ignore")
 public class RunCukesTest {
 }
-
-
