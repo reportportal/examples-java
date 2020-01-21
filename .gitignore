@@ -21,10 +21,16 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-target/
-gradle/
-*.iml
-.idea/
 build/
 .gradle/
+gradle/
+
+# Maven build artifacts
+target/
+*/target/
+
+# Idea files
+*.iml
+.idea/
 out/
+test-output/
