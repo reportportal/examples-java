@@ -1,6 +1,5 @@
 package com.epam.reportportal.example.cucumber2.logging;
 
-
 import com.epam.reportportal.example.cucumber2.LoggingUtils;
 import com.epam.reportportal.example.cucumber2.MagicRandomizer;
 import com.epam.reportportal.service.ReportPortal;
