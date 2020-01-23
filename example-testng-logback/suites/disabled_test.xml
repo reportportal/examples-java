@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="ALL Tests">
+    <listeners>
+        <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>
+    </listeners>
+
+    <test name="Disabled test" enabled="false">
+        <classes>
+            <class name="com.epam.reportportal.example.testng.logback.preconditions.ReportsStepWithDefectTest"/>
+        </classes>
+    </test>
+</suite>
