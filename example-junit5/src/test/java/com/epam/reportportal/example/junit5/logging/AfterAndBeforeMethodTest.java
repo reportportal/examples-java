@@ -18,7 +18,7 @@ public class AfterAndBeforeMethodTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(AfterAndBeforeMethodTest.class);
 
     @BeforeAll
-    public void before() throws InterruptedException {
+    public void beforeAll() throws InterruptedException {
         LOGGER.info("Inside AfterAndBeforeMethodTest beforeAll ");
     }
 
@@ -42,7 +42,7 @@ public class AfterAndBeforeMethodTest {
     }
 
     @AfterAll
-    public void afterClass() throws InterruptedException {
+    public void afterAll() throws InterruptedException {
         LOGGER.info("Inside AfterAndBeforeMethodTest afterAll");
     }
 
