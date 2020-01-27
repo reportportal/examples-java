@@ -16,7 +16,7 @@ import java.util.Date;
 
 public class ReportAttachmentsTest {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(ReportAttachmentsTest.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger("ReportAttachmentsTest.class");
 	public static final String XML_FILE_PATH = "xml/file.xml";
 	public static final String JSON_FILE_PATH = "xml/file.json";
 

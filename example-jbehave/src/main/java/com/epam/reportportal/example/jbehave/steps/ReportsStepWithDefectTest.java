@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 public class ReportsStepWithDefectTest {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(ReportsStepWithDefectTest.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger("ReportsStepWithDefectTest.class");
 
 	@Given("Test is skipped")
 	public void testSkipped() {
