@@ -17,14 +17,14 @@
 <!--            <groupId>com.epam.reportportal</groupId>-->
             <groupId>com.github.reportportal</groupId>
             <artifactId>agent-java-junit5</artifactId>
-            <version>e36d97f</version>
+            <version>4bd2716</version>
         </dependency>
 
         <dependency>
 <!--            <groupId>com.epam.reportportal</groupId>-->
             <groupId>com.github.reportportal</groupId>
             <artifactId>logger-java-logback</artifactId>
-            <version>b269d41</version>
+            <version>4effaf3</version>
         </dependency>
 
         <dependency>
