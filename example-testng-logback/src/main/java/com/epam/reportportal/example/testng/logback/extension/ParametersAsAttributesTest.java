@@ -25,10 +25,10 @@ import java.util.concurrent.TimeUnit;
  *
  * @author Andrei Varabyeu
  */
-@Listeners({ ParameterizedTest.ExtendedListener.class })
-public class ParameterizedTest {
+@Listeners({ ParametersAsAttributesTest.ExtendedListener.class })
+public class ParametersAsAttributesTest {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(ParameterizedTest.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ParametersAsAttributesTest.class);
 
 	@Test(threadPoolSize = 2, dataProvider = "bla-bla")
 	public void testParams(String msg) throws InterruptedException {

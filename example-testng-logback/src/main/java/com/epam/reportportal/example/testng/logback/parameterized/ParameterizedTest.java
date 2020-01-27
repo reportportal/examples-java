@@ -1,8 +1,7 @@
-package com.epam.reportportal.example.testng.logback.parametrized;
+package com.epam.reportportal.example.testng.logback.parameterized;
 
 import com.epam.reportportal.annotations.ParameterKey;
 import com.epam.reportportal.annotations.UniqueID;
-import com.epam.reportportal.example.testng.logback.extension.ParameterizedTest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.DataProvider;
@@ -19,24 +18,24 @@ import java.util.concurrent.TimeUnit;
  *
  * @author Pavel Bortnik
  */
-public class ParametrizedTest {
+public class ParameterizedTest {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ParameterizedTest.class);
 
 	@Test
 	@Parameters({ "message" })
 	@UniqueID("HOOOOAA-my-very-unique-id")
-	public void testParams(String msg) throws InterruptedException {
+	public void testParametersFromSuite(String msg) throws InterruptedException {
 		for (int i = 0; i < 10; i++) {
 			LOGGER.info(msg + ": " + i);
 			if (i == 1) {
-				Thread.sleep(TimeUnit.SECONDS.toMillis(5L));
+				Thread.sleep(TimeUnit.SECONDS.toMillis(1L));
 			}
 		}
 	}
 
 	@Test(threadPoolSize = 2, dataProvider = "bla-bla")
-	public void testParams(@ParameterKey("my_great_parameter") String msg, String msg2) throws InterruptedException {
+	public void testParametersFromDataProvider(@ParameterKey("my_great_parameter") String msg, String msg2) throws InterruptedException {
 		for (int i = 0; i < 10; i++) {
 			LOGGER.info(msg + ": " + msg2);
 			if (i == 1) {

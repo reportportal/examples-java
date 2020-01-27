@@ -9,7 +9,6 @@ import org.testng.annotations.Test;
 /**
  * @author <a href="mailto:ivan_budayeu@epam.com">Ivan Budayeu</a>
  */
-@Listeners(ReportPortalTestNGListener.class)
 public class ItemAttributeTest {
 
 	@Test
