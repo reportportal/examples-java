@@ -1,4 +1,4 @@
-package com.epam.reportportal.example.cucumber4.attribute;
+package com.epam.reportportal.example.cucumber4;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
