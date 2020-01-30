@@ -1,5 +1,6 @@
 package com.epam.reportportal.example.junit;
 
+import com.epam.reportportal.service.ReportPortal;
 import com.google.common.io.Files;
 import com.google.common.io.Resources;
 import org.junit.*;
@@ -8,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.Assert.assertTrue;
