@@ -21,23 +21,23 @@
     <dependencies>
 
         <dependency>
-<!--            <groupId>com.epam.reportportal</groupId>-->
-            <groupId>com.github.reportportal</groupId>
+            <groupId>com.epam.reportportal</groupId>
+            <!-- <groupId>com.github.reportportal</groupId> -->
             <artifactId>agent-java-testng</artifactId>
-            <version>a4475cb</version>
+            <version>5.0.0-BETA-8</version>
         </dependency>
 
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <!--<groupId>com.github.reportportal</groupId>-->
             <artifactId>logger-java-logback</artifactId>
-            <version>5.0.0-BETA-4</version>
+            <version>5.0.0-BETA-8</version>
         </dependency>
 
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>6.14.3</version>
+            <version>7.1.0</version>
         </dependency>
 
         <dependency>

@@ -4,7 +4,7 @@
 <!--    <test name="Parametrized Test">-->
 <!--        <parameter name="message" value="My great message"/>-->
 <!--        <classes>-->
-<!--            <class name="com.epam.reportportal.example.testng.logback.parametrized.ParametrizedTest"/>-->
+<!--            <class name="com.epam.reportportal.example.testng.logback.parameterized.ParameterizedTest"/>-->
 <!--        </classes>-->
 <!--    </test>-->
 
