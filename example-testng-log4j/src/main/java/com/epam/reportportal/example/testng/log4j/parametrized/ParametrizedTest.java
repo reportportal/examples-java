@@ -16,12 +16,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 /**
+ * A test to verify this issue: https://github.com/reportportal/reportportal/issues/789
+ * <p>
+ * Expected results: tests should not join into retry chain.
+ *
  * @author <a href="mailto:ihar_kahadouski@epam.com">Ihar Kahadouski</a>
  */
-@Listeners(ReportPortalTestNGListener.class)
 public class ParametrizedTest {
 
 	private static final Logger LOG = LogManager.getLogger(ParametrizedTest.class);
@@ -65,7 +67,7 @@ public class ParametrizedTest {
 			data = new Object[list.size()][];
 			for (int i = 0; i < list.size(); i++) {
 
-				List<String> values = list.get(i).values().stream().collect(Collectors.toList());
+				List<String> values = new ArrayList<>(list.get(i).values());
 				int valuesSize = values.size();
 
 				data[i] = new Object[valuesSize];
