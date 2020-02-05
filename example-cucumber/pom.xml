@@ -26,7 +26,7 @@
 <!--            <groupId>com.epam.reportportal</groupId>-->
             <groupId>com.github.reportportal</groupId>
             <artifactId>agent-java-cucumber</artifactId>
-            <version>0dca82bc</version>
+            <version>f184c479</version>
         </dependency>
 
         <dependency>
