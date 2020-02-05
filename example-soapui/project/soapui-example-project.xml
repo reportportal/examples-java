@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="bf3c5bf2-6d70-486d-9604-31fd11918a00" activeEnvironment="Default" name="Example Project" resourceRoot=""
+                    soapui-version="5.5.0" encryptionMode="Not encrypted" updated="3.0.0 2019-11-05T14:42:03Z" abortOnError="false"
+                    runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
+    <con:settings>
+        <con:setting id="com.eviware.soapui.impl.wsdl.actions.iface.tools.soapui.TestRunnerAction@values-local"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="Report Format(s)" value=""/>
+  <con:entry key="Host:Port" value=""/>
+  <con:entry key="Export JUnit Results" value="false"/>
+  <con:entry key="Export All" value="false"/>
+  <con:entry key="Save After" value="false"/>
+  <con:entry key="Add Settings" value="false"/>
+  <con:entry key="WSS Password Type" value=""/>
+  <con:entry key="TestSuite" value="ExampleSuite"/>
+  <con:entry key="Endpoint" value=""/>
+  <con:entry key="Select Report Type" value=""/>
+  <con:entry key="System Properties" value=""/>
+  <con:entry key="Password" value=""/>
+  <con:entry key="Print Report" value="false"/>
+  <con:entry key="Open Report" value="false"/>
+  <con:entry key="Export JUnit Results with test properties" value="false"/>
+  <con:entry key="Global Properties" value=""/>
+  <con:entry key="Project Properties" value=""/>
+  <con:entry key="Project Password" value=""/>
+  <con:entry key="TestCase" value="&lt;all>"/>
+  <con:entry key="Username" value=""/>
+  <con:entry key="user-settings.xml Password" value=""/>
+  <con:entry key="TestRunner Path" value=""/>
+  <con:entry key="Environment" value="Default"/>
+  <con:entry key="Coverage Report" value="false"/>
+  <con:entry key="Enable UI" value="false"/>
+  <con:entry key="Root Folder" value=""/>
+  <con:entry key="Ignore Errors" value="false"/>
+  <con:entry key="Domain" value=""/>
+  <con:entry key="Tool Args" value=""/>
+  <con:entry key="Save Project" value="false"/>
+</xml-fragment>]]></con:setting>
+        <con:setting id="com.eviware.soapui.impl.wsdl.actions.iface.tools.soapui.LoadTestRunnerAction@values-local"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="Print Report Statistics" value="false"/>
+  <con:entry key="Report Format(s)" value=""/>
+  <con:entry key="Host:Port" value=""/>
+  <con:entry key="Save After" value="false"/>
+  <con:entry key="Add Settings" value="false"/>
+  <con:entry key="WSS Password Type" value=""/>
+  <con:entry key="TestSuite" value="&lt;all>"/>
+  <con:entry key="Endpoint" value=""/>
+  <con:entry key="System Properties" value=""/>
+  <con:entry key="Report to Generate" value=""/>
+  <con:entry key="Password" value=""/>
+  <con:entry key="LoadTest" value="&lt;all>"/>
+  <con:entry key="Open Report" value="false"/>
+  <con:entry key="Global Properties" value=""/>
+  <con:entry key="Project Properties" value=""/>
+  <con:entry key="ThreadCount" value=""/>
+  <con:entry key="Project Password" value=""/>
+  <con:entry key="TestCase" value="&lt;all>"/>
+  <con:entry key="Username" value=""/>
+  <con:entry key="user-settings.xml Password" value=""/>
+  <con:entry key="TestRunner Path" value="/Applications/SoapUI-5.5.0.app/Contents/Resources/app/bin"/>
+  <con:entry key="Environment" value="Default"/>
+  <con:entry key="Limit" value=""/>
+  <con:entry key="Root Folder" value=""/>
+  <con:entry key="Domain" value=""/>
+  <con:entry key="Tool Args" value=""/>
+  <con:entry key="Save Project" value="false"/>
+</xml-fragment>]]></con:setting>
+    </con:settings>
+    <con:interface xsi:type="con:RestService" id="34713337-426a-41c3-9810-7109254f3025" wadlVersion="http://wadl.dev.java.net/2009/02"
+                   name="User request" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:settings/>
+        <con:definitionCache type="TEXT" rootPart=""/>
+        <con:endpoints>
+            <con:endpoint>https://beta.demo.reportportal.io</con:endpoint>
+        </con:endpoints>
+        <con:resource name="" path="" id="0b7c54a6-beaa-43cc-86bd-4f1ea5d56248">
+            <con:settings/>
+            <con:parameters>
+                <con:parameter>
+                    <con:name>Authorization</con:name>
+                    <con:value/>
+                    <con:style>HEADER</con:style>
+                    <con:default/>
+                    <con:description xsi:nil="true"/>
+                </con:parameter>
+            </con:parameters>
+            <con:method name="1" id="155cfc0b-1231-4f22-b588-e49fe203025c" method="GET">
+                <con:settings/>
+                <con:parameters/>
+                <con:request name="Request 1" id="5687570e-5ba7-49b7-a786-37252ac10ed4" mediaType="application/json">
+                    <con:settings>
+                        <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+                    </con:settings>
+                    <con:endpoint>https://beta.demo.reportportal.io/api/v1/user</con:endpoint>
+                    <con:request/>
+                    <con:credentials>
+                        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+                        <con:authType>No Authorization</con:authType>
+                    </con:credentials>
+                    <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                    <con:jmsPropertyConfig/>
+                    <con:parameters>
+                        <entry key="Authorization" value="bearer &lt;token value>" xmlns="http://eviware.com/soapui/config"/>
+                    </con:parameters>
+                    <con:parameterOrder>
+                        <con:entry>Authorization</con:entry>
+                    </con:parameterOrder>
+                    <con:environmentSpec>
+                        <con:entry environmentId="674f4530-f305-49a7-9c80-11fc1b08e25b">
+                            <con:authProfile>No Authorization</con:authProfile>
+                        </con:entry>
+                    </con:environmentSpec>
+                </con:request>
+            </con:method>
+        </con:resource>
+    </con:interface>
+    <con:testSuite id="043537d5-f3ba-4cb2-a606-18bf6c400e9a" name="ExampleSuite">
+        <con:settings/>
+        <con:savedRecentRuns>1</con:savedRecentRuns>
+        <con:runType>SEQUENTIAL</con:runType>
+        <con:testCase id="763d2221-066b-413c-8f5e-0123e42c7d40" failOnError="true" failTestCaseOnErrors="true" keepSession="false"
+                      maxResults="0" name="ExampleTestCase" searchProperties="true">
+            <con:settings/>
+            <con:savedRecentRuns>1</con:savedRecentRuns>
+            <con:testStep type="properties" name="RP item properties" id="d670b37e-09e0-4290-8a1b-7fd74939ca70">
+                <con:settings/>
+                <con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <con:properties>
+                        <con:property>
+                            <con:name>rp.case.id.FirstStep</con:name>
+                            <con:value>First_1.0</con:value>
+                        </con:property>
+                        <con:property>
+                            <con:name>rp.case.id.SecondStep</con:name>
+                            <con:value>Second_1.0</con:value>
+                        </con:property>
+                        <con:property>
+                            <con:name>rp.item.attributes.FirstStep</con:name>
+                            <con:value>first_k:first_v</con:value>
+                        </con:property>
+                        <con:property>
+                            <con:name>rp.item.attributes.SecondStep</con:name>
+                            <con:value>second_k:second_v</con:value>
+                        </con:property>
+                    </con:properties>
+                </con:config>
+            </con:testStep>
+            <con:testStep type="restrequest" name="FirstStep" id="4df4c132-1f5a-4741-88b8-523879708d5a">
+                <con:settings/>
+                <con:config service="User request" resourcePath="" methodName="1" xsi:type="con:RestRequestStep"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <con:restRequest name="FirstStep" id="5687570e-5ba7-49b7-a786-37252ac10ed4" mediaType="application/json">
+                        <con:settings>
+                            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+                        </con:settings>
+                        <con:endpoint>https://beta.demo.reportportal.io/api/v1/user</con:endpoint>
+                        <con:request/>
+                        <con:originalUri>https://beta.demo.reportportal.io/api/v1/user</con:originalUri>
+                        <con:credentials>
+                            <con:username/>
+                            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+                            <con:authType>No Authorization</con:authType>
+                        </con:credentials>
+                        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                        <con:jmsPropertyConfig/>
+                        <con:parameters/>
+                        <con:parameterOrder>
+                            <con:entry>Authorization</con:entry>
+                        </con:parameterOrder>
+                        <con:environmentSpec>
+                            <con:entry environmentId="674f4530-f305-49a7-9c80-11fc1b08e25b">
+                                <con:authProfile>No Authorization</con:authProfile>
+                            </con:entry>
+                        </con:environmentSpec>
+                    </con:restRequest>
+                </con:config>
+            </con:testStep>
+            <con:testStep type="httprequest" name="SecondStep" id="719c70a3-c641-4c7d-b8f2-0b5093d2e800">
+                <con:settings/>
+                <con:config method="GET" xsi:type="con:HttpRequest" id="33d92847-ce13-4d61-a5f7-81de43f159dc" name="SecondStep"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <con:settings>
+                        <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="testCaseId" value="hello"
+                            xmlns="http://eviware.com/soapui/config"/>
+                        </con:setting>
+                    </con:settings>
+                    <con:endpoint>https://beta.demo.reportportal.io/api/v1/user</con:endpoint>
+                    <con:request/>
+                    <con:assertion type="Simple Contains" id="37454a15-691d-4ee2-bde1-57433c7e9cb5" name="Contains">
+                        <con:configuration>
+                            <token/>
+                            <ignoreCase>false</ignoreCase>
+                            <useRegEx>false</useRegEx>
+                        </con:configuration>
+                    </con:assertion>
+                    <con:credentials>
+                        <con:username/>
+                        <con:password>hello</con:password>
+                        <con:domain/>
+                        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+                        <con:authType>No Authorization</con:authType>
+                    </con:credentials>
+                    <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                    <con:jmsPropertyConfig/>
+                    <con:parameters/>
+                    <con:environmentSpec>
+                        <con:entry environmentId="674f4530-f305-49a7-9c80-11fc1b08e25b">
+                            <con:authProfile>No Authorization</con:authProfile>
+                            <con:password>hello</con:password>
+                        </con:entry>
+                    </con:environmentSpec>
+                </con:config>
+            </con:testStep>
+            <con:properties>
+                <con:property>
+                    <con:name>rp.case.id</con:name>
+                    <con:value>ETC_id-1.0</con:value>
+                </con:property>
+            </con:properties>
+            <con:reportParameters/>
+            <con:breakPoints>
+                <con:testStepId>d670b37e-09e0-4290-8a1b-7fd74939ca70</con:testStepId>
+                <con:status>NONE</con:status>
+                <con:properties/>
+            </con:breakPoints>
+        </con:testCase>
+        <con:properties/>
+        <con:reportParameters/>
+    </con:testSuite>
+    <con:requirements/>
+    <con:properties>
+        <con:property>
+            <con:name>rp.endpoint</con:name>
+            <con:value>https://beta.demo.reportportal.io</con:value>
+        </con:property>
+        <con:property>
+            <con:name>rp.project</con:name>
+            <con:value>your_project</con:value>
+        </con:property>
+        <con:property>
+            <con:name>rp.launch</con:name>
+            <con:value>soap_x2</con:value>
+        </con:property>
+        <con:property>
+            <con:name>rp.reporter.type</con:name>
+            <con:value>STEP_BASED</con:value> <!-- STEP_BASED - soapUI `test step` reported as `test item` to the RP -->
+            <!-- <con:value>TEST_BASED</con:value> --> <!-- TEST_BASED - soapUI `test step` reported as `log` to the RP -->
+        </con:property>
+        <con:property>
+            <con:name>rp.api.key</con:name>
+            <con:value>your token</con:value> <!-- token from your profile in the RP instance -->
+        </con:property>
+        <con:property>
+            <con:name>rp.enable</con:name>
+            <con:value>true</con:value>
+        </con:property>
+        <con:property>
+            <con:name>rp.reporting.async</con:name>
+            <con:value>true</con:value> <!-- `false` to disable async reporting -->
+        </con:property>
+    </con:properties>
+    <con:wssContainer/>
+    <con:databaseConnectionContainer/>
+    <con:jmsConnectionContainer/>
+    <con:oAuth2ProfileContainer/>
+    <con:oAuth1ProfileContainer/>
+    <con:reporting>
+        <con:xmlTemplates/>
+        <con:parameters/>
+    </con:reporting>
+    <con:sensitiveInformation/>
+    <con:authRepository/>
+    <con:tags/>
+</con:soapui-project>
