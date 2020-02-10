@@ -28,7 +28,7 @@ public class JsonLoggingTest {
 		ReportPortal.emitLog("LAUNCH LOG MESAGE", "error", new Date());
 
 		File file = File.createTempFile("rp-test", ".css");
-		Resources.asByteSource(Resources.getResource("files/css.css")).copyTo(Files.asByteSink(file));
+		Resources.asByteSource(Resources.getResource("files/file.css")).copyTo(Files.asByteSink(file));
 		ReportPortal.emitLog("LAUNCH LOG MESAGE WITH ATTACHMENT", "error", new Date(), file);
 
 		LOGGER.info(
