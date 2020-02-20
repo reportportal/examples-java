@@ -26,13 +26,13 @@
 <!--            <groupId>com.epam.reportportal</groupId>-->
             <groupId>com.github.reportportal</groupId>
             <artifactId>agent-java-cucumber</artifactId>
-            <version>f184c479</version>
+            <version>a0ca6d69ed</version>
         </dependency>
 
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>logger-java-logback</artifactId>
-            <version>5.0.0-BETA-8</version>
+            <version>5.0.0-BETA-9</version>
         </dependency>
 
         <dependency>
