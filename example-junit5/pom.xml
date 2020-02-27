@@ -14,15 +14,15 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.epam.reportportal</groupId>
-<!--            <groupId>com.github.reportportal</groupId>-->
+            <!--            <groupId>com.epam.reportportal</groupId>-->
+            <groupId>com.github.reportportal</groupId>
             <artifactId>agent-java-junit5</artifactId>
-            <version>5.0.0-BETA-8</version>
+            <version>5b283ac</version>
         </dependency>
 
         <dependency>
             <groupId>com.epam.reportportal</groupId>
-<!--            <groupId>com.github.reportportal</groupId>-->
+            <!--            <groupId>com.github.reportportal</groupId>-->
             <artifactId>logger-java-logback</artifactId>
             <version>5.0.0-BETA-8</version>
         </dependency>
