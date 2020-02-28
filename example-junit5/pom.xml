@@ -17,7 +17,7 @@
             <!--            <groupId>com.epam.reportportal</groupId>-->
             <groupId>com.github.reportportal</groupId>
             <artifactId>agent-java-junit5</artifactId>
-            <version>5b283ac</version>
+            <version>9e1592e</version>
         </dependency>
 
         <dependency>
