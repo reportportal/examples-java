@@ -19,36 +19,38 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(Parameterized.class)
 public class TestCaseIdParameterizedTest implements ArtifactParams {
-	
+
 	@Rule
 	public final AtomIdentity identity = new AtomIdentity(this);
 
 	@TestCaseIdKey
-    private String input;
-    
-    public TestCaseIdParameterizedTest(String input) {
-        this.input = input;
-    }
-    
-    @Parameters
-    public static Object[] data() {
-        return new Object[] { "first", "second" };
-    }
-    
+	private String input;
+
+	public TestCaseIdParameterizedTest(String input) {
+		this.input = input;
+	}
+
+	@Parameters
+	public static Object[] data() {
+		return new Object[] { "first", "second" };
+	}
+
+	@Override
 	public Description getDescription() {
 		return identity.getDescription();
 	}
 
-    public Optional<Map<String, Object>> getParameters() {
-        return Param.mapOf(Param.param("input", input));
-    }
-    
-    @Test
+	@Override
+	public Optional<Map<String, Object>> getParameters() {
+		return Param.mapOf(Param.param("input", input));
+	}
+
+	@Test
 	@TestCaseId(parametrized = true)
-    public void parameterized() {
-    	Optional<Map<String, Object>> params = identity.getParameters();
-    	assertTrue(params.isPresent());
-    	assertTrue(params.get().containsKey("input"));
-        assertEquals(input, params.get().get("input"));
-    }
+	public void parameterized() {
+		Optional<Map<String, Object>> params = identity.getParameters();
+		assertTrue(params.isPresent());
+		assertTrue(params.get().containsKey("input"));
+		assertEquals(input, params.get().get("input"));
+	}
 }

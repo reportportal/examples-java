@@ -24,7 +24,6 @@ public class LoggingTest {
         File file = File.createTempFile("rp-test", ".css");
         Resources.asByteSource(Resources.getResource("files/css.css")).copyTo(Files.asByteSink(file));
         LoggingUtils.log(file, "I'm logging CSS");
-//        throw new RuntimeException();
     }
 
     @Test
