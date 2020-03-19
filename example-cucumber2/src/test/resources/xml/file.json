@@ -1,0 +1,69 @@
+{
+  "TFS": {
+    "build": {
+      "name": "TFS Service",
+      "description": "ReportPortal TFS Integration",
+      "version": "2.5.1.3-SNAPSHOT",
+      "branch": "HEAD-f649e1ccec66b7c7fd7a778768627c28e8ccbd2e"
+    }
+  },
+  "GATEWAY": {
+    "build": {
+      "name": "Gateway Service",
+      "description": "ReportPortal Gateway Service",
+      "version": "3.0.0-SNAPSHOT",
+      "branch": "HEAD-705250f4b46b326fca66681a6de736a3889426a6"
+    }
+  },
+  "UI": {
+    "build": {
+      "name": "UI Service",
+      "description": "ReportPortal User Interface",
+      "version": "2.7.1-SNAPSHOT",
+      "branch": "@branch@"
+    }
+  },
+  "RALLY": {
+    "build": {
+      "name": "Rally Service",
+      "description": "ReportPortal Rally Integration",
+      "version": "2.7.1-SNAPSHOT",
+      "branch": "HEAD-5ced9894341c4188b467938ceb163a6c5244f558"
+    }
+  },
+  "UAT": {
+    "build": {
+      "name": "Authorization Service",
+      "description": "Unified Authorization Trap for all ReportPortal's Services",
+      "version": "2.7.2-SNAPSHOT",
+      "branch": "HEAD-b3db18d8ca42ba4dc2cbe2a86d34808386931fc7"
+    },
+    "auth_extensions": [
+      "github"
+    ]
+  },
+  "API": {
+    "build": {
+      "name": "API Service",
+      "description": "ReportPortal API Service",
+      "version": "3.0.0-SNAPSHOT",
+      "branch": "HEAD-52dedc065549a98951d9530ec8a80b0e51a72fe9"
+    }
+  },
+  "JIRA": {
+    "build": {
+      "name": "Jira Service",
+      "description": "ReportPortal Jira Integration",
+      "version": "2.7.1-SNAPSHOT",
+      "branch": "HEAD-3d4da072d15049ef0137681e5da83fcb0f240c6e"
+    }
+  },
+  "REGISTRY": {
+    "build": {
+      "name": "Registry Service",
+      "description": "ReportPortal Registry and Configuration Service",
+      "version": "2.7.2-SNAPSHOT",
+      "branch": "HEAD-a5bf296483928ec279eab67053c971edd6010fe8"
+    }
+  }
+}
