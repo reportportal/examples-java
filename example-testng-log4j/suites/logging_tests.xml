@@ -35,4 +35,10 @@
         </classes>
     </test>
 
+    <test name="Test data provider with factory">
+        <classes>
+            <class name="com.epam.reportportal.example.testng.log4j.parametrized.ParametrizedTest" />
+        </classes>
+    </test>
+
 </suite>

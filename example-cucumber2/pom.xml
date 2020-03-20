@@ -22,10 +22,16 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.epam.reportportal</groupId>
-            <!--<groupId>com.github.reportportal</groupId>-->
+<!--            <groupId>com.epam.reportportal</groupId>-->
+            <groupId>com.github.reportportal</groupId>
             <artifactId>agent-java-cucumber2</artifactId>
-            <version>5.0.0-BETA-1</version>
+            <version>8c92f738</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.epam.reportportal</groupId>
+            <artifactId>logger-java-logback</artifactId>
+            <version>5.0.0-BETA-8</version>
         </dependency>
 
         <dependency>
@@ -59,6 +65,5 @@
         </dependency>
 
     </dependencies>
-
 
 </project>
