@@ -4,6 +4,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
 
 import java.time.DayOfWeek;
+import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -32,6 +33,10 @@ public class ParametrizedTest {
 	@ValueSource(ints = { 2, 4, 6 })
 	void testEvenIntegers(Integer input) {
 		assertFalse(Checks.isOdd(input));
+	}
+
+	private static Iterable<Object[]> testData() {
+		return Collections.singleton(new Object[]{"message1"});
 	}
 
 	@ParameterizedTest

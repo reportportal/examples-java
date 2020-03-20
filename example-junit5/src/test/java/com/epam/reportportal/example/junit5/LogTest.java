@@ -27,11 +27,8 @@ public class LogTest {
 	@Test
 	void logWithAttachmentTest() {
 		Arrays.stream(Attachment.values()).forEach(it -> {
-			LOGGER.info(
-					"RP_MESSAGE#FILE#{}#{}",
-					getFileFromResources(FILE_NAME, it.getExtension()).getAbsolutePath(),
-					String.format("I'm logging content via temp %s file", it.name())
-			);
+			LoggingUtils.log(getFileFromResources(FILE_NAME, it.getExtension()),
+					String.format("I'm logging content via temp %s file", it.name()));
 		});
 	}
 }
