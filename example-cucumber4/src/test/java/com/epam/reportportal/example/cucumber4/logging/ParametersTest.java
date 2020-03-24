@@ -16,7 +16,7 @@ public class ParametersTest {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ParametersTest.class);
 	private int itemsCount;
 
-	@Given("^I have (\\d+) (.*) in my pocket$")
+	@Given("I have {int} {string} in my pocket")
 	public void iHaveNumberItemInMyPocket(int number, String item) {
 		itemsCount = number;
 		LOGGER.info("I have {} {} in my pocket", number, item);
@@ -29,7 +29,7 @@ public class ParametersTest {
 		LOGGER.info("I eat one");
 	}
 
-	@Then("^I have (\\d+) in my pocket$")
+	@Then("I have {int} in my pocket")
 	public void iHaveResultInMyPocket(int result) {
 		assertEquals(result, itemsCount);
 		LOGGER.info("I have {} in my pocket", result);

@@ -17,7 +17,7 @@ Feature: Test with parameters
     Then I have <result> in my pocket
 
     Examples:
-      | number | item      | result |
-      | 100    | apples    | 99     |
-      | 3      | cucumbers | 2      |
-      | 1      | cake      | 0      |
+      | number | item        | result |
+      | 100    | "apples"    | 99     |
+      | 3      | "cucumbers" | 2      |
+      | 1      | "cake"      | 0      |
