@@ -1,11 +1,13 @@
 package com.epam.reportportal.example.testng.logback.logging;
 
 import com.epam.reportportal.service.ReportPortal;
+import com.epam.reportportal.testng.ReportPortalTestNGListener;
 import com.google.common.io.BaseEncoding;
 import com.google.common.io.Files;
 import com.google.common.io.Resources;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.io.File;
@@ -17,6 +19,7 @@ import java.util.Date;
  *
  * @author Andrei Varabyeu
  */
+@Listeners(ReportPortalTestNGListener.class)
 public class JsonLoggingTest {
 
 	public static final String JSON_FILE_PATH = "xml/file.json";

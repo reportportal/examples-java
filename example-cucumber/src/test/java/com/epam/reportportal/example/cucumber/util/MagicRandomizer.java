@@ -1,4 +1,4 @@
-package com.epam.reportportal.example.cucumber;
+package com.epam.reportportal.example.cucumber.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

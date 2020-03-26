@@ -1,7 +1,7 @@
 package com.epam.reportportal.example.cucumber.logging;
 
-import com.epam.reportportal.example.cucumber.LoggingUtils;
-import com.epam.reportportal.example.cucumber.MagicRandomizer;
+import com.epam.reportportal.example.cucumber.util.LoggingUtils;
+import com.epam.reportportal.example.cucumber.util.MagicRandomizer;
 import com.epam.reportportal.service.ReportPortal;
 import cucumber.api.java.en.Given;
 import org.slf4j.Logger;
@@ -17,76 +17,76 @@ import java.util.Date;
 public class ReportAttachmentsTest {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ReportAttachmentsTest.class);
-	public static final String XML_FILE_PATH = "xml/file.xml";
-	public static final String JSON_FILE_PATH = "xml/file.json";
+	public static final String XML_FILE_PATH = "files/file.xml";
+	public static final String JSON_FILE_PATH = "files/file.json";
 
 	@Given("I attach logCss")
 	public void logCss() throws IOException {
 		File file = File.createTempFile("rp-test", ".css");
-		Resources.asByteSource(Resources.getResource("files/css.css")).copyTo(Files.asByteSink(file));
+		Resources.asByteSource(Resources.getResource("files/file.css")).copyTo(Files.asByteSink(file));
 		LoggingUtils.log(file, "I'm logging CSS");
 	}
 
 	@Given("I attach logHtml")
 	public void logHtml() throws IOException {
 		File file = File.createTempFile("rp-test", ".html");
-		Resources.asByteSource(Resources.getResource("files/html.html")).copyTo(Files.asByteSink(file));
+		Resources.asByteSource(Resources.getResource("files/file.html")).copyTo(Files.asByteSink(file));
 		LoggingUtils.log(file, "I'm logging HTML");
 	}
 
 	@Given("I attach logPdf")
 	public void logPdf() throws IOException {
 		File file = File.createTempFile("rp-test", ".pdf");
-		Resources.asByteSource(Resources.getResource("files/test.pdf")).copyTo(Files.asByteSink(file));
+		Resources.asByteSource(Resources.getResource("files/file.pdf")).copyTo(Files.asByteSink(file));
 		LoggingUtils.log(file, "I'm logging PDF");
 	}
 
 	@Given("I attach logZip")
 	public void logZip() throws IOException {
 		File file = File.createTempFile("rp-test", ".zip");
-		Resources.asByteSource(Resources.getResource("files/demo.zip")).copyTo(Files.asByteSink(file));
+		Resources.asByteSource(Resources.getResource("files/file.zip")).copyTo(Files.asByteSink(file));
 		LoggingUtils.log(file, "I'm logging ZIP");
 	}
 
 	@Given("I attach logHar")
 	public void logHar() throws IOException {
 		File file = File.createTempFile("har", ".json");
-		Resources.asByteSource(Resources.getResource("files/har.har")).copyTo(Files.asByteSink(file));
+		Resources.asByteSource(Resources.getResource("files/file.har")).copyTo(Files.asByteSink(file));
 		LoggingUtils.log(file, "I'm logging HAR");
 	}
 
 	@Given("I attach logJavascript")
 	public void logJavascript() throws IOException {
 		File file = File.createTempFile("rp-test", ".js");
-		Resources.asByteSource(Resources.getResource("files/javascript.js")).copyTo(Files.asByteSink(file));
+		Resources.asByteSource(Resources.getResource("files/file.js")).copyTo(Files.asByteSink(file));
 		LoggingUtils.log(file, "I'm logging JS");
 	}
 
 	@Given("I attach logPhp")
 	public void logPhp() throws IOException {
 		File file = File.createTempFile("rp-test", ".php");
-		Resources.asByteSource(Resources.getResource("files/php.php")).copyTo(Files.asByteSink(file));
+		Resources.asByteSource(Resources.getResource("files/file.php")).copyTo(Files.asByteSink(file));
 		LoggingUtils.log(file, "I'm logging php");
 	}
 
 	@Given("I attach logPlain")
 	public void logPlain() throws IOException {
 		File file = File.createTempFile("rp-test", ".txt");
-		Resources.asByteSource(Resources.getResource("files/plain.txt")).copyTo(Files.asByteSink(file));
+		Resources.asByteSource(Resources.getResource("files/file.txt")).copyTo(Files.asByteSink(file));
 		LoggingUtils.log(file, "I'm logging txt");
 	}
 
 	@Given("I attach logCsv")
 	public void logCsv() throws IOException {
 		File file = File.createTempFile("rp-test", ".csv");
-		Resources.asByteSource(Resources.getResource("files/Test.csv")).copyTo(Files.asByteSink(file));
+		Resources.asByteSource(Resources.getResource("files/file.csv")).copyTo(Files.asByteSink(file));
 		LoggingUtils.log(file, "I'm logging txt");
 	}
 
 	@Given("I attach logCmd")
 	public void logCmd() throws IOException {
 		File file = File.createTempFile("rp-test", ".cmd");
-		Resources.asByteSource(Resources.getResource("files/Test.cmd")).copyTo(Files.asByteSink(file));
+		Resources.asByteSource(Resources.getResource("files/file.cmd")).copyTo(Files.asByteSink(file));
 		LoggingUtils.log(file, "I'm logging txt");
 	}
 
@@ -114,7 +114,7 @@ public class ReportAttachmentsTest {
 		ReportPortal.emitLog("LAUNCH LOG MESAGE", "error", new Date());
 
 		File file = File.createTempFile("rp-test", ".css");
-		Resources.asByteSource(Resources.getResource("files/css.css")).copyTo(Files.asByteSink(file));
+		Resources.asByteSource(Resources.getResource("files/file.css")).copyTo(Files.asByteSink(file));
 		ReportPortal.emitLog("LAUNCH LOG MESAGE WITH ATTACHMENT", "error", new Date(), file);
 
 		LOGGER.info(
