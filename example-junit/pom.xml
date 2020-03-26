@@ -12,19 +12,23 @@
     <groupId>com.epam.reportportal.example</groupId>
     <artifactId>example-junit</artifactId>
 
+    <properties>
+        <aspectj.version>1.9.2</aspectj.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <!--            <groupId>com.epam.reportportal</groupId>-->
             <groupId>com.github.reportportal</groupId>
             <artifactId>agent-java-junit</artifactId>
-            <version>3ff63ba</version>
+            <version>c1025ce</version>
         </dependency>
 
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <!--<groupId>com.github.reportportal</groupId>-->
             <artifactId>logger-java-logback</artifactId>
-            <version>5.0.0-BETA-8</version>
+            <version>5.0.0-BETA-9</version>
         </dependency>
 
         <dependency>
@@ -66,8 +70,18 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.1</version>
                 <configuration>
-                    <argLine>-javaagent:${com.nordstrom.tools:junit-foundation:jar}</argLine>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                        -javaagent:${com.nordstrom.tools:junit-foundation:jar}
+                    </argLine>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
