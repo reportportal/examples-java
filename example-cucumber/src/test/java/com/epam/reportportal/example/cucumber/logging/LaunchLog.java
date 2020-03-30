@@ -7,7 +7,6 @@ import cucumber.api.java.en.Given;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Arrays;
 import java.util.Date;
 import java.util.Random;
 
@@ -23,8 +22,10 @@ public class LaunchLog {
 
 	@Given("I attach files to launch logs")
 	public void reportStep() {
-		Arrays.stream(Attachment.values()).forEach(it -> launchLogWithAttachment(randomLogLevel(), FILE_NAME, it));
 		LOGGER.info("Add logs with attachments to launch");
+		for (Attachment attachment : Attachment.values()) {
+			launchLogWithAttachment(randomLogLevel(), FILE_NAME, attachment);
+		}
 	}
 
 	private static void launchLogWithAttachment(String level, String name, Attachment attachment) {
