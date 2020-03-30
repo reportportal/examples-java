@@ -6,7 +6,6 @@ import com.epam.reportportal.service.ReportPortal;
 import io.cucumber.java.en.Given;
 import org.slf4j.Logger;
 
-import java.util.Arrays;
 import java.util.Date;
 import java.util.Random;
 
@@ -23,8 +22,10 @@ public class LaunchLog {
 
 	@Given("I attach files to launch logs")
 	public void iAttachFilesToLaunchLogs() {
-		Arrays.stream(Attachment.values()).forEach(it -> launchLogWithAttachment(randomLogLevel(), FILE_NAME, it));
 		LOGGER.info("I attach files to launch log");
+		for (Attachment attachment : Attachment.values()) {
+			launchLogWithAttachment(randomLogLevel(), FILE_NAME, attachment);
+		}
 	}
 
 	private static void launchLogWithAttachment(String level, String name, Attachment attachment) {
