@@ -1,7 +1,10 @@
 package com.epam.reportportal.example.junit5;
 
 import com.epam.reportportal.annotations.TestCaseId;
+import com.epam.reportportal.annotations.TestCaseIdKey;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,8 +13,36 @@ public class TestCaseIdTest {
 	private static final Logger LOGGER = LoggerFactory.getLogger(TestCaseIdTest.class);
 
 	@Test
-	@TestCaseId("junit5-test")
-	void testCaseIdTest() {
-		LOGGER.info("test case id test");
+	void testCaseIdFromCodeRefTest() {
+		LOGGER.info("Test case id should be generated from code reference");
+	}
+
+	@ParameterizedTest
+	@ValueSource(ints = { 101, 0, 1 })
+	void testCaseIdFromCodeRefAndParamsTest(int parameter) {
+		LOGGER.info("Test case id should be generated from code reference and parameters");
+		LOGGER.info("Parameter {}", parameter);
+	}
+
+	@TestCaseId("test-case-id")
+	@Test
+	void testCaseIdFromAnnotationValueTest() {
+		LOGGER.info("Test case id should be provided from annotation value");
+	}
+
+	@TestCaseId(parametrized = true)
+	@ParameterizedTest
+	@ValueSource(strings = { "one", "two" })
+	void testCaseIdFromParametrizedAnnotationTest(@TestCaseIdKey String parameter) {
+		LOGGER.info("Test case id should be generated from parameter value marked @TestCaseIdKey annotation");
+		LOGGER.info("Parameter {}", parameter);
+	}
+
+	@TestCaseId(parametrized = true)
+	@ParameterizedTest
+	@ValueSource(chars = { 't', 'e', 's', 't' })
+	void testCaseIdFromParametrizedAnnotationTest(@TestCaseIdKey char parameter) {
+		LOGGER.info("Test case id should be generated from parameter value marked @TestCaseIdKey annotation");
+		LOGGER.info("Parameter {}", parameter);
 	}
 }
