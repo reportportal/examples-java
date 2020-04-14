@@ -21,7 +21,7 @@
             <!--            <groupId>com.epam.reportportal</groupId>-->
             <groupId>com.github.reportportal</groupId>
             <artifactId>agent-java-junit</artifactId>
-            <version>c1025ce</version>
+            <version>5db819c8a9</version>
         </dependency>
 
         <dependency>
@@ -80,6 +80,12 @@
                             <value>com.nordstrom.automation.junit.RunAnnouncer</value>
                         </property>
                     </properties>
+                    <excludes>
+                        <exclude>com.epam.reportportal.example.junit.*</exclude>
+                    </excludes>
+                    <includes>
+                        <include>com.epam.reportportal.example.junit.extension.RetryTest</include>
+                    </includes>
                 </configuration>
                 <dependencies>
                     <dependency>
