@@ -84,7 +84,7 @@
                         <exclude>com.epam.reportportal.example.junit.*</exclude>
                     </excludes>
                     <includes>
-                        <include>com.epam.reportportal.example.junit.FailedTest</include>
+                        <include>com.epam.reportportal.example.junit.SimpleTest</include>
                     </includes>
                 </configuration>
                 <dependencies>

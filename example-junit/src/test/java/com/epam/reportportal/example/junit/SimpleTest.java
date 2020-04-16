@@ -7,11 +7,11 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 
 @Ignore
-public class FailedTest {
+public class SimpleTest {
 
 //    @Ignore
     @Test
-    public void expectToFail() {
+    public void simpleTest() {
         Assert.assertEquals(3, 3);
     }
 }
