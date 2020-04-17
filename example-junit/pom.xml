@@ -40,6 +40,35 @@
     </dependencies>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <!-- Add this if you plan to import into Eclipse -->
+                <plugin>
+                    <groupId>org.eclipse.m2e</groupId>
+                    <artifactId>lifecycle-mapping</artifactId>
+                    <version>1.0.0</version>
+                    <configuration>
+                        <lifecycleMappingMetadata>
+                            <pluginExecutions>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.apache.maven.plugins</groupId>
+                                        <artifactId>maven-dependency-plugin</artifactId>
+                                        <versionRange>[1.0.0,)</versionRange>
+                                        <goals>
+                                            <goal>properties</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <execute />
+                                    </action>
+                                </pluginExecution>
+                            </pluginExecutions>
+                        </lifecycleMappingMetadata>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -74,12 +103,6 @@
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                         -javaagent:${com.nordstrom.tools:junit-foundation:jar}
                     </argLine>
-                    <properties>
-                        <property>
-                            <name>listener</name>
-                            <value>com.nordstrom.automation.junit.RunAnnouncer</value>
-                        </property>
-                    </properties>
                     <excludes>
                         <exclude>com.epam.reportportal.example.junit.*</exclude>
                     </excludes>
