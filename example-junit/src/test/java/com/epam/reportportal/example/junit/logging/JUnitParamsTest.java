@@ -35,7 +35,7 @@ public class JUnitParamsTest implements ArtifactParams {
 		return identity.getDescription();
 	}
 
-    @Override
+	@Override
 	public Optional<Map<String, Object>> getParameters() {
 		ReflectiveCallable callable = identity.getCallable();
 		try {
