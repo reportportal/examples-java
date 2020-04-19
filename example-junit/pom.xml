@@ -22,19 +22,19 @@
             <artifactId>agent-java-junit</artifactId>
             <version>5db819c8a9</version>
             <exclusions>
-            	<exclusion>
-					<groupId>com.nordstrom.tools</groupId>
-					<artifactId>junit-foundation</artifactId>
-            	</exclusion>
+                <exclusion>
+                    <groupId>com.nordstrom.tools</groupId>
+                    <artifactId>junit-foundation</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
 
-		<dependency>
-			<groupId>com.nordstrom.tools</groupId>
-			<artifactId>junit-foundation</artifactId>
-			<version>12.0.0</version>
-		</dependency>
-		
+        <dependency>
+            <groupId>com.nordstrom.tools</groupId>
+            <artifactId>junit-foundation</artifactId>
+            <version>12.0.0</version>
+        </dependency>
+        
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>logger-java-logback</artifactId>
