@@ -16,6 +16,9 @@ import com.nordstrom.automation.junit.AtomIdentity;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 @RunWith(JUnitParamsRunner.class)
 public class JUnitParamsTest implements ArtifactParams {
 	
@@ -48,7 +51,6 @@ public class JUnitParamsTest implements ArtifactParams {
     @Test
     @Parameters({ "17, false", "22, true" })
     public void logPlain(int age, boolean valid) {
-    	Optional<Map<String, Object>> params = identity.getParameters();
-        Assert.assertTrue(true);
+        assertThat(valid, equalTo(age >= 18));
     }
 }
