@@ -1,8 +1,6 @@
 package com.epam.reportportal.example.junit.logging;
 
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import com.nordstrom.automation.junit.LifecycleHooks;
 import org.junit.Assert;
