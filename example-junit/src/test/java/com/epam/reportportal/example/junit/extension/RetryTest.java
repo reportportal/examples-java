@@ -13,7 +13,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-@Ignore
 public class RetryTest {
 
 	private static int count;
@@ -33,8 +32,8 @@ public class RetryTest {
 		assertTrue("testPassOnRetry: " + count, count++ > 0);
 	}
 
-	@Ignore
 	@Test
+	@Ignore
 	public void failOne() {
 		String errorMsg = "Ooops";
 		if (RETRY_NUMBER > COUNTER.incrementAndGet()) {
