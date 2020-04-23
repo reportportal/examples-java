@@ -78,12 +78,6 @@
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                         -javaagent:${com.nordstrom.tools:junit-foundation:jar}
                     </argLine>
-<!--                     <excludes> -->
-<!--                         <exclude>com.epam.reportportal.example.junit.*</exclude> -->
-<!--                     </excludes> -->
-<!--                     <includes> -->
-<!--                         <include>com.epam.reportportal.example.junit.parametrized.ParameterizedTest</include> -->
-<!--                     </includes> -->
                 </configuration>
                 <dependencies>
                     <dependency>
