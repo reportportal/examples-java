@@ -2,6 +2,7 @@ package com.epam.reportportal.example.junit.logging;
 
 import java.util.Map;
 
+import com.nordstrom.automation.junit.AtomicTest;
 import com.nordstrom.automation.junit.LifecycleHooks;
 import org.junit.Assert;
 import org.junit.Rule;
@@ -37,7 +38,9 @@ public class JUnitParamsTest implements ArtifactParams {
 
 	@Override
 	public Optional<Map<String, Object>> getParameters() {
-		ReflectiveCallable callable = identity.getCallable();
+		Object runner = LifecycleHooks.getRunnerForTarget(this);
+		AtomicTest test = LifecycleHooks.getAtomicTestOf(runner);
+		ReflectiveCallable callable = LifecycleHooks.getCallableOf(runner, test.getIdentity());
 		try {
 			Object[] params = LifecycleHooks.getFieldValue(callable, "val$params");
 			Integer age = (Integer) params[0];
