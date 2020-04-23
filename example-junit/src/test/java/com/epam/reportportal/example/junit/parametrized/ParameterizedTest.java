@@ -31,11 +31,18 @@ public class ParameterizedTest implements ArtifactParams {
     public static Object[] data() {
         return new Object[] { "first test", "second test" };
     }
-    
-	public Description getDescription() {
+
+    @Override
+    public AtomIdentity getAtomIdentity() {
+        return identity;
+    }
+
+    @Override
+    public Description getDescription() {
 		return identity.getDescription();
 	}
 
+    @Override
     public Optional<Map<String, Object>> getParameters() {
         return Param.mapOf(Param.param("input", input));
     }

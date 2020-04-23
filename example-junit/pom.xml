@@ -18,15 +18,13 @@
 
     <dependencies>
         <dependency>
-            <!--            <groupId>com.epam.reportportal</groupId>-->
-            <groupId>com.github.reportportal</groupId>
+            <groupId>com.epam.reportportal</groupId>
             <artifactId>agent-java-junit</artifactId>
-            <version>5db819c8a9</version>
+            <version>5.0.0-BETA-9-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>com.epam.reportportal</groupId>
-            <!--<groupId>com.github.reportportal</groupId>-->
             <artifactId>logger-java-logback</artifactId>
             <version>5.0.0-BETA-9</version>
         </dependency>
@@ -36,11 +34,11 @@
             <artifactId>logback-classic</artifactId>
             <version>1.2.3</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/pl.pragmatists/JUnitParams -->
+
         <dependency>
             <groupId>pl.pragmatists</groupId>
             <artifactId>JUnitParams</artifactId>
-            <version>1.1.2-SNAPSHOT</version>
+            <version>1.1.1</version>
         </dependency>
 
     </dependencies>
@@ -80,12 +78,6 @@
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                         -javaagent:${com.nordstrom.tools:junit-foundation:jar}
                     </argLine>
-                    <excludes>
-                        <exclude>com.epam.reportportal.example.junit.*</exclude>
-                    </excludes>
-                    <includes>
-                        <include>com.epam.reportportal.example.junit.logging.JUnitParamsTest</include>
-                    </includes>
                 </configuration>
                 <dependencies>
                     <dependency>

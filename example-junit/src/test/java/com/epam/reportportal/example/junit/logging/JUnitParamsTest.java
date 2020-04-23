@@ -1,34 +1,59 @@
 package com.epam.reportportal.example.junit.logging;
 
+import java.util.Map;
+
+import com.nordstrom.automation.junit.AtomicTest;
+import com.nordstrom.automation.junit.LifecycleHooks;
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.internal.runners.model.ReflectiveCallable;
+import org.junit.runner.Description;
 import org.junit.runner.RunWith;
 
+import com.google.common.base.Optional;
+import com.nordstrom.automation.junit.ArtifactParams;
+import com.nordstrom.automation.junit.AtomIdentity;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 @RunWith(JUnitParamsRunner.class)
-public class JUnitParamsTest {
+public class JUnitParamsTest implements ArtifactParams {
+	
+	@Rule
+	public final AtomIdentity identity = new AtomIdentity(this);
 
-    //    @Parameters
-    //    public static Collection<Object[]> data() {
-    //        return Arrays.asList(new Object[][] {
-    //                { 0, 0 }, { 1, 1 }//, { 2, 1 }, { 3, 2 }, { 4, 3 }, { 5, 5 }, { 6, 8 }
-    //        });
-    //    }
-    //
-    //    private int fInput;
-    //
-    //    private int fExpected;
-    //
-    //    public JUnitParamsTest(int input, int expected) {
-    //        this.fInput = input;
-    //        this.fExpected = expected;
-    //    }
+	@Override
+	public AtomIdentity getAtomIdentity() {
+		return identity;
+	}
 
+	@Override
+	public Description getDescription() {
+		return identity.getDescription();
+	}
+
+	@Override
+	public Optional<Map<String, Object>> getParameters() {
+		Object runner = LifecycleHooks.getRunnerForTarget(this);
+		AtomicTest test = LifecycleHooks.getAtomicTestOf(runner);
+		ReflectiveCallable callable = LifecycleHooks.getCallableOf(runner, test.getIdentity());
+		try {
+			Object[] params = LifecycleHooks.getFieldValue(callable, "val$params");
+			Integer age = (Integer) params[0];
+			Boolean valid = (Boolean) params[1];
+			return Param.mapOf(Param.param("age", age), Param.param("valid", valid));
+		} catch (IllegalAccessException | NoSuchFieldException e) {
+			return Optional.absent();
+		}
+    }
+    
     @Test
     @Parameters({ "17, false", "22, true" })
     public void logPlain(int age, boolean valid) {
-        Assert.assertTrue(true);
+        assertThat(valid, equalTo(age >= 18));
     }
 }
