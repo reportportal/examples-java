@@ -18,10 +18,10 @@
 
     <dependencies>
         <dependency>
-            <!--            <groupId>com.epam.reportportal</groupId>-->
-            <groupId>com.github.reportportal</groupId>
+            <groupId>com.epam.reportportal</groupId>
+<!--            <groupId>com.github.reportportal</groupId>-->
             <artifactId>agent-java-junit</artifactId>
-            <version>5db819c8a9</version>
+            <version>5.0.0-BETA-9</version>
         </dependency>
 
         <dependency>
@@ -29,6 +29,12 @@
             <!--<groupId>com.github.reportportal</groupId>-->
             <artifactId>logger-java-logback</artifactId>
             <version>5.0.0-BETA-9</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.epam.reportportal</groupId>
+                    <artifactId>client-java</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -103,12 +109,6 @@
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                         -javaagent:${com.nordstrom.tools:junit-foundation:jar}
                     </argLine>
-                    <excludes>
-                        <exclude>com.epam.reportportal.example.junit.*</exclude>
-                    </excludes>
-                    <includes>
-                        <include>com.epam.reportportal.example.junit.SimpleTest</include>
-                    </includes>
                 </configuration>
                 <dependencies>
                     <dependency>
