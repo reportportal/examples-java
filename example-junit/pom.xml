@@ -19,14 +19,12 @@
     <dependencies>
         <dependency>
             <groupId>com.epam.reportportal</groupId>
-<!--            <groupId>com.github.reportportal</groupId>-->
             <artifactId>agent-java-junit</artifactId>
             <version>5.0.0-BETA-9</version>
         </dependency>
 
         <dependency>
             <groupId>com.epam.reportportal</groupId>
-            <!--<groupId>com.github.reportportal</groupId>-->
             <artifactId>logger-java-logback</artifactId>
             <version>5.0.0-BETA-9</version>
             <exclusions>
@@ -43,38 +41,15 @@
             <version>1.2.3</version>
         </dependency>
 
+        <dependency>
+            <groupId>pl.pragmatists</groupId>
+            <artifactId>JUnitParams</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+
     </dependencies>
 
     <build>
-        <pluginManagement>
-            <plugins>
-                <!-- Add this if you plan to import into Eclipse -->
-                <plugin>
-                    <groupId>org.eclipse.m2e</groupId>
-                    <artifactId>lifecycle-mapping</artifactId>
-                    <version>1.0.0</version>
-                    <configuration>
-                        <lifecycleMappingMetadata>
-                            <pluginExecutions>
-                                <pluginExecution>
-                                    <pluginExecutionFilter>
-                                        <groupId>org.apache.maven.plugins</groupId>
-                                        <artifactId>maven-dependency-plugin</artifactId>
-                                        <versionRange>[1.0.0,)</versionRange>
-                                        <goals>
-                                            <goal>properties</goal>
-                                        </goals>
-                                    </pluginExecutionFilter>
-                                    <action>
-                                        <execute />
-                                    </action>
-                                </pluginExecution>
-                            </pluginExecutions>
-                        </lifecycleMappingMetadata>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
