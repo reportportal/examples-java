@@ -1,28 +1,26 @@
-package com.epam.reportportal.example.junit.logging;
+package com.epam.reportportal.example.junit.parametrized;
 
-import java.util.Map;
-
+import com.google.common.base.Optional;
+import com.nordstrom.automation.junit.ArtifactParams;
+import com.nordstrom.automation.junit.AtomIdentity;
 import com.nordstrom.automation.junit.AtomicTest;
 import com.nordstrom.automation.junit.LifecycleHooks;
-import org.junit.Assert;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.internal.runners.model.ReflectiveCallable;
 import org.junit.runner.Description;
 import org.junit.runner.RunWith;
 
-import com.google.common.base.Optional;
-import com.nordstrom.automation.junit.ArtifactParams;
-import com.nordstrom.automation.junit.AtomIdentity;
-import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
+import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 @RunWith(JUnitParamsRunner.class)
 public class JUnitParamsTest implements ArtifactParams {
-	
+
 	@Rule
 	public final AtomIdentity identity = new AtomIdentity(this);
 
@@ -49,11 +47,11 @@ public class JUnitParamsTest implements ArtifactParams {
 		} catch (IllegalAccessException | NoSuchFieldException e) {
 			return Optional.absent();
 		}
-    }
-    
-    @Test
-    @Parameters({ "17, false", "22, true" })
-    public void logPlain(int age, boolean valid) {
-        assertThat(valid, equalTo(age >= 18));
-    }
+	}
+
+	@Test
+	@Parameters({ "17, false", "22, true" })
+	public void logPlain(int age, boolean valid) {
+		assertThat(valid, equalTo(age >= 18));
+	}
 }

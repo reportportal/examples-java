@@ -1,6 +1,7 @@
 package com.epam.reportportal.example.junit.extension;
 
 import com.nordstrom.automation.junit.JUnitConfig.JUnitSettings;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -19,6 +20,11 @@ public class RetryTest {
 	@BeforeClass
 	public static void beforeClass() {
 		System.setProperty(JUnitSettings.MAX_RETRY.key(), "3");
+	}
+
+	@AfterClass
+	public static void afterClass() {
+		System.clearProperty(JUnitSettings.MAX_RETRY.key());
 	}
 
 	@Test
