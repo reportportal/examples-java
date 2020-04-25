@@ -17,41 +17,38 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(Parameterized.class)
 public class ParameterizedTest implements ArtifactParams {
-	
+
 	@Rule
 	public final AtomIdentity identity = new AtomIdentity(this);
 
-    private String input;
-    
-    public ParameterizedTest(String input) {
-        this.input = input;
-    }
-    
-    @Parameters
-    public static Object[] data() {
-        return new Object[] { "first test", "second test" };
-    }
+	private String input;
 
-    @Override
-    public AtomIdentity getAtomIdentity() {
-        return identity;
-    }
+	public ParameterizedTest(String input) {
+		this.input = input;
+	}
 
-    @Override
-    public Description getDescription() {
+	@Parameters
+	public static Object[] data() {
+		return new Object[] { "first test", "second test" };
+	}
+
+	public Description getDescription() {
 		return identity.getDescription();
 	}
 
-    @Override
-    public Optional<Map<String, Object>> getParameters() {
-        return Param.mapOf(Param.param("input", input));
-    }
-    
-    @Test
-    public void parameterized() {
-    	Optional<Map<String, Object>> params = identity.getParameters();
-    	assertTrue(params.isPresent());
-    	assertTrue(params.get().containsKey("input"));
-        assertEquals(input, params.get().get("input"));
-    }
+	public AtomIdentity getAtomIdentity() {
+		return identity;
+	}
+
+	public Optional<Map<String, Object>> getParameters() {
+		return Param.mapOf(Param.param("input", input));
+	}
+
+	@Test
+	public void parameterized() {
+		Optional<Map<String, Object>> params = identity.getParameters();
+		assertTrue(params.isPresent());
+		assertTrue(params.get().containsKey("input"));
+		assertEquals(input, params.get().get("input"));
+	}
 }

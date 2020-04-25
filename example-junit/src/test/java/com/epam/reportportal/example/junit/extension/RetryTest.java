@@ -1,24 +1,19 @@
 package com.epam.reportportal.example.junit.extension;
 
+import com.nordstrom.automation.junit.JUnitConfig.JUnitSettings;
 import org.junit.Assert;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.nordstrom.automation.junit.JUnitConfig.JUnitSettings;
-
-import static org.junit.Assert.assertTrue;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class RetryTest {
 
-	private static int count;
 	private static final Logger LOGGER = LoggerFactory.getLogger(RetryTest.class);
 
-	private static final int RETRY_NUMBER = 20;
+	private static final int RETRY_NUMBER = 2;
 	private static final AtomicInteger COUNTER = new AtomicInteger(0);
 
 	@BeforeClass
@@ -27,13 +22,6 @@ public class RetryTest {
 	}
 
 	@Test
-	public void testPassOnRetry() {
-		System.out.println("testPassOnRetry: " + count);
-		assertTrue("testPassOnRetry: " + count, count++ > 0);
-	}
-
-	@Test
-	@Ignore
 	public void failOne() {
 		String errorMsg = "Ooops";
 		if (RETRY_NUMBER > COUNTER.incrementAndGet()) {
