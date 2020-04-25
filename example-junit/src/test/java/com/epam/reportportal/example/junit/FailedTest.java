@@ -6,12 +6,23 @@ import org.junit.Test;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 
-@Ignore
 public class FailedTest {
 
-//    @Ignore
+    @Test(expected = AssertionError.class)
+    public void expectedFailureThrown() {
+        Assert.assertEquals(2, 1);
+    }
+    
+    @Test
+    @Ignore
+    public void testIgnore() {
+    	Assert.assertEquals(1,  1);
+    }
+    
     @Test
     public void expectToFail() {
-        Assert.assertEquals(3, 3);
+        JUnitCore core = new JUnitCore();
+        Result result = core.run(ExpectToFail.class);
+        Assert.assertEquals(3, result.getFailureCount());
     }
 }
