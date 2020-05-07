@@ -24,14 +24,20 @@
             <groupId>com.epam.reportportal</groupId>
             <!-- <groupId>com.github.reportportal</groupId> -->
             <artifactId>agent-java-testng</artifactId>
-            <version>5.0.0-BETA-8</version>
+            <version>5.0.0-BETA-10</version>
         </dependency>
 
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <!--<groupId>com.github.reportportal</groupId>-->
             <artifactId>logger-java-logback</artifactId>
-            <version>5.0.0-BETA-8</version>
+            <version>5.0.0-BETA-9</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.epam.reportportal</groupId>
+                    <artifactId>client-java</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>

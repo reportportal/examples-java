@@ -1,5 +1,6 @@
 package com.epam.reportportal.example.testng.logback.extension;
 
+import com.epam.reportportal.listeners.ItemStatus;
 import com.epam.reportportal.testng.BaseTestNGListener;
 import com.epam.reportportal.testng.TestNGService;
 import com.epam.ta.reportportal.ws.model.FinishTestItemRQ;
@@ -76,7 +77,7 @@ public class ParametersAsAttributesTest {
 		}
 
 		@Override
-		protected FinishTestItemRQ buildFinishTestMethodRq(String status, ITestResult testResult) {
+		protected FinishTestItemRQ buildFinishTestMethodRq(ItemStatus status, ITestResult testResult) {
 			FinishTestItemRQ finishTestItemRQ = super.buildFinishTestMethodRq(status, testResult);
 			if (testResult.getThrowable() != null) {
 				String description = "```error\n" + Throwables.getStackTraceAsString(testResult.getThrowable()) + "\n```";
