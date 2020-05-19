@@ -16,6 +16,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <aspectj.version>1.9.2</aspectj.version>
     </properties>
 
     <dependencies>
@@ -23,14 +24,14 @@
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>client-java</artifactId>
-            <version>5.0.0-BETA-17</version>
+            <version>5.0.0-BETA-19</version>
         </dependency>
 
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <!-- <groupId>com.github.reportportal</groupId> -->
             <artifactId>agent-java-testng</artifactId>
-            <version>5.0.0-BETA-12</version>
+            <version>5.0.0-BETA-15</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.epam.reportportal</groupId>
@@ -87,10 +88,18 @@
 
                     <!-- Uncomment it if you don't want your build to be failed in case of test errors -->
                     <testFailureIgnore>true</testFailureIgnore>
+
+                    <!-- For nested steps only -->
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
+                    <!---->
+
                     <suiteXmlFiles>
                         <!--<xmlFile>suites/issue27.xml</xmlFile>-->
                         <!--<xmlFile>suites/randomizer_suite.xml</xmlFile>-->
                         <xmlFile>suites/logging_tests.xml</xmlFile>
+                        <xmlFile>suites/nested_steps_tests.xml</xmlFile>
                     </suiteXmlFiles>
                     <!-- ADD working directory to get TestNG know we to find suite files -->
                     <workingDirectory>./</workingDirectory>
@@ -106,6 +115,15 @@
                     <!--</property>-->
                     <!--</properties>-->
                 </configuration>
+                <dependencies>
+                    <!-- For nested steps only -->
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                    <!---->
+                </dependencies>
             </plugin>
 
 
