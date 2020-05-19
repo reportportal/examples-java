@@ -30,7 +30,6 @@ import java.util.List;
 /**
  * @author <a href="mailto:ivan_budayeu@epam.com">Ivan Budayeu</a>
  */
-@Listeners(ReportPortalTestNGListener.class)
 public class NestedStepsTest {
 
 	public static final Logger LOGGER = LoggerFactory.getLogger(NestedStepsTest.class);
