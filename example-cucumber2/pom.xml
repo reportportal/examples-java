@@ -16,16 +16,21 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.target>1.6</maven.compiler.target>
-        <maven.compiler.source>1.6</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
     </properties>
 
     <dependencies>
         <dependency>
-<!--            <groupId>com.epam.reportportal</groupId>-->
-            <groupId>com.github.reportportal</groupId>
+            <groupId>com.epam.reportportal</groupId>
             <artifactId>agent-java-cucumber2</artifactId>
-            <version>6d3ea09</version>
+            <version>5.0.0-BETA-9</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.epam.reportportal</groupId>
+            <artifactId>logger-java-logback</artifactId>
+            <version>5.0.0-BETA-8</version>
         </dependency>
 
         <dependency>
@@ -59,6 +64,5 @@
         </dependency>
 
     </dependencies>
-
 
 </project>

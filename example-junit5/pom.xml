@@ -14,17 +14,15 @@
 
     <dependencies>
         <dependency>
-<!--            <groupId>com.epam.reportportal</groupId>-->
-            <groupId>com.github.reportportal</groupId>
+            <groupId>com.epam.reportportal</groupId>
             <artifactId>agent-java-junit5</artifactId>
-            <version>120153b6</version>
+            <version>5.0.0-BETA-9</version>
         </dependency>
 
         <dependency>
             <groupId>com.epam.reportportal</groupId>
-            <!--<groupId>com.github.reportportal</groupId>-->
             <artifactId>logger-java-logback</artifactId>
-            <version>5.0.0-BETA-4</version>
+            <version>5.0.0-BETA-9</version>
         </dependency>
 
         <dependency>
@@ -39,13 +37,6 @@
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.0</version>
-                <configuration>
-                    <properties>
-                        <configurationParameters>
-                            junit.jupiter.extensions.autodetection.enabled = true
-                        </configurationParameters>
-                    </properties>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

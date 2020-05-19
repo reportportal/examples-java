@@ -22,17 +22,35 @@
     <dependencies>
 
         <dependency>
-            <!--            <groupId>com.epam.reportportal</groupId>-->
-            <groupId>com.github.reportportal</groupId>
+            <groupId>com.epam.reportportal</groupId>
+            <artifactId>client-java</artifactId>
+            <version>5.0.0-BETA-19</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.epam.reportportal</groupId>
+            <!-- <groupId>com.github.reportportal</groupId> -->
             <artifactId>agent-java-testng</artifactId>
-            <version>5.0.0-BETA-8</version>
+            <version>5.0.0-BETA-15</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.epam.reportportal</groupId>
+                    <artifactId>client-java</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <!--<groupId>com.github.reportportal</groupId>-->
             <artifactId>logger-java-logback</artifactId>
-            <version>5.0.0-BETA-8</version>
+            <version>5.0.0-BETA-9</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.epam.reportportal</groupId>
+                    <artifactId>client-java</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -48,9 +66,14 @@
         </dependency>
 
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>26.0-jre</version>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-api</artifactId>
+            <version>3.141.59</version>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.141.59</version>
         </dependency>
 
     </dependencies>
@@ -80,16 +103,16 @@
                     <!-- ADD working directory to get TestNG know we to find suite files -->
                     <workingDirectory>./</workingDirectory>
 
-                    <properties>
-                        <property>
-                            <name>usedefaultlisteners</name>
-                            <value>false</value>
-                        </property>
-                        <property>
-                            <name>listener</name>
-                            <value>com.epam.reportportal.testng.ReportPortalTestNGListener</value>
-                        </property>
-                    </properties>
+                    <!--<properties>-->
+                    <!--<property>-->
+                    <!--<name>usedefaultlisteners</name>-->
+                    <!--<value>false</value>-->
+                    <!--</property>-->
+                    <!--<property>-->
+                    <!--<name>listener</name>-->
+                    <!--<value>com.epam.reportportal.testng.ReportPortalTestNGListener</value>-->
+                    <!--</property>-->
+                    <!--</properties>-->
                 </configuration>
                 <dependencies>
                     <!-- For nested steps only -->

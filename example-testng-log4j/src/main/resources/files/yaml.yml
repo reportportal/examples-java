@@ -1,0 +1,11 @@
+- name: "Batman"
+  power: "Money"
+  race: "Human"
+
+- name: "Flash"
+  power: "Speed"
+  race: "Human"
+
+- name: "Deadpool"
+  power: "Human"
+  race: "???"

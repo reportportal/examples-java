@@ -24,12 +24,22 @@
             <groupId>com.epam.reportportal</groupId>
             <artifactId>agent-java-jbehave</artifactId>
             <version>5.0.0-BETA-1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.epam.reportportal</groupId>
+                    <artifactId>commons-model</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.epam.reportportal</groupId>
+                    <artifactId>client-java</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>logger-java-log4j</artifactId>
-            <version>5.0.0-BETA-2</version>
+            <version>5.0.0-BETA-9</version>
         </dependency>
 
         <dependency>
