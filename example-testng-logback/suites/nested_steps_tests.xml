@@ -1,10 +1,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Logging Tests" parallel="classes" thread-count="10">
+<suite name="Nested steps tests" parallel="classes" thread-count="10">
     <listeners>
         <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>
     </listeners>
 
-    <test verbose="1" name="Nested steps tests">
+    <test verbose="1" name="Test nested steps">
         <classes>
             <class name="com.epam.reportportal.example.testng.logback.step.NestedStepsTest"/>
         </classes>
