@@ -20,37 +20,16 @@
     </properties>
 
     <dependencies>
-
         <dependency>
             <groupId>com.epam.reportportal</groupId>
-            <artifactId>client-java</artifactId>
-            <version>5.0.0-BETA-19</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.epam.reportportal</groupId>
-            <!-- <groupId>com.github.reportportal</groupId> -->
             <artifactId>agent-java-testng</artifactId>
-            <version>5.0.0-BETA-15</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.epam.reportportal</groupId>
-                    <artifactId>client-java</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>5.0.0-RC-1</version>
         </dependency>
 
         <dependency>
             <groupId>com.epam.reportportal</groupId>
-            <!--<groupId>com.github.reportportal</groupId>-->
             <artifactId>logger-java-logback</artifactId>
-            <version>5.0.0-BETA-9</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.epam.reportportal</groupId>
-                    <artifactId>client-java</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>5.0.0-RC-1</version>
         </dependency>
 
         <dependency>
