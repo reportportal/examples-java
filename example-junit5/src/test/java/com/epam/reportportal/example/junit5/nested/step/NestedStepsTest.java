@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.epam.reportportal.example.junit5.step;
+package com.epam.reportportal.example.junit5.nested.step;
 
 import com.epam.reportportal.annotations.Step;
 import org.junit.jupiter.api.Assertions;

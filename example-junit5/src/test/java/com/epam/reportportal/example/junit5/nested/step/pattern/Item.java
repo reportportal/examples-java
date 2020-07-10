@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.epam.reportportal.example.junit5.step.pattern;
+package com.epam.reportportal.example.junit5.nested.step.pattern;
 
 /**
  * @author <a href="mailto:ivan_budayeu@epam.com">Ivan Budayeu</a>

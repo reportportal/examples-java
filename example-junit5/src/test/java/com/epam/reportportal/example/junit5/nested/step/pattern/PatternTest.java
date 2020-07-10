@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.epam.reportportal.example.junit5.step.pattern;
+package com.epam.reportportal.example.junit5.nested.step.pattern;
 
 import com.epam.reportportal.annotations.Step;
 import com.epam.reportportal.annotations.StepTemplateConfig;
