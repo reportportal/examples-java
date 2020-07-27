@@ -42,7 +42,7 @@ public class DummyTest {
 		File file = File.createTempFile("rp-test", ".xml");
 		Resources.asByteSource(Resources.getResource("logback.xml")).copyTo(Files.asByteSink(file));
 		int n = 5;
-		while(n-->0){
+		while (n-- > 0) {
 			LoggingUtils.log(file, "LAUNCH LOG MESSAGE WITH ATTACHMENT");
 		}
 		ReportPortal.emitLaunchLog("LAUNCH LOG MESAGE WITH ATTACHMENT", "error", new Date(), file);
