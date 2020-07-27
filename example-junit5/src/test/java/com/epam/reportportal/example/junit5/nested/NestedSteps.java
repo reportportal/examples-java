@@ -11,6 +11,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * Simple test that simulates nested structure of the `Nested Steps` with multiple nested levels.
+ * Test methods call `red` or `green` methods that call each other to create multi-level nested structure.
+ *
  * @author <a href="mailto:ivan_budayeu@epam.com">Ivan Budayeu</a>
  */
 @Execution(ExecutionMode.CONCURRENT)
