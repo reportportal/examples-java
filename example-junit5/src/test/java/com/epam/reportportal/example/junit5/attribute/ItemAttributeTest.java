@@ -5,7 +5,10 @@ import com.epam.reportportal.annotations.attribute.Attributes;
 import com.epam.reportportal.annotations.attribute.MultiKeyAttribute;
 import com.epam.reportportal.annotations.attribute.MultiValueAttribute;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author <a href="mailto:ivan_budayeu@epam.com">Ivan Budayeu</a>
@@ -30,5 +33,11 @@ public class ItemAttributeTest {
 	@Attributes(multiValueAttributes = { @MultiValueAttribute(isNullKey = true, values = { "v1", "v2" }) })
 	public void third() {
 		Assertions.assertEquals(1, 1);
+	}
+
+	@Tag("fourth")
+	@Test
+	void fourth() {
+		assertTrue(true);
 	}
 }

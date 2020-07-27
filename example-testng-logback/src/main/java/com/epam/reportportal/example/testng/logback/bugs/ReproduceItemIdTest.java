@@ -13,6 +13,11 @@ import org.testng.annotations.Test;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
+/**
+ * In case of failed {@link BeforeClass} and retry analyzed in a test, it should be reported correctly (test should be skipped).
+ *
+ * Source: https://github.com/reportportal/agent-java-testNG/issues/27
+ */
 //@Listeners({ReproduceItemIdTest.RetryAnnotationListener.class, ReportPortalTestNGListener.class })
 public class ReproduceItemIdTest {
 	final Logger logger = LoggerFactory.getLogger(this.getClass());

@@ -1,7 +1,6 @@
 package com.epam.reportportal.example.jbehave;
 
-import com.epam.reportportal.example.jbehave.steps.ApiSteps;
-import com.epam.reportportal.example.jbehave.steps.MySteps;
+import com.epam.reportportal.example.jbehave.steps.*;
 import com.epam.reportportal.jbehave.ReportPortalFormat;
 import com.epam.reportportal.jbehave.ReportPortalViewGenerator;
 import org.apache.commons.lang3.StringUtils;
@@ -75,7 +74,13 @@ public class MyStories extends JUnitStories {
 
 	@Override
 	public InjectableStepsFactory stepsFactory() {
-		return new InstanceStepsFactory(configuration(), new MySteps(), new ApiSteps());
+		return new InstanceStepsFactory(configuration(),
+				new LogLevelTest(),
+				new ReportAttachmentsTest(),
+				new ReportsStepWithDefectTest(),
+				new ReportsTestWithParameters(),
+				new ApiSteps()
+		);
 	}
 
 	@Override
