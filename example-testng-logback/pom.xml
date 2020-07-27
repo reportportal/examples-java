@@ -24,14 +24,14 @@
             <groupId>com.epam.reportportal</groupId>
             <!-- <groupId>com.github.reportportal</groupId> -->
             <artifactId>agent-java-testng</artifactId>
-            <version>5.0.0-BETA-8</version>
+            <version>5.0.3</version>
         </dependency>
 
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <!--<groupId>com.github.reportportal</groupId>-->
             <artifactId>logger-java-logback</artifactId>
-            <version>5.0.0-BETA-8</version>
+            <version>5.0.1</version>
         </dependency>
 
         <dependency>
@@ -67,7 +67,8 @@
                     <suiteXmlFiles>
                         <!--<xmlFile>suites/issue27.xml</xmlFile>-->
                         <!--<xmlFile>suites/randomizer_suite.xml</xmlFile>-->
-                        <xmlFile>suites/logging_tests.xml</xmlFile>
+<!--                        <xmlFile>suites/logging_tests.xml</xmlFile>-->
+                        <xmlFile>suites/callback_suite.xml</xmlFile>
                     </suiteXmlFiles>
                     <!-- ADD working directory to get TestNG know we to find suite files -->
                     <workingDirectory>./</workingDirectory>

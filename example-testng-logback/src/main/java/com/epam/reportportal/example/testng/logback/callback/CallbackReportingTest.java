@@ -2,6 +2,7 @@ package com.epam.reportportal.example.testng.logback.callback;
 
 import com.epam.reportportal.service.tree.ItemTreeReporter;
 import com.epam.reportportal.service.tree.TestItemTree;
+import com.epam.reportportal.testng.TestNGService;
 import com.epam.reportportal.testng.util.ItemTreeUtils;
 import com.epam.ta.reportportal.ws.model.FinishTestItemRQ;
 import org.testng.Assert;
@@ -12,7 +13,6 @@ import org.testng.annotations.Test;
 import java.util.Calendar;
 
 import static com.epam.reportportal.testng.TestNGService.ITEM_TREE;
-import static com.epam.reportportal.testng.TestNGService.REPORT_PORTAL;
 
 /**
  * @author <a href="mailto:ivan_budayeu@epam.com">Ivan Budayeu</a>
@@ -26,16 +26,15 @@ public class CallbackReportingTest {
 
 	@AfterMethod
 	public void after(ITestResult testResult) {
-		TestItemTree.TestItemLeaf testResultLeaf = ItemTreeUtils.retrieveLeaf(testResult, ITEM_TREE);
-		if (testResultLeaf != null) {
+		ItemTreeUtils.retrieveLeaf(testResult, ITEM_TREE).ifPresent(testResultLeaf -> {
 			sendLog(testResultLeaf);
-			sendFinishRequest(testResultLeaf);
-		}
+			sendFinishRequest(testResultLeaf, testResult.getName().equals("third") ? "PASSED" : "FAILED");
+		});
 
 	}
 
 	private void sendLog(TestItemTree.TestItemLeaf testResultLeaf) {
-		ItemTreeReporter.sendLog(REPORT_PORTAL.getClient(),
+		ItemTreeReporter.sendLog(TestNGService.getReportPortal().getClient(),
 				"ERROR",
 				"Callback log",
 				Calendar.getInstance().getTime(),
@@ -44,11 +43,11 @@ public class CallbackReportingTest {
 		);
 	}
 
-	private void sendFinishRequest(TestItemTree.TestItemLeaf testResultLeaf) {
+	private void sendFinishRequest(TestItemTree.TestItemLeaf testResultLeaf, String status) {
 		FinishTestItemRQ finishTestItemRQ = new FinishTestItemRQ();
-		finishTestItemRQ.setStatus("FAILED");
+		finishTestItemRQ.setStatus(status);
 		finishTestItemRQ.setEndTime(Calendar.getInstance().getTime());
-		ItemTreeReporter.finishItem(REPORT_PORTAL.getClient(), finishTestItemRQ, ITEM_TREE.getLaunchId(), testResultLeaf)
+		ItemTreeReporter.finishItem(TestNGService.getReportPortal().getClient(), finishTestItemRQ, ITEM_TREE.getLaunchId(), testResultLeaf)
 				.cache()
 				.blockingGet();
 	}
