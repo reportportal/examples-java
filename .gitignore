@@ -33,3 +33,9 @@ target/
 .idea/
 out/
 test-output/
+
+.settings
+.project
+.classpath
+.DS_Store
+bin/

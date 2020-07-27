@@ -1,5 +1,6 @@
 package com.epam.reportportal.example.testng.logback.extension;
 
+import com.epam.reportportal.listeners.ItemStatus;
 import com.epam.reportportal.testng.BaseTestNGListener;
 import com.epam.reportportal.testng.TestNGService;
 import com.epam.ta.reportportal.ws.model.FinishTestItemRQ;
@@ -11,13 +12,9 @@ import org.testng.ITestResult;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import rp.com.google.common.base.Optional;
 import rp.com.google.common.base.Throwables;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -65,7 +62,7 @@ public class ParametersAsAttributesTest {
 		protected StartTestItemRQ buildStartStepRq(ITestResult testResult) {
 			final StartTestItemRQ rq = super.buildStartStepRq(testResult);
 			if (testResult.getParameters() != null && testResult.getParameters().length != 0) {
-				Set<ItemAttributesRQ> attributes = Optional.fromNullable(rq.getAttributes()).or(new HashSet<>());
+				Set<ItemAttributesRQ> attributes = Optional.ofNullable(rq.getAttributes()).orElse(new HashSet<>());
 				for (Object param : testResult.getParameters()) {
 					attributes.add(new ItemAttributesRQ(null, param.toString()));
 				}
@@ -76,7 +73,7 @@ public class ParametersAsAttributesTest {
 		}
 
 		@Override
-		protected FinishTestItemRQ buildFinishTestMethodRq(String status, ITestResult testResult) {
+		protected FinishTestItemRQ buildFinishTestMethodRq(ItemStatus status, ITestResult testResult) {
 			FinishTestItemRQ finishTestItemRQ = super.buildFinishTestMethodRq(status, testResult);
 			if (testResult.getThrowable() != null) {
 				String description = "```error\n" + Throwables.getStackTraceAsString(testResult.getThrowable()) + "\n```";
