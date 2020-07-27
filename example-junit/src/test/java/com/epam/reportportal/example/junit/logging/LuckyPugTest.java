@@ -27,9 +27,11 @@ public class LuckyPugTest {
 			boolean happy = MagicRandomizer.checkYourLucky(30);
 			String image = getImageResource(happy);
 
-			LOGGER.info("RP_MESSAGE#BASE64#{}#{}",
+			LOGGER.info(
+					"RP_MESSAGE#BASE64#{}#{}",
 					BaseEncoding.base64().encode(Resources.asByteSource(Resources.getResource(image)).read()),
-					"Pug is " + (happy ? "HAPPY" : "NOT HAPPY"));
+					"Pug is " + (happy ? "HAPPY" : "NOT HAPPY")
+			);
 		}
 
 	}

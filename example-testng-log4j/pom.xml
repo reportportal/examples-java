@@ -18,18 +18,16 @@
     </properties>
 
     <dependencies>
-
         <dependency>
             <groupId>com.epam.reportportal</groupId>
-            <!--<groupId>com.github.reportportal</groupId>-->
             <artifactId>agent-java-testng</artifactId>
-            <version>5.0.0-BETA-8</version>
+            <version>5.0.4</version>
         </dependency>
 
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>logger-java-log4j</artifactId>
-            <version>5.0.0-BETA-8</version>
+            <version>5.0.2</version>
         </dependency>
 
         <dependency>
