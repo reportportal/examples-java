@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Callback Suite" parallel="tests" thread-count="1">
+    <listeners>
+        <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>
+    </listeners>
+
+    <test name="Callback Test">
+        <classes>
+            <class name="com.epam.reportportal.example.testng.logback.callback.CallbackReportingTest"/>
+        </classes>
+    </test>
+</suite>

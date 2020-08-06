@@ -90,6 +90,7 @@
                         <!--<xmlFile>suites/randomizer_suite.xml</xmlFile>-->
                         <xmlFile>suites/logging_tests.xml</xmlFile>
                         <xmlFile>suites/nested_steps_tests.xml</xmlFile>
+                        <xmlFile>suites/callback_suite.xml</xmlFile>
                     </suiteXmlFiles>
                     <!-- ADD working directory to get TestNG know we to find suite files -->
                     <workingDirectory>./</workingDirectory>
