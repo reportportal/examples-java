@@ -1,10 +1,12 @@
 package com.epam.reportportal.example.testng.logback.logging;
 
 import com.epam.reportportal.example.testng.logback.LoggingUtils;
+import com.epam.reportportal.testng.ReportPortalTestNGListener;
 import com.google.common.io.Files;
 import com.google.common.io.Resources;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.io.File;
@@ -13,6 +15,7 @@ import java.io.IOException;
 /**
  * Created by avarabyeu on 3/9/17.
  */
+@Listeners(ReportPortalTestNGListener.class)
 public class LoggingTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(JsonLoggingTest.class);
 
