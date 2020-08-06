@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="XML Logging Tests">
+
+    <listeners>
+        <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>
+    </listeners>
+
+    <test verbose="1" name="XML logging">
+        <classes>
+            <class name="com.epam.reportportal.example.testng.logback.logging.XmlLoggingTest"/>
+            <class name="com.epam.reportportal.example.testng.logback.logging.XmlLoggingBetterTest"/>
+        </classes>
+    </test>
+
+</suite>
