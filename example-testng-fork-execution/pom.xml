@@ -21,13 +21,13 @@
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>agent-java-testng</artifactId>
-            <version>5.0.6</version>
+            <version>5.0.7</version>
         </dependency>
 
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>logger-java-logback</artifactId>
-            <version>5.0.2</version>
+            <version>5.0.3</version>
         </dependency>
 
         <dependency>
