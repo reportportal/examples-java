@@ -37,6 +37,11 @@ public class TestCaseIdParameterizedTest implements ArtifactParams {
 	}
 
 	@Override
+	public AtomIdentity getAtomIdentity() {
+		return identity;
+	}
+
+	@Override
 	public Description getDescription() {
 		return identity.getDescription();
 	}

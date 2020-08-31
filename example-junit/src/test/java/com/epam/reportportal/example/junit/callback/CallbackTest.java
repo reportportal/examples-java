@@ -1,6 +1,7 @@
 package com.epam.reportportal.example.junit.callback;
 
 import com.epam.reportportal.junit.utils.ItemTreeUtils;
+import com.epam.reportportal.service.Launch;
 import com.epam.reportportal.service.tree.ItemTreeReporter;
 import com.epam.reportportal.service.tree.TestItemTree;
 import com.epam.ta.reportportal.ws.model.FinishTestItemRQ;
@@ -15,8 +16,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import static com.epam.reportportal.junit.JUnitProvider.ITEM_TREE;
-import static com.epam.reportportal.junit.JUnitProvider.REPORT_PORTAL;
+import static com.epam.reportportal.junit.ParallelRunningContext.ITEM_TREE;
+import static com.epam.reportportal.junit.ParallelRunningHandler.REPORT_PORTAL;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -54,6 +55,7 @@ public class CallbackTest {
 				"ERROR",
 				"Error message",
 				Calendar.getInstance().getTime(),
+				ITEM_TREE.getLaunchId(),
 				testItemLeaves.get(0)
 		);
 	}

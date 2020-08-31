@@ -24,7 +24,7 @@ public class NestedSteps {
 
 	private static final String METHODS_NAME_TEMPLATE = "My name is - `{method}` and I am a nested step of the `{parent}`";
 
-	private static ThreadLocal<Integer> counter = new InheritableThreadLocal<Integer>() {
+	private static final ThreadLocal<Integer> COUNTER = new InheritableThreadLocal<Integer>() {
 		@Override
 		protected Integer initialValue() {
 			return 0;
@@ -50,10 +50,10 @@ public class NestedSteps {
 	@Step(value = METHODS_NAME_TEMPLATE)
 	public void greenNestedStep(String parent) {
 		LOGGER.error("hello");
-		if (counter.get() == 5) {
+		if (COUNTER.get() == 5) {
 			return;
 		}
-		counter.set(counter.get() + 1);
+		COUNTER.set(COUNTER.get() + 1);
 		redNestedStep("greenNestedStep");
 
 	}
