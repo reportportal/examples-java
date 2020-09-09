@@ -17,11 +17,9 @@
 package com.epam.reportportal.example.testng.logback.step;
 
 import com.epam.reportportal.annotations.Step;
-import com.epam.reportportal.testng.ReportPortalTestNGListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
