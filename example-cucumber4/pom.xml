@@ -24,7 +24,7 @@
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>agent-java-cucumber4</artifactId>
-            <version>5.0.0-BETA-14</version>
+            <version>5.0.0-RC-1</version>
         </dependency>
 
         <dependency>
