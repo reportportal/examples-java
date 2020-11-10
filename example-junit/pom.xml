@@ -20,7 +20,7 @@
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>agent-java-junit</artifactId>
-            <version>5.0.0-BETA-14</version>
+            <version>5.0.0-BETA-15</version>
         </dependency>
 
         <dependency>
