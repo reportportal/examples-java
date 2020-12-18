@@ -1,5 +1,7 @@
 package com.epam.reportportal.example.junit.attribute;
 
+import com.epam.reportportal.junit.ParallelRunningContext;
+import com.epam.reportportal.junit.ReportPortalListener;
 import com.epam.reportportal.junit.utils.ItemTreeUtils;
 import com.epam.reportportal.service.tree.ItemTreeReporter;
 import com.epam.reportportal.service.tree.TestItemTree;
@@ -19,8 +21,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import static com.epam.reportportal.junit.ParallelRunningContext.ITEM_TREE;
-import static com.epam.reportportal.junit.ParallelRunningHandler.REPORT_PORTAL;
 import static java.util.Optional.ofNullable;
 
 /**
@@ -29,13 +29,16 @@ import static java.util.Optional.ofNullable;
 public class SaucelabsAttributeTest {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(SaucelabsAttributeTest.class);
-	private static List<TestItemTree.TestItemLeaf> testItemLeaves = new ArrayList<>();
+	private static final List<TestItemTree.TestItemLeaf> testItemLeaves = new ArrayList<>();
 
 	@Rule
 	public TestRule rule = new TestWatcher() {
 		@Override
 		protected void finished(Description description) {
-			ofNullable(ItemTreeUtils.retrieveLeaf(description, ITEM_TREE)).ifPresent(testItemLeaves::add);
+			ofNullable(ItemTreeUtils.retrieveLeaf(
+					description,
+					ParallelRunningContext.getCurrent().getItemTree()
+			)).ifPresent(testItemLeaves::add);
 		}
 	};
 
@@ -54,9 +57,11 @@ public class SaucelabsAttributeTest {
 		request.setEndTime(Calendar.getInstance().getTime());
 		request.setStatus("PASSED");
 		request.setAttributes(Sets.newHashSet(new ItemAttributesRQ("SLID", "0586c1c90fcd4a499591109692426d54")));
-		ItemTreeReporter.finishItem(REPORT_PORTAL.getClient(), request, ITEM_TREE.getLaunchId(), testItemLeaves.get(0))
-				.cache()
-				.ignoreElement()
-				.blockingAwait();
+		ItemTreeReporter.finishItem(
+				ReportPortalListener.getReportPortal().getClient(),
+				request,
+				ParallelRunningContext.getCurrent().getItemTree().getLaunchId(),
+				testItemLeaves.get(0)
+		).cache().ignoreElement().blockingAwait();
 	}
 }

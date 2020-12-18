@@ -1,7 +1,9 @@
 package com.epam.reportportal.example.junit.callback;
 
+import com.epam.reportportal.junit.ParallelRunningContext;
+import com.epam.reportportal.junit.ReportPortalListener;
 import com.epam.reportportal.junit.utils.ItemTreeUtils;
-import com.epam.reportportal.service.Launch;
+import com.epam.reportportal.service.ReportPortalClient;
 import com.epam.reportportal.service.tree.ItemTreeReporter;
 import com.epam.reportportal.service.tree.TestItemTree;
 import com.epam.ta.reportportal.ws.model.FinishTestItemRQ;
@@ -16,8 +18,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import static com.epam.reportportal.junit.ParallelRunningContext.ITEM_TREE;
-import static com.epam.reportportal.junit.ParallelRunningHandler.REPORT_PORTAL;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -25,13 +25,15 @@ import static org.junit.Assert.assertTrue;
  */
 public class CallbackTest {
 
-	private static List<TestItemTree.TestItemLeaf> testItemLeaves = new ArrayList<TestItemTree.TestItemLeaf>();
+	private static final List<TestItemTree.TestItemLeaf> testItemLeaves = new ArrayList<TestItemTree.TestItemLeaf>();
 
 	@Rule
 	public TestRule rule = new TestWatcher() {
 		@Override
 		protected void finished(Description description) {
-			TestItemTree.TestItemLeaf testItemLeaf = ItemTreeUtils.retrieveLeaf(description, ITEM_TREE);
+			TestItemTree.TestItemLeaf testItemLeaf = ItemTreeUtils.retrieveLeaf(description,
+					ParallelRunningContext.getCurrent().getItemTree()
+			);
 			if (testItemLeaf != null) {
 				testItemLeaves.add(testItemLeaf);
 			}
@@ -46,25 +48,27 @@ public class CallbackTest {
 
 	@AfterClass
 	public static void afterClass() {
-		attachLog();
-		changeStatus();
+		ReportPortalClient client = ReportPortalListener.getReportPortal().getClient();
+		TestItemTree itemTree = ParallelRunningContext.getCurrent().getItemTree();
+		attachLog(client, itemTree);
+		changeStatus(client, itemTree);
 	}
 
-	private static void attachLog() {
-		ItemTreeReporter.sendLog(REPORT_PORTAL.getClient(),
+	private static void attachLog(ReportPortalClient client, TestItemTree itemTree) {
+		ItemTreeReporter.sendLog(client,
 				"ERROR",
 				"Error message",
 				Calendar.getInstance().getTime(),
-				ITEM_TREE.getLaunchId(),
+				itemTree.getLaunchId(),
 				testItemLeaves.get(0)
 		);
 	}
 
-	private static void changeStatus() {
+	private static void changeStatus(ReportPortalClient client, TestItemTree itemTree) {
 		FinishTestItemRQ finishTestItemRQ = new FinishTestItemRQ();
 		finishTestItemRQ.setStatus("FAILED");
 		finishTestItemRQ.setEndTime(Calendar.getInstance().getTime());
-		ItemTreeReporter.finishItem(REPORT_PORTAL.getClient(), finishTestItemRQ, ITEM_TREE.getLaunchId(), testItemLeaves.get(0))
+		ItemTreeReporter.finishItem(client, finishTestItemRQ, itemTree.getLaunchId(), testItemLeaves.get(0))
 				.cache()
 				.ignoreElement()
 				.blockingAwait();
