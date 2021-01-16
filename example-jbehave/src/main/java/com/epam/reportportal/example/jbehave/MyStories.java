@@ -1,8 +1,7 @@
 package com.epam.reportportal.example.jbehave;
 
 import com.epam.reportportal.example.jbehave.steps.*;
-import com.epam.reportportal.jbehave.ReportPortalFormat;
-import com.epam.reportportal.jbehave.ReportPortalViewGenerator;
+import com.epam.reportportal.jbehave.ReportPortalStepFormat;
 import org.apache.commons.lang3.StringUtils;
 import org.jbehave.core.Embeddable;
 import org.jbehave.core.configuration.Configuration;
@@ -13,6 +12,7 @@ import org.jbehave.core.io.LoadFromClasspath;
 import org.jbehave.core.io.StoryFinder;
 import org.jbehave.core.junit.JUnitStories;
 import org.jbehave.core.model.ExamplesTableFactory;
+import org.jbehave.core.model.TableParsers;
 import org.jbehave.core.model.TableTransformers;
 import org.jbehave.core.parsers.RegexStoryParser;
 import org.jbehave.core.reporters.StoryReporterBuilder;
@@ -54,9 +54,11 @@ public class MyStories extends JUnitStories {
 		ParameterConverters parameterConverters = new ParameterConverters();
 
 		TableTransformers tableTransformers = new TableTransformers();
+		TableParsers tableParsers = new TableParsers();
 		// factory to allow parameter conversion and loading from external resources (used by StoryParser too)
 		ExamplesTableFactory examplesTableFactory = new ExamplesTableFactory(new LocalizedKeywords(),
 				new LoadFromClasspath(embeddableClass),
+				tableParsers,
 				tableTransformers
 		);
 		// add custom converters
@@ -67,8 +69,7 @@ public class MyStories extends JUnitStories {
 				.useStoryParser(new RegexStoryParser(examplesTableFactory))
 				.useStoryReporterBuilder(new StoryReporterBuilder().withCodeLocation(CodeLocations.codeLocationFromClass(embeddableClass))
 						.withDefaultFormats()
-						.withFormats(CONSOLE, TXT, HTML, XML, ReportPortalFormat.INSTANCE))
-				.useViewGenerator(new ReportPortalViewGenerator())
+						.withFormats(CONSOLE, TXT, HTML, XML, ReportPortalStepFormat.INSTANCE))
 				.useParameterConverters(parameterConverters);
 	}
 

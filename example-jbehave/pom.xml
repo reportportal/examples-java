@@ -14,7 +14,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jbehave.core.version>4.5.1</jbehave.core.version>
+        <jbehave.core.version>4.8.1</jbehave.core.version>
         <embeddables>**/*Stories.java</embeddables>
         <meta.filter></meta.filter>
     </properties>
@@ -23,7 +23,7 @@
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>agent-java-jbehave</artifactId>
-            <version>5.0.0-BETA-4</version>
+            <version>5.0.0-BETA-9</version>
         </dependency>
 
         <dependency>
@@ -35,7 +35,7 @@
         <dependency>
             <groupId>org.jbehave</groupId>
             <artifactId>jbehave-core</artifactId>
-            <version>4.5.1</version>
+            <version>${jbehave.core.version}</version>
         </dependency>
 
         <dependency>
@@ -94,7 +94,7 @@
                     </execution>
                     <execution>
                         <id>embeddable-stories</id>
-                        <phase>integration-test</phase>
+                        <phase>test</phase>
                         <configuration>
                             <includes>
                                 <include>${embeddables}</include>
