@@ -16,7 +16,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jbehave.core.version>4.8.1</jbehave.core.version>
         <embeddables>**/*Stories.java</embeddables>
-        <meta.filter></meta.filter>
+        <meta.filter>-skip</meta.filter>
     </properties>
 
     <dependencies>
