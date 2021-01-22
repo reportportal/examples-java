@@ -71,13 +71,6 @@
                 <version>${jbehave.core.version}</version>
                 <executions>
                     <execution>
-                        <id>unpack-view-resources</id>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>unpack-view-resources</goal>
-                        </goals>
-                    </execution>
-                    <execution>
                         <id>embeddable-stories</id>
                         <phase>test</phase>
                         <configuration>

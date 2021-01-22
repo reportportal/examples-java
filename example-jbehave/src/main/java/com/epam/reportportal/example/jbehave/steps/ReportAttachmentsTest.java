@@ -111,11 +111,11 @@ public class ReportAttachmentsTest {
 	@Given("I attach logJsonBase64")
 	public void logJsonBase64() throws IOException {
 		/* here we are logging some binary data as BASE64 string */
-		ReportPortal.emitLog("LAUNCH LOG MESAGE", "error", new Date());
+		ReportPortal.emitLog("ITEM LOG MESSAGE", "error", new Date());
 
 		File file = File.createTempFile("rp-test", ".css");
 		Resources.asByteSource(Resources.getResource("files/css.css")).copyTo(Files.asByteSink(file));
-		ReportPortal.emitLog("LAUNCH LOG MESAGE WITH ATTACHMENT", "error", new Date(), file);
+		ReportPortal.emitLog("ITEM LOG MESSAGE WITH ATTACHMENT", "error", new Date(), file);
 
 		LOGGER.info(
 				"RP_MESSAGE#BASE64#{}#{}",
@@ -133,7 +133,6 @@ public class ReportAttachmentsTest {
 		for (int i = 0; i < 1; i++) {
 			LOGGER.info("RP_MESSAGE#FILE#{}#{}", file.getAbsolutePath(), "I'm logging content via temp file");
 		}
-		Thread.sleep(5000L);
 	}
 
 	@Given("I attach logImageBase64")
