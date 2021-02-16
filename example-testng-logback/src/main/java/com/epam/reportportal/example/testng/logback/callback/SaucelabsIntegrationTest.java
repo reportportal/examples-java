@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 EPAM Systems
+ * Copyright 2021 EPAM Systems
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.epam.reportportal.example.testng.logback.attribute;
+package com.epam.reportportal.example.testng.logback.callback;
 
 import com.epam.reportportal.service.tree.ItemTreeReporter;
 import com.epam.reportportal.service.tree.TestItemTree;
@@ -46,7 +46,7 @@ import static java.util.Optional.ofNullable;
  * @author <a href="mailto:ivan_budayeu@epam.com">Ivan Budayeu</a>
  */
 @Listeners(ReportPortalTestNGListener.class)
-public class DynamicAttributeTest {
+public class SaucelabsIntegrationTest {
 
 	private static final String SAUCELABS_USERNAME_PARAMETER = "SAUCE_USERNAME";
 	private static final String SAUCELABS_ACCESS_KEY_PARAMETER = "SAUCE_ACCESS_KEY";
