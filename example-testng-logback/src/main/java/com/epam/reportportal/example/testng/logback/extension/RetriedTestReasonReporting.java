@@ -19,6 +19,7 @@ package com.epam.reportportal.example.testng.logback.extension;
 import com.epam.reportportal.testng.BaseTestNGListener;
 import com.epam.reportportal.testng.ITestNGService;
 import com.epam.reportportal.testng.TestNGService;
+import com.epam.reportportal.utils.MemoizingSupplier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -26,7 +27,6 @@ import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import rp.com.google.common.base.Suppliers;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Supplier;
@@ -67,7 +67,7 @@ public class RetriedTestReasonReporting {
 	}
 
 	public static class ExtendedListener extends BaseTestNGListener {
-		public static final Supplier<ITestNGService> SERVICE = Suppliers.memoize(SkipReasonLoggingService::new);
+		public static final Supplier<ITestNGService> SERVICE = new MemoizingSupplier<>(SkipReasonLoggingService::new);
 
 		public ExtendedListener() {
 			super(SERVICE.get());

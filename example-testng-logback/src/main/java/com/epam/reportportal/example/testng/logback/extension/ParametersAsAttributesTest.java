@@ -22,13 +22,13 @@ import com.epam.reportportal.testng.TestNGService;
 import com.epam.ta.reportportal.ws.model.FinishTestItemRQ;
 import com.epam.ta.reportportal.ws.model.StartTestItemRQ;
 import com.epam.ta.reportportal.ws.model.attribute.ItemAttributesRQ;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.ITestResult;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import rp.com.google.common.base.Throwables;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -92,8 +92,8 @@ public class ParametersAsAttributesTest {
 		protected FinishTestItemRQ buildFinishTestMethodRq(ItemStatus status, ITestResult testResult) {
 			FinishTestItemRQ finishTestItemRQ = super.buildFinishTestMethodRq(status, testResult);
 			if (testResult.getThrowable() != null) {
-				String description = "```error\n" + Throwables.getStackTraceAsString(testResult.getThrowable()) + "\n```";
-				description = description + Throwables.getStackTraceAsString(testResult.getThrowable());
+				String description = "```error\n" + ExceptionUtils.getStackTrace(testResult.getThrowable()) + "\n```";
+				description = description + ExceptionUtils.getStackTrace(testResult.getThrowable());
 				finishTestItemRQ.setDescription(description);
 			}
 			return finishTestItemRQ;
