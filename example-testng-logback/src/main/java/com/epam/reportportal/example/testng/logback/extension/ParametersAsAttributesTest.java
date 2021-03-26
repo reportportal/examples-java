@@ -18,6 +18,7 @@ package com.epam.reportportal.example.testng.logback.extension;
 
 import com.epam.reportportal.listeners.ItemStatus;
 import com.epam.reportportal.testng.BaseTestNGListener;
+import com.epam.reportportal.testng.TestMethodType;
 import com.epam.reportportal.testng.TestNGService;
 import com.epam.ta.reportportal.ws.model.FinishTestItemRQ;
 import com.epam.ta.reportportal.ws.model.StartTestItemRQ;
@@ -30,6 +31,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import javax.annotation.Nonnull;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -75,8 +77,8 @@ public class ParametersAsAttributesTest {
 	public static class ParamTaggingTestNgService extends TestNGService {
 
 		@Override
-		protected StartTestItemRQ buildStartStepRq(ITestResult testResult) {
-			final StartTestItemRQ rq = super.buildStartStepRq(testResult);
+		protected StartTestItemRQ buildStartStepRq(final @Nonnull ITestResult testResult, final @Nonnull TestMethodType type) {
+			final StartTestItemRQ rq = super.buildStartStepRq(testResult, type);
 			if (testResult.getParameters() != null && testResult.getParameters().length != 0) {
 				Set<ItemAttributesRQ> attributes = Optional.ofNullable(rq.getAttributes()).orElse(new HashSet<>());
 				for (Object param : testResult.getParameters()) {
