@@ -27,15 +27,4 @@
         <module>example-testng-fork-execution</module>
     </modules>
 
-    <repositories>
-        <repository>
-            <id>bintray</id>
-            <url>http://dl.bintray.com/epam/reportportal</url>
-        </repository>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-    </repositories>
-
 </project>
