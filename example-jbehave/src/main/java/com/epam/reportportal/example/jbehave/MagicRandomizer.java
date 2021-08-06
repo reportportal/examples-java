@@ -1,9 +1,9 @@
 package com.epam.reportportal.example.jbehave;
 
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Range;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import rp.com.google.common.base.Preconditions;
-import rp.com.google.common.collect.Range;
 
 import java.util.Random;
 

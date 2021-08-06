@@ -1,13 +1,13 @@
 package com.epam.reportportal.example.jbehave.steps;
 
 import com.epam.reportportal.service.ReportPortal;
+import com.google.common.io.Files;
+import com.google.common.io.Resources;
 import org.jbehave.core.annotations.*;
 import org.jbehave.core.model.ExamplesTable;
 import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import rp.com.google.common.io.Files;
-import rp.com.google.common.io.Resources;
 
 import java.io.File;
 import java.io.IOException;

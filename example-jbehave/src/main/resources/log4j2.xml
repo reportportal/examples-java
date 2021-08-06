@@ -12,7 +12,7 @@
     </Appenders>
     <Loggers>
         <Root level="DEBUG">
-            <AppenderRef ref="ConsoleAppender"/>
+            <AppenderRef ref="ConsoleAppender" level="info"/>
             <AppenderRef ref="ReportPortalAppender"/>
         </Root>
     </Loggers>
