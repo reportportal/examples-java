@@ -4,8 +4,8 @@ import com.epam.reportportal.example.testng.log4j.MagicRandomizer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
-import rp.com.google.common.io.BaseEncoding;
-import rp.com.google.common.io.Resources;
+import com.google.common.io.BaseEncoding;
+import com.google.common.io.Resources;
 
 import java.io.IOException;
 

@@ -28,7 +28,7 @@ public class ParametrizedTest {
 
 	private static final Logger LOG = LogManager.getLogger(ParametrizedTest.class);
 
-	private Hero hero;
+	private final Hero hero;
 
 	@DataProvider(name = "provider")
 	public static Object[][] getData() {

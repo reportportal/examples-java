@@ -3,9 +3,9 @@ package com.epam.reportportal.example.testng.log4j.logging;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
-import rp.com.google.common.io.BaseEncoding;
-import rp.com.google.common.io.Files;
-import rp.com.google.common.io.Resources;
+import com.google.common.io.BaseEncoding;
+import com.google.common.io.Files;
+import com.google.common.io.Resources;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,9 +23,11 @@ public class XmlLoggingTest {
 	@Test
 	public void logXmlBase64() throws IOException {
 		/* here we are logging some binary data as BASE64 string */
-		LOGGER.info("RP_MESSAGE#BASE64#{}#{}",
+		LOGGER.info(
+				"RP_MESSAGE#BASE64#{}#{}",
 				BaseEncoding.base64().encode(Resources.asByteSource(Resources.getResource(XML_FILE_PATH)).read()),
-				"I'm logging content via BASE64");
+				"I'm logging content via BASE64"
+		);
 	}
 
 	@Test
