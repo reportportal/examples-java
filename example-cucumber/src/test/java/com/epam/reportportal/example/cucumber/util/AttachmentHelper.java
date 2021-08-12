@@ -1,7 +1,7 @@
 package com.epam.reportportal.example.cucumber.util;
 
-import rp.com.google.common.io.Files;
-import rp.com.google.common.io.Resources;
+import com.google.common.io.Files;
+import com.google.common.io.Resources;
 
 import java.io.File;
 import java.io.IOException;

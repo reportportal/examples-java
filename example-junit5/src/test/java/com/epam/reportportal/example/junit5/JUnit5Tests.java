@@ -2,12 +2,10 @@ package com.epam.reportportal.example.junit5;
 
 import com.epam.reportportal.junit5.ReportPortalExtension;
 import com.epam.reportportal.service.ReportPortal;
+import com.google.common.io.Files;
+import com.google.common.io.Resources;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.*;
-import rp.com.google.common.io.Files;
-import rp.com.google.common.io.Resources;
 
 import java.io.File;
 import java.io.IOException;

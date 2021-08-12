@@ -18,8 +18,8 @@ package com.epam.reportportal.example.cucumber4.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import rp.com.google.common.base.Preconditions;
-import rp.com.google.common.collect.Range;
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Range;
 
 import java.util.Random;
 

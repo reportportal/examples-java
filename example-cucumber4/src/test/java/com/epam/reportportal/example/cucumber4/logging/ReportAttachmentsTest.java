@@ -23,9 +23,9 @@ import com.epam.reportportal.service.ReportPortal;
 import io.cucumber.java.en.Given;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import rp.com.google.common.io.BaseEncoding;
-import rp.com.google.common.io.Files;
-import rp.com.google.common.io.Resources;
+import com.google.common.io.BaseEncoding;
+import com.google.common.io.Files;
+import com.google.common.io.Resources;
 
 import java.io.File;
 import java.io.IOException;

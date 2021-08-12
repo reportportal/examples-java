@@ -4,8 +4,8 @@ import com.epam.reportportal.example.junit5.LoggingUtils;
 import org.junit.jupiter.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import rp.com.google.common.io.Files;
-import rp.com.google.common.io.Resources;
+import com.google.common.io.Files;
+import com.google.common.io.Resources;
 
 import java.io.File;
 import java.io.IOException;

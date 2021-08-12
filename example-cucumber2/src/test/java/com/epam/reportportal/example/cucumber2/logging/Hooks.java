@@ -5,8 +5,8 @@ import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import rp.com.google.common.collect.Lists;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Hooks {
@@ -18,7 +18,7 @@ public class Hooks {
 	public void beforeScenario() {
 		LOGGER.info("Inside before");
 		LOGGER.info("Initial storage state: {}", storage);
-		storage = Lists.newArrayList("one", "two");
+		storage = Arrays.asList("one", "two");
 		LOGGER.info("Storage is set to {}", storage);
 	}
 

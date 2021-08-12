@@ -25,9 +25,9 @@ import io.cucumber.java.en.Given;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import rp.com.google.common.collect.Lists;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -40,7 +40,7 @@ public class Hooks {
 	public void beforeScenario() {
 		LOGGER.info("Inside before");
 		LOGGER.info("Initial storage state: {}", storage);
-		storage = Lists.newArrayList("one", "two");
+		storage = Arrays.asList("one", "two");
 		LOGGER.info("Storage is set to {}", storage);
 	}
 
