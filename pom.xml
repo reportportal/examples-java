@@ -24,6 +24,7 @@
         <module>example-junit5</module>
         <module>example-junit</module>
         <module>example-testng-fork-execution</module>
+        <module>example-spock</module>
     </modules>
 
 </project>

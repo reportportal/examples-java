@@ -1,11 +1,9 @@
 package com.epam.reportportal.example.testng.log4j.parametrized;
 
-import com.epam.reportportal.testng.ReportPortalTestNGListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Factory;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import org.yaml.snakeyaml.Yaml;

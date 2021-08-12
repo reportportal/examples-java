@@ -36,9 +36,9 @@ public class JUnitParamsTest implements ArtifactParams {
 
 	@Override
 	public Optional<Map<String, Object>> getParameters() {
-		Object runner = LifecycleHooks.getRunnerForTarget(this);
+		Object runner = LifecycleHooks.getThreadRunner();
 		AtomicTest test = LifecycleHooks.getAtomicTestOf(runner);
-		ReflectiveCallable callable = LifecycleHooks.getCallableOf(runner, test.getIdentity());
+		ReflectiveCallable callable = LifecycleHooks.getCallableOf(test.getDescription());
 		try {
 			Object[] params = LifecycleHooks.getFieldValue(callable, "val$params");
 			Integer age = (Integer) params[0];
