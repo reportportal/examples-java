@@ -13,9 +13,6 @@
     <artifactId>example-spock</artifactId>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <maven.compiler.source>1.8</maven.compiler.source>
         <aspectj.version>1.9.2</aspectj.version>
         <groovy.version>2.5.14</groovy.version>
     </properties>

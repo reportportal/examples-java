@@ -13,9 +13,6 @@
     <artifactId>example-junit5</artifactId>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <maven.compiler.source>1.8</maven.compiler.source>
         <aspectj.version>1.9.2</aspectj.version>
         <junit.version>5.6.3</junit.version>
         <junit.runner.version>1.6.3</junit.runner.version>
@@ -93,7 +90,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
             </plugin>
         </plugins>
     </build>
