@@ -21,7 +21,7 @@ import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(plugin = { "pretty", "html:report.html",
-		"com.epam.reportportal.cucumber.StepReporter" }, features = "src/test/resources/features/logging", tags = "not @ignore")
-public class RunLoggingTest {
+@CucumberOptions(plugin = { "pretty", "html:report.html", "com.epam.reportportal.cucumber.StepReporter" },
+		features = "src/test/resources/features/selenium", tags = "not @ignore", glue = "com.epam.reportportal.example.cucumber6.selenium")
+public class RunSeleniumScreenshotTest {
 }

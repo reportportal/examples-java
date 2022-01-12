@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 EPAM Systems
+ * Copyright 2022 EPAM Systems
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.epam.reportportal.example.cucumber6.logging;
+package com.epam.reportportal.example.cucumber6.selenium;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -26,13 +26,15 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
-import java.io.IOException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The simplest way to report a screenshot on a test failure. Reports screenshot as a separate log entry into 'After hooks' step.
  */
 public class ScreenshotOnFailureHooks {
+	private static final Logger LOGGER = LoggerFactory.getLogger(ScreenshotOnFailureHooks.class);
+
 	private WebDriver driver;
 
 	@Before
@@ -44,6 +46,7 @@ public class ScreenshotOnFailureHooks {
 	@Given("I report scenario with screenshot")
 	public void test() {
 		driver.navigate().to("https://www.example.com");
+		LOGGER.warn("A failure test for demonstration, check out 'After hooks' for the failure screenshot");
 		Assert.assertEquals("Google", driver.getTitle());
 	}
 
