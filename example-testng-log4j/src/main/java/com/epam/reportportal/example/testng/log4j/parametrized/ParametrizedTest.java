@@ -35,7 +35,7 @@ public class ParametrizedTest {
 
 	@Factory(dataProvider = "provider")
 	public ParametrizedTest(String name, String power, String race) {
-		this.hero = new Hero(name, power, race);
+		hero = new Hero(name, power, race);
 	}
 
 	@Test()
