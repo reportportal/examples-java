@@ -28,9 +28,9 @@ import java.util.List;
 /**
  * @author <a href="mailto:ivan_budayeu@epam.com">Ivan Budayeu</a>
  */
-public class NestedStepsTest {
+public class AnnotationNestedStepsComparingTest {
 
-	public static final Logger LOGGER = LoggerFactory.getLogger(NestedStepsTest.class);
+	public static final Logger LOGGER = LoggerFactory.getLogger(AnnotationNestedStepsComparingTest.class);
 
 	@Test
 	void orderProductsTest() {
