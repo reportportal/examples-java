@@ -15,7 +15,7 @@ public class LogTest {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LogTest.class);
 
 	@Test
-	void LogTest() {
+	void logTest() {
 		LOGGER.trace("Trace level log");
 		LOGGER.debug("Debug level log");
 		LOGGER.info("Info level log");
