@@ -17,13 +17,17 @@
 package com.epam.reportportal.example.cucumber6.logging;
 
 import com.epam.reportportal.cucumber.AbstractReporter;
+import com.epam.reportportal.example.cucumber6.RunLoggingTests;
 import com.epam.reportportal.listeners.ListenerParameters;
 import io.cucumber.java.en.Given;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class LaunchLinkLog {
-	private static final Logger LOGGER = LoggerFactory.getLogger(LaunchLinkLog.class);
+/**
+ * An example how to get and report current Launch URL, run {@link RunLoggingTests} class to see results.
+ */
+public class LaunchUrlLogging {
+	private static final Logger LOGGER = LoggerFactory.getLogger(LaunchUrlLogging.class);
 
 	@Given("I log the Launch link")
 	public void logLaunchLink() {
