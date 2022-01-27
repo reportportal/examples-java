@@ -38,4 +38,10 @@
         </classes>
     </test>
 
+    <test name="Launch URL logging">
+        <classes>
+            <class name="com.epam.reportportal.example.testng.logback.logging.LaunchUrlLoggingTest" />
+        </classes>
+    </test>
+
 </suite>
