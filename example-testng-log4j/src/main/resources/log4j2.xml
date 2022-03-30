@@ -11,7 +11,7 @@
         </ReportPortalLog4j2Appender>
     </Appenders>
     <Loggers>
-        <Root level="DEBUG">
+        <Root level="INFO">
             <AppenderRef ref="ConsoleAppender"/>
             <AppenderRef ref="ReportPortalAppender"/>
         </Root>
@@ -21,6 +21,9 @@
         </Logger>
         <Logger name="com.epam.reportportal.utils" level="WARN" additivity="false">
             <AppenderRef ref="ConsoleAppender"/>
+            <AppenderRef ref="ReportPortalAppender"/>
+        </Logger>
+        <Logger name="com.epam.reportportal.example.testng.log4j" level="DEBUG" additivity="false">
             <AppenderRef ref="ReportPortalAppender"/>
         </Logger>
     </Loggers>

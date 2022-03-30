@@ -19,12 +19,10 @@ import java.util.Objects;
  * A test to verify this issue: https://github.com/reportportal/reportportal/issues/789
  * <p>
  * Expected results: tests should not join into retry chain.
- *
- * @author <a href="mailto:ihar_kahadouski@epam.com">Ihar Kahadouski</a>
  */
 public class ParametrizedTest {
 
-	private static final Logger LOG = LogManager.getLogger(ParametrizedTest.class);
+	private static final Logger LOGGER = LogManager.getLogger(ParametrizedTest.class);
 
 	private final Hero hero;
 
@@ -42,15 +40,15 @@ public class ParametrizedTest {
 	public void someChecks() {
 		SoftAssert softAssert = new SoftAssert();
 		// some actions
-		LOG.info(hero);
-		softAssert.assertFalse(Objects.isNull(hero));
+		LOGGER.info(hero);
+		softAssert.assertNull(hero);
 		softAssert.assertAll();
 	}
 
 	static Object[][] commonReadParametersFromYaml(String fileName) {
-		LOG.traceEntry();
+		LOGGER.traceEntry();
 
-		LOG.info("File name: {}", fileName);
+		LOGGER.info("File name: {}", fileName);
 
 		Object[][] data = null;
 
@@ -74,10 +72,10 @@ public class ParametrizedTest {
 				}
 			}
 		} catch (Exception e) {
-			LOG.error(e.getMessage());
+			LOGGER.error(e.getMessage());
 		}
 
-		return LOG.traceExit(data);
+		return LOGGER.traceExit(data);
 	}
 
 	private static class Hero {

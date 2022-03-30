@@ -28,7 +28,7 @@
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>client-java</artifactId>
-            <version>5.1.5</version>
+            <version>5.1.7</version>
         </dependency>
 
         <dependency>
@@ -67,6 +67,11 @@
             <version>1.30</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.awaitility</groupId>
+            <artifactId>awaitility</artifactId>
+            <version>4.0.2</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -89,10 +94,6 @@
                         <property>
                             <name>usedefaultlisteners</name>
                             <value>false</value>
-                        </property>
-                        <property>
-                            <name>listener</name>
-                            <value>com.epam.reportportal.testng.ReportPortalTestNGListener</value>
                         </property>
                     </properties>
                 </configuration>
