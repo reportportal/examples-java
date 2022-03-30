@@ -19,15 +19,25 @@ package com.epam.reportportal.example.testng.logback.logging;
 import com.epam.reportportal.example.testng.logback.LoggingUtils;
 import com.google.common.io.Files;
 import com.google.common.io.Resources;
+import org.awaitility.Awaitility;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 
 /**
  * Created by avarabyeu on 3/9/17.
  */
 public class LoggingTest {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(LoggingTest.class);
 
 	@Test
 	public void logCss() throws IOException {
@@ -97,5 +107,24 @@ public class LoggingTest {
 		File file = File.createTempFile("rp-test", ".cmd");
 		Resources.asByteSource(Resources.getResource("files/Test.cmd")).copyTo(Files.asByteSink(file));
 		LoggingUtils.log(file, "I'm logging txt");
+	}
+
+	@Test(timeOut = 10)
+	public void logInChildThread() {
+		LOGGER.info("I'm logging in a test with timeout");
+	}
+
+	@Test
+	public void logInAwaitilityThread() {
+		AtomicInteger counter = new AtomicInteger();
+		Awaitility.await("Logging inside Awaitility")
+				.atMost(Duration.of(1, ChronoUnit.SECONDS))
+				.pollDelay(Duration.ZERO)
+				.pollInterval(Duration.ofMillis(200))
+				.until(() -> {
+					int count = counter.incrementAndGet();
+					LOGGER.info("Inside Awaitility " + count);
+					return count;
+				}, greaterThanOrEqualTo(4));
 	}
 }

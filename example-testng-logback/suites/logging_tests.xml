@@ -32,7 +32,7 @@
         </classes>
     </test>
 
-    <test verbose="1" name="File logging">
+    <test verbose="1" name="Different logging types">
         <classes>
             <class name="com.epam.reportportal.example.testng.logback.logging.LoggingTest"/>
         </classes>
