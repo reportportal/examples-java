@@ -102,7 +102,7 @@ public class LoggingTest {
 		LoggingUtils.log(file, "I'm logging txt");
 	}
 
-	@Test(timeOut = 10)
+	@Test(timeOut = 100)
 	public void logInChildThread() {
 		LOGGER.info("I'm logging in a test with timeout");
 	}

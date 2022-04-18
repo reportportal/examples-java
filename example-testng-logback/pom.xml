@@ -37,7 +37,7 @@
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>client-java</artifactId>
-            <version>5.1.7</version>
+            <version>5.1.9</version>
         </dependency>
 
         <dependency>
@@ -146,6 +146,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.0</version>
             </plugin>
         </plugins>
     </build>
