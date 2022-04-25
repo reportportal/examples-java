@@ -17,18 +17,7 @@
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>agent-java-testng</artifactId>
-            <version>5.1.1</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.epam.reportportal</groupId>
-                    <artifactId>client-java</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>com.epam.reportportal</groupId>
-            <artifactId>client-java</artifactId>
-            <version>5.1.7</version>
+            <version>5.1.2</version>
         </dependency>
 
         <dependency>
