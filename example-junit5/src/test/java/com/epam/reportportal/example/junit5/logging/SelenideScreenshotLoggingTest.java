@@ -43,7 +43,7 @@ public class SelenideScreenshotLoggingTest {
 	@Test
 	public void testTitle() {
 		Selenide.open("https://www.example.com");
-		assertEquals(Selenide.title(), "Google");
+		assertEquals("Google", Selenide.title());
 	}
 
 	@AfterEach
