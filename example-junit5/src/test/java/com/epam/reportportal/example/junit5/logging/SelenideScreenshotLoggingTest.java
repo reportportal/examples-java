@@ -28,6 +28,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * A test with extension which makes screenshots with Selenide on test failure.
+ */
 @ExtendWith(ScreenShootOnFailureExtension.class)
 public class SelenideScreenshotLoggingTest {
 
