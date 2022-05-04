@@ -16,8 +16,8 @@
 
 package com.epam.reportportal.example.testng.logback.logging;
 
+import com.epam.reportportal.example.testng.logback.LoggingUtils;
 import com.epam.reportportal.example.testng.logback.MagicRandomizer;
-import com.google.common.io.BaseEncoding;
 import com.google.common.io.Resources;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,9 +43,7 @@ public class LuckyPugTest {
 			boolean happy = MagicRandomizer.checkYourLucky(30);
 			String image = getImageResource(happy);
 
-			LOGGER.info("RP_MESSAGE#BASE64#{}#{}",
-					BaseEncoding.base64().encode(Resources.asByteSource(Resources.getResource(image)).read()),
-					"Pug is " + (happy ? "HAPPY" : "NOT HAPPY"));
+			LoggingUtils.log(Resources.asByteSource(Resources.getResource(image)).read(), "Pug is " + (happy ? "HAPPY" : "NOT HAPPY"));
 		}
 
 	}

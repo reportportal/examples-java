@@ -2,9 +2,9 @@ package com.epam.reportportal.example.testng.log4j;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import com.google.common.io.BaseEncoding;
 
 import java.io.File;
+import java.util.Base64;
 
 /**
  * Useful for binary data (e.g. sending files to ReportPortal)
@@ -24,7 +24,7 @@ public class LoggingUtils {
 	}
 
 	public static void log(byte[] bytes, String message) {
-		LOGGER.info("RP_MESSAGE#BASE64#{}#{}", BaseEncoding.base64().encode(bytes), message);
+		LOGGER.info("RP_MESSAGE#BASE64#{}#{}", Base64.getEncoder().encodeToString(bytes), message);
 	}
 
 	public static void logBase64(String base64, String message) {

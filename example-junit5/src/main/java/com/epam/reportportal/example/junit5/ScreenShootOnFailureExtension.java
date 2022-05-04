@@ -21,17 +21,13 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.InvocationInterceptor;
 import org.junit.jupiter.api.extension.ReflectiveInvocationContext;
 import org.openqa.selenium.OutputType;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Method;
-import java.util.Base64;
 
 /**
  * JUnit 5the extension which makes a Selenide screenshot in case of test failure.
  */
 public class ScreenShootOnFailureExtension implements InvocationInterceptor {
-	private static final Logger LOGGER = LoggerFactory.getLogger("binary_data_logger");
 
 	/**
 	 * Make a screenshot with Selenide and attach it to the current test item on Report Portal in case of test failure.
@@ -47,7 +43,7 @@ public class ScreenShootOnFailureExtension implements InvocationInterceptor {
 			invocation.proceed();
 		} catch (Throwable cause) {
 			byte[] screenshot = Selenide.screenshot(OutputType.BYTES);
-			LOGGER.info("RP_MESSAGE#BASE64#{}#{}", Base64.getEncoder().encodeToString(screenshot), "Failure screenshot");
+			LoggingUtils.log(screenshot, "Failure screenshot");
 			throw cause;
 		}
 	}

@@ -1,13 +1,13 @@
 package com.epam.reportportal.example.testng.log4j.logging;
 
+import com.epam.reportportal.example.testng.log4j.LoggingUtils;
 import com.epam.reportportal.message.ReportPortalMessage;
+import com.google.common.io.Files;
+import com.google.common.io.Resources;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.message.ObjectMessage;
 import org.testng.annotations.Test;
-import com.google.common.io.BaseEncoding;
-import com.google.common.io.Files;
-import com.google.common.io.Resources;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,11 +25,7 @@ public class JsonLoggingTest {
 	@Test
 	public void logJsonBase64() throws IOException {
 		/* here we are logging some binary data as BASE64 string */
-		LOGGER.info(
-				"RP_MESSAGE#BASE64#{}#{}",
-				BaseEncoding.base64().encode(Resources.asByteSource(Resources.getResource(JSON_FILE_PATH)).read()),
-				"I'm logging content via BASE64"
-		);
+		LoggingUtils.log(Resources.asByteSource(Resources.getResource(JSON_FILE_PATH)).read(), "I'm logging content via BASE64");
 	}
 
 	@Test
@@ -39,7 +35,7 @@ public class JsonLoggingTest {
 		Resources.asByteSource(Resources.getResource(JSON_FILE_PATH)).copyTo(Files.asByteSink(file));
 
 		for (int i = 0; i < 1; i++) {
-			LOGGER.info("RP_MESSAGE#FILE#{}#{}", file.getAbsolutePath(), "I'm logging content via temp file");
+			LoggingUtils.log(file, "I'm logging content via temp file");
 		}
 		Thread.sleep(5000L);
 

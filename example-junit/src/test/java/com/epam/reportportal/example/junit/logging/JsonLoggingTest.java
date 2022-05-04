@@ -1,7 +1,7 @@
 package com.epam.reportportal.example.junit.logging;
 
+import com.epam.reportportal.example.junit.LoggingUtils;
 import com.epam.reportportal.service.ReportPortal;
-import com.google.common.io.BaseEncoding;
 import com.google.common.io.Files;
 import com.google.common.io.Resources;
 import org.junit.Test;
@@ -31,15 +31,11 @@ public class JsonLoggingTest {
 		Resources.asByteSource(Resources.getResource("files/file.css")).copyTo(Files.asByteSink(file));
 		ReportPortal.emitLog("LAUNCH LOG MESAGE WITH ATTACHMENT", "error", new Date(), file);
 
-		LOGGER.info(
-				"RP_MESSAGE#BASE64#{}#{}",
-				BaseEncoding.base64().encode(Resources.asByteSource(Resources.getResource(JSON_FILE_PATH)).read()),
-				"I'm logging content via BASE64"
-		);
+		LoggingUtils.log(Resources.asByteSource(Resources.getResource(JSON_FILE_PATH)).read(), "I'm logging content via BASE64");
 	}
 
 	@Test
-	public void logJsonFile() throws IOException, InterruptedException {
+	public void logJsonFile() throws IOException {
 		/* here we are logging some binary data as file (useful for selenium) */
 		File file = File.createTempFile("rp-test", ".json");
 		Resources.asByteSource(Resources.getResource(JSON_FILE_PATH)).copyTo(Files.asByteSink(file));
@@ -47,8 +43,6 @@ public class JsonLoggingTest {
 		for (int i = 0; i < 1; i++) {
 			LOGGER.info("RP_MESSAGE#FILE#{}#{}", file.getAbsolutePath(), "I'm logging content via temp file");
 		}
-		Thread.sleep(5000L);
-
 	}
 
 }

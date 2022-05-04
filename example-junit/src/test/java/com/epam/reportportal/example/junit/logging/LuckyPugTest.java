@@ -1,7 +1,7 @@
 package com.epam.reportportal.example.junit.logging;
 
+import com.epam.reportportal.example.junit.LoggingUtils;
 import com.epam.reportportal.example.junit.MagicRandomizer;
-import com.google.common.io.BaseEncoding;
 import com.google.common.io.Resources;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -26,14 +26,8 @@ public class LuckyPugTest {
 			/* 50 percents. So we should have approximately same count of lucky and unlucky pugs */
 			boolean happy = MagicRandomizer.checkYourLucky(30);
 			String image = getImageResource(happy);
-
-			LOGGER.info(
-					"RP_MESSAGE#BASE64#{}#{}",
-					BaseEncoding.base64().encode(Resources.asByteSource(Resources.getResource(image)).read()),
-					"Pug is " + (happy ? "HAPPY" : "NOT HAPPY")
-			);
+			LoggingUtils.log(Resources.asByteSource(Resources.getResource(image)).read(), "Pug is " + (happy ? "HAPPY" : "NOT HAPPY"));
 		}
-
 	}
 
 	private String getImageResource(boolean lucky) {

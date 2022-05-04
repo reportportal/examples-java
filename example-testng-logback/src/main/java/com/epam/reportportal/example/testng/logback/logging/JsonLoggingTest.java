@@ -16,8 +16,8 @@
 
 package com.epam.reportportal.example.testng.logback.logging;
 
+import com.epam.reportportal.example.testng.logback.LoggingUtils;
 import com.epam.reportportal.service.ReportPortal;
-import com.google.common.io.BaseEncoding;
 import com.google.common.io.Files;
 import com.google.common.io.Resources;
 import org.slf4j.Logger;
@@ -47,11 +47,7 @@ public class JsonLoggingTest {
 		Resources.asByteSource(Resources.getResource("files/css.css")).copyTo(Files.asByteSink(file));
 		ReportPortal.emitLaunchLog("LAUNCH LOG MESAGE WITH ATTACHMENT", "error", new Date(), file);
 
-		LOGGER.info(
-				"RP_MESSAGE#BASE64#{}#{}",
-				BaseEncoding.base64().encode(Resources.asByteSource(Resources.getResource(JSON_FILE_PATH)).read()),
-				"I'm logging content via BASE64"
-		);
+		LoggingUtils.log(Resources.asByteSource(Resources.getResource(JSON_FILE_PATH)).read(), "I'm logging content via BASE64");
 	}
 
 	@Test
@@ -61,10 +57,7 @@ public class JsonLoggingTest {
 		Resources.asByteSource(Resources.getResource(JSON_FILE_PATH)).copyTo(Files.asByteSink(file));
 
 		for (int i = 0; i < 1; i++) {
-			LOGGER.info("RP_MESSAGE#FILE#{}#{}", file.getAbsolutePath(), "I'm logging content via temp file");
+			LoggingUtils.log(file, "I'm logging content via temp file");
 		}
-		Thread.sleep(5000L);
-
 	}
-
 }

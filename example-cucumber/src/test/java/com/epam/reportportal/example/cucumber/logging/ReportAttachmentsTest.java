@@ -6,12 +6,12 @@ import com.epam.reportportal.service.ReportPortal;
 import cucumber.api.java.en.Given;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.google.common.io.BaseEncoding;
 import com.google.common.io.Files;
 import com.google.common.io.Resources;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Base64;
 import java.util.Date;
 
 public class ReportAttachmentsTest {
@@ -95,7 +95,7 @@ public class ReportAttachmentsTest {
 		/* here we are logging some binary data as BASE64 string */
 		LOGGER.info(
 				"RP_MESSAGE#BASE64#{}#{}",
-				BaseEncoding.base64().encode(Resources.asByteSource(Resources.getResource(XML_FILE_PATH)).read()),
+				Base64.getEncoder().encodeToString(Resources.asByteSource(Resources.getResource(XML_FILE_PATH)).read()),
 				"I'm logging content via BASE64"
 		);
 	}
@@ -119,7 +119,7 @@ public class ReportAttachmentsTest {
 
 		LOGGER.info(
 				"RP_MESSAGE#BASE64#{}#{}",
-				BaseEncoding.base64().encode(Resources.asByteSource(Resources.getResource(JSON_FILE_PATH)).read()),
+				Base64.getEncoder().encodeToString(Resources.asByteSource(Resources.getResource(JSON_FILE_PATH)).read()),
 				"I'm logging content via BASE64"
 		);
 	}
@@ -146,7 +146,7 @@ public class ReportAttachmentsTest {
 
 			LOGGER.info(
 					"RP_MESSAGE#BASE64#{}#{}",
-					BaseEncoding.base64().encode(Resources.asByteSource(Resources.getResource(image)).read()),
+					Base64.getEncoder().encodeToString(Resources.asByteSource(Resources.getResource(image)).read()),
 					"Pug is " + (happy ? "HAPPY" : "NOT HAPPY")
 			);
 		}

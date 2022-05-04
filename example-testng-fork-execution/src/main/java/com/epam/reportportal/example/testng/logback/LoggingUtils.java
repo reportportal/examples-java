@@ -1,10 +1,10 @@
 package com.epam.reportportal.example.testng.logback;
 
-import com.google.common.io.BaseEncoding;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.util.Base64;
 
 /**
  * Useful for binary data (e.g. sending files to ReportPortal)
@@ -24,7 +24,7 @@ public class LoggingUtils {
 	}
 
 	public static void log(byte[] bytes, String message) {
-		LOGGER.trace("RP_MESSAGE#BASE64#{}#{}", BaseEncoding.base64().encode(bytes), message);
+		LOGGER.trace("RP_MESSAGE#BASE64#{}#{}", Base64.getEncoder().encodeToString(bytes), message);
 	}
 
 	public static void logBase64(String base64, String message) {
