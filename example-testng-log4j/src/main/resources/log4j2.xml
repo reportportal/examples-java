@@ -15,15 +15,10 @@
             <AppenderRef ref="ConsoleAppender"/>
             <AppenderRef ref="ReportPortalAppender"/>
         </Root>
-        <Logger name="com.epam.reportportal.service" level="WARN" additivity="false">
+        <Logger name="com.epam.reportportal" level="WARN" additivity="false">
             <AppenderRef ref="ConsoleAppender"/>
-            <AppenderRef ref="ReportPortalAppender"/>
         </Logger>
-        <Logger name="com.epam.reportportal.utils" level="WARN" additivity="false">
-            <AppenderRef ref="ConsoleAppender"/>
-            <AppenderRef ref="ReportPortalAppender"/>
-        </Logger>
-        <Logger name="com.epam.reportportal.example.testng.log4j" level="DEBUG" additivity="false">
+        <Logger name="binary_data_logger" level="DEBUG" additivity="false">
             <AppenderRef ref="ReportPortalAppender"/>
         </Logger>
     </Loggers>
