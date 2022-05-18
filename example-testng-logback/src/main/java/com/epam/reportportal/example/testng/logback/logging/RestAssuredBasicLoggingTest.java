@@ -26,13 +26,22 @@ import org.testng.annotations.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
+/**
+ * A basic example which logs a simple REST Assured request / response to Report Portal.
+ */
 public class RestAssuredBasicLoggingTest {
 
+	/**
+	 * Set {@link ReportPortalRestAssuredLoggingFilter} as one of the REST Assured filters.
+	 */
 	@BeforeSuite
 	public void setupRestAssured() {
 		RestAssured.filters(new ReportPortalRestAssuredLoggingFilter(42, LogLevel.INFO));
 	}
 
+	/**
+	 * Make a simple request to a test API and validate the response. Request / Response logs should appear on Report Portal.
+	 */
 	@Test
 	public void restAssuredLoggingTest() {
 		JsonPath bodyResult = RestAssured.given()
