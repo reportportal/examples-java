@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.epam.reportportal.example.testng.logback.logging;
+package com.epam.reportportal.example.testng.logback.logging.restassured;
 
 import com.epam.reportportal.listeners.LogLevel;
 import com.epam.reportportal.restassured.ReportPortalRestAssuredLoggingFilter;
@@ -36,6 +36,7 @@ public class RestAssuredBasicLoggingTest {
 	 */
 	@BeforeSuite
 	public void setupRestAssured() {
+		RestAssured.reset();
 		RestAssured.filters(new ReportPortalRestAssuredLoggingFilter(42, LogLevel.INFO));
 	}
 
