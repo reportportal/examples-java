@@ -36,7 +36,7 @@ public class RestAssuredBasicLoggingTest {
 	 */
 	@BeforeSuite
 	public void setupRestAssured() {
-		RestAssured.reset();
+		RestAssured.reset(); // Reset everything to avoid collisions with other REST Assured examples
 		RestAssured.filters(new ReportPortalRestAssuredLoggingFilter(42, LogLevel.INFO));
 	}
 
