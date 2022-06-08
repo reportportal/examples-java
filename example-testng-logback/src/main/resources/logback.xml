@@ -25,10 +25,9 @@
     <logger name="com.epam.reportportal.service" level="WARN"/>
     <logger name="com.epam.reportportal.utils" level="WARN"/>
 
-    <!-- By default, the level of the root level is set to DEBUG -->
-    <root level="DEBUG">
+    <!-- By default, the level of the root level is set to INFO -->
+    <root level="INFO">
         <appender-ref ref="RP"/>
     </root>
-
 
 </configuration>
