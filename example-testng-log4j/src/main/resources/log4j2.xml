@@ -15,8 +15,9 @@
             <AppenderRef ref="ConsoleAppender"/>
             <AppenderRef ref="ReportPortalAppender"/>
         </Root>
-        <Logger name="com.epam.reportportal" level="WARN" additivity="false">
+        <Logger name="com.epam.reportportal" level="INFO" additivity="false">
             <AppenderRef ref="ConsoleAppender"/>
+            <AppenderRef ref="ReportPortalAppender"/>
         </Logger>
         <Logger name="binary_data_logger" level="DEBUG" additivity="false">
             <AppenderRef ref="ReportPortalAppender"/>

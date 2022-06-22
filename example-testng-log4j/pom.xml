@@ -13,6 +13,13 @@
     <artifactId>example-testng-log4j</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <aspectj.version>1.9.2</aspectj.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.epam.reportportal</groupId>
@@ -61,6 +68,12 @@
             <artifactId>awaitility</artifactId>
             <version>4.0.2</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.ibm.icu</groupId>
+            <artifactId>icu4j</artifactId>
+            <version>67.1</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -73,8 +86,15 @@
 
                     <!-- Uncomment it if you don't want your build to be failed in case of test errors -->
                     <testFailureIgnore>true</testFailureIgnore>
+
+                    <!-- For nested steps only -->
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
+
                     <suiteXmlFiles>
                         <xmlFile>suites/logging_tests.xml</xmlFile>
+                        <xmlFile>suites/nested_steps_tests.xml</xmlFile>
                     </suiteXmlFiles>
                     <!-- ADD working directory to get TestNG know we to find suite files -->
                     <workingDirectory>./</workingDirectory>
