@@ -1,3 +1,4 @@
+@high-severity
 Feature: Belly
 
   @JIRA-1234
