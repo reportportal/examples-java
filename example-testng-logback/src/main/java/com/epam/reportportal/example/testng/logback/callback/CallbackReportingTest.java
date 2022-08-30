@@ -16,9 +16,10 @@
 
 package com.epam.reportportal.example.testng.logback.callback;
 
+import com.epam.reportportal.service.Launch;
+import com.epam.reportportal.service.ReportPortalClient;
 import com.epam.reportportal.service.tree.ItemTreeReporter;
 import com.epam.reportportal.service.tree.TestItemTree;
-import com.epam.reportportal.testng.TestNGService;
 import com.epam.reportportal.testng.util.ItemTreeUtils;
 import com.epam.ta.reportportal.ws.model.FinishTestItemRQ;
 import org.testng.Assert;
@@ -29,9 +30,11 @@ import org.testng.annotations.Test;
 import java.util.Calendar;
 
 import static com.epam.reportportal.testng.TestNGService.ITEM_TREE;
+import static java.util.Optional.ofNullable;
 
 /**
- * @author <a href="mailto:ivan_budayeu@epam.com">Ivan Budayeu</a>
+ * An example of retrieving the last test item and sending a log to it after the test finish. The test works only if
+ * <code>rp.reporting.callback</code> property set to <code>true</code>.
  */
 public class CallbackReportingTest {
 
@@ -49,8 +52,14 @@ public class CallbackReportingTest {
 
 	}
 
+	private static ReportPortalClient getClient() {
+		return ofNullable(Launch.currentLaunch()).map(Launch::getClient)
+				.orElseThrow(() -> new IllegalStateException("Unable to get Report Portal Client"));
+	}
+
 	private void sendLog(TestItemTree.TestItemLeaf testResultLeaf) {
-		ItemTreeReporter.sendLog(TestNGService.getReportPortal().getClient(),
+		ItemTreeReporter.sendLog(
+				getClient(),
 				"ERROR",
 				"Callback log",
 				Calendar.getInstance().getTime(),
@@ -63,7 +72,7 @@ public class CallbackReportingTest {
 		FinishTestItemRQ finishTestItemRQ = new FinishTestItemRQ();
 		finishTestItemRQ.setStatus(status);
 		finishTestItemRQ.setEndTime(Calendar.getInstance().getTime());
-		ItemTreeReporter.finishItem(TestNGService.getReportPortal().getClient(), finishTestItemRQ, ITEM_TREE.getLaunchId(), testResultLeaf)
+		ItemTreeReporter.finishItem(getClient(), finishTestItemRQ, ITEM_TREE.getLaunchId(), testResultLeaf)
 				.cache()
 				.blockingGet();
 	}

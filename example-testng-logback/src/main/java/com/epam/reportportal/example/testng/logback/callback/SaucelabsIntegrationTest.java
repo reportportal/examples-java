@@ -16,10 +16,11 @@
 
 package com.epam.reportportal.example.testng.logback.callback;
 
+import com.epam.reportportal.service.Launch;
+import com.epam.reportportal.service.ReportPortalClient;
 import com.epam.reportportal.service.tree.ItemTreeReporter;
 import com.epam.reportportal.service.tree.TestItemTree;
 import com.epam.reportportal.testng.ReportPortalTestNGListener;
-import com.epam.reportportal.testng.TestNGService;
 import com.epam.reportportal.testng.util.ItemTreeUtils;
 import com.epam.ta.reportportal.ws.model.FinishTestItemRQ;
 import com.epam.ta.reportportal.ws.model.attribute.ItemAttributesRQ;
@@ -43,7 +44,8 @@ import static com.epam.reportportal.testng.TestNGService.ITEM_TREE;
 import static java.util.Optional.ofNullable;
 
 /**
- * @author <a href="mailto:ivan_budayeu@epam.com">Ivan Budayeu</a>
+ * An example of updating the last test item with Saucelabs `SLID` attribute necessary to make Saucelabs plugin works.
+ * The test works only if <code>rp.reporting.callback</code> property set to <code>true</code>.
  */
 @Listeners(ReportPortalTestNGListener.class)
 public class SaucelabsIntegrationTest {
@@ -51,9 +53,9 @@ public class SaucelabsIntegrationTest {
 	private static final String SAUCELABS_USERNAME_PARAMETER = "SAUCE_USERNAME";
 	private static final String SAUCELABS_ACCESS_KEY_PARAMETER = "SAUCE_ACCESS_KEY";
 
-	//your username
+	// Put your username
 	private static final String username = null;
-	//your access key
+	// Put your access key
 	private static final String accessKey = null;
 
 	//EU central
@@ -61,9 +63,23 @@ public class SaucelabsIntegrationTest {
 
 	private RemoteWebDriver driver;
 
+	private static String getSystemProperty(String key) {
+		return System.getProperty(key);
+	}
+
+	private static String getEnvironmentVariable(String key) {
+		return System.getenv(key);
+	}
+
+	private static String getParameter(String parameterName) {
+		return ofNullable(getSystemProperty("SAUCE_USERNAME")).orElseGet(() -> ofNullable(getEnvironmentVariable(
+				"SAUCE_USERNAME")).orElseThrow(() -> new RuntimeException(
+				"Parameter '" + parameterName + "' was not found")));
+	}
+
 	@BeforeMethod
 	public void initDriver() throws MalformedURLException {
-		/**
+		/*
 		 * In this section, we will configure our SauceLabs credentials in order to run our tests on saucelabs.com
 		 */
 		String sauceUserName = ofNullable(username).orElseGet(() -> getParameter(SAUCELABS_USERNAME_PARAMETER));
@@ -79,22 +95,11 @@ public class SaucelabsIntegrationTest {
 		capabilities.setCapability("build", "Report Portal Saucelabs integration example");
 		capabilities.setCapability("name", "shouldOpenSafari");
 
-		//create a new Remote driver that will allow your test to send commands to the Sauce Labs grid so that Sauce can execute your tests
+		/*
+		 * Create a new Remote driver that will allow your test to send commands to the Sauce Labs grid so that Sauce
+		 * can execute your tests
+		 */
 		driver = new RemoteWebDriver(new URL("https://" + sauceDataCenter + "/wd/hub"), capabilities);
-	}
-
-	private String getParameter(String parameterName) {
-
-		return ofNullable(getSystemProperty("SAUCE_USERNAME")).orElseGet(() -> ofNullable(getEnvironmentVariable("SAUCE_USERNAME")).orElseThrow(
-				() -> new RuntimeException("Parameter '" + parameterName + "' was not found")));
-	}
-
-	private String getSystemProperty(String key) {
-		return System.getProperty(key);
-	}
-
-	private String getEnvironmentVariable(String key) {
-		return System.getenv(key);
 	}
 
 	@Test
@@ -108,8 +113,15 @@ public class SaucelabsIntegrationTest {
 		((JavascriptExecutor) driver).executeScript("sauce:job-result=" + (result.isSuccess() ? "passed" : "failed"));
 		SessionId sessionId = driver.getSessionId();
 		ItemTreeUtils.retrieveLeaf(result, ITEM_TREE)
-				.ifPresent(testResultLeaf -> sendFinishRequest(testResultLeaf, ofNullable(sessionId).map(SessionId::toString).orElse("")));
+				.ifPresent(testResultLeaf -> sendFinishRequest(testResultLeaf,
+						ofNullable(sessionId).map(SessionId::toString).orElse("")
+				));
 		driver.quit();
+	}
+
+	private static ReportPortalClient getClient() {
+		return ofNullable(Launch.currentLaunch()).map(Launch::getClient)
+				.orElseThrow(() -> new IllegalStateException("Unable to get Report Portal Client"));
 	}
 
 	private void sendFinishRequest(TestItemTree.TestItemLeaf testResultLeaf, String sauceLabsJobId) {
@@ -117,7 +129,7 @@ public class SaucelabsIntegrationTest {
 		finishTestItemRQ.setStatus("PASSED");
 		finishTestItemRQ.setEndTime(Calendar.getInstance().getTime());
 		finishTestItemRQ.setAttributes(Sets.newHashSet(new ItemAttributesRQ("SLID", sauceLabsJobId)));
-		ItemTreeReporter.finishItem(TestNGService.getReportPortal().getClient(), finishTestItemRQ, ITEM_TREE.getLaunchId(), testResultLeaf)
+		ItemTreeReporter.finishItem(getClient(), finishTestItemRQ, ITEM_TREE.getLaunchId(), testResultLeaf)
 				.cache()
 				.blockingGet();
 	}
