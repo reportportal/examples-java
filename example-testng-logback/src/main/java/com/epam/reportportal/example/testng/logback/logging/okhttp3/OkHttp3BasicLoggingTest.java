@@ -16,8 +16,6 @@
 
 package com.epam.reportportal.example.testng.logback.logging.okhttp3;
 
-import com.epam.reportportal.formatting.http.converters.DefaultHttpHeaderConverter;
-import com.epam.reportportal.formatting.http.converters.SanitizingHttpHeaderConverter;
 import com.epam.reportportal.listeners.LogLevel;
 import com.epam.reportportal.okhttp3.ReportPortalOkHttp3LoggingInterceptor;
 import okhttp3.OkHttpClient;
@@ -43,14 +41,7 @@ public class OkHttp3BasicLoggingTest {
 	 */
 	@BeforeClass
 	public void setupOkHttp3() {
-		client = new OkHttpClient.Builder().addInterceptor(new ReportPortalOkHttp3LoggingInterceptor(LogLevel.INFO,
-						SanitizingHttpHeaderConverter.INSTANCE,
-						DefaultHttpHeaderConverter.INSTANCE
-				))
-				.authenticator((route, response) -> {
-					String credential = "Bearer test_token";
-					return response.request().newBuilder().header("Authorization", credential).build();
-				})
+		client = new OkHttpClient.Builder().addInterceptor(new ReportPortalOkHttp3LoggingInterceptor(LogLevel.INFO))
 				.followRedirects(true)
 				.build();
 	}
