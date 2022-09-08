@@ -21,6 +21,7 @@ import com.epam.reportportal.okhttp3.ReportPortalOkHttp3LoggingInterceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -54,8 +55,9 @@ public class OkHttp3BasicLoggingTest {
 		Request request = new Request.Builder().url("https://jsonplaceholder.typicode.com/todos/1").get().build();
 		try (Response response = client.newCall(request).execute()) {
 			assertThat(response.code(), equalTo(200));
-			assertThat(response.body(), notNullValue());
-			assertThat(response.body().string(), not(emptyOrNullString()));
+			ResponseBody responseBody = response.body();
+			assertThat(responseBody, notNullValue());
+			assertThat(responseBody.string(), not(emptyOrNullString()));
 		}
 	}
 }

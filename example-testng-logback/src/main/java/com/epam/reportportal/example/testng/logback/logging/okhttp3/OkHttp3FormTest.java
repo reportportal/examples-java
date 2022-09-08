@@ -49,18 +49,19 @@ public class OkHttp3FormTest {
 	 */
 	@Test
 	public void okHttp3LoggingTest() throws IOException {
-		RequestBody body = new FormBody.Builder().add("username", "user")
+		RequestBody requestBody = new FormBody.Builder().add("username", "user")
 				.add("password", "password")
 				.add("grant_type", "password")
 				.build();
 		Request request = new Request.Builder().url("https://example.com/api/test")
 				.header("Authorization", "Bearer test_token")
-				.post(body)
+				.post(requestBody)
 				.build();
 		try (Response response = client.newCall(request).execute()) {
 			assertThat(response.code(), equalTo(404));
-			assertThat(response.body(), notNullValue());
-			assertThat(response.body().string(), not(emptyOrNullString()));
+			ResponseBody responseBody = response.body();
+			assertThat(responseBody, notNullValue());
+			assertThat(responseBody.string(), not(emptyOrNullString()));
 		}
 	}
 }

@@ -24,6 +24,7 @@ import com.epam.reportportal.okhttp3.ReportPortalOkHttp3LoggingInterceptor;
 import com.epam.reportportal.service.Launch;
 import com.epam.reportportal.utils.files.Utils;
 import com.epam.ta.reportportal.ws.model.Constants;
+import io.reactivex.Maybe;
 import okhttp3.*;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -31,6 +32,7 @@ import org.testng.annotations.Test;
 import java.io.File;
 import java.io.IOException;
 
+import static java.util.Optional.ofNullable;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -39,19 +41,26 @@ import static org.hamcrest.Matchers.*;
  */
 public class OkHttp3MultipartTest {
 
+	private static final String REQUEST_URL_PATTERN = "%s/api/v2/%s/log";
+	private static final String REQUEST_PATTERN = "[{\"file\": {\"name\": \"test.pdf\"},\"launchUuid\": \"%s\",\"level\": \"FATAL\",\"message\": \"custom\",\"time\": \"2021-11-11T14:35:55.006Z\"}]";
+
 	private OkHttpClient client;
+	private ListenerParameters parameters;
 
 	/**
 	 * Set {@link ReportPortalOkHttp3LoggingInterceptor} as one of the OkHttp3 interceptors.
 	 */
 	@BeforeClass
 	public void setupOkHttp3() {
+		parameters = ofNullable(Launch.currentLaunch()).map(Launch::getParameters)
+				.orElseThrow(() -> new IllegalStateException(
+						"Unable to get ReportPortal parameters, please ensure it's initialized"));
 		client = new OkHttpClient.Builder().addInterceptor(new ReportPortalOkHttp3LoggingInterceptor(LogLevel.INFO,
 						SanitizingHttpHeaderConverter.INSTANCE,
 						DefaultHttpHeaderConverter.INSTANCE
 				))
 				.authenticator((route, response) -> {
-					String credential = "Bearer " + Launch.currentLaunch().getParameters().getApiKey();
+					String credential = "Bearer " + parameters.getApiKey();
 					return response.request().newBuilder().header("Authorization", credential).build();
 				})
 				.followRedirects(true)
@@ -63,15 +72,16 @@ public class OkHttp3MultipartTest {
 	 */
 	@Test
 	public void okHttp3LoggingTest() throws IOException {
-		ListenerParameters parameters = Launch.currentLaunch().getParameters();
-		RequestBody body = new MultipartBody.Builder().setType(MediaType.get("multipart/form-data"))
-				.addFormDataPart(Constants.LOG_REQUEST_JSON_PART, null, RequestBody.create(
-						"[{\"file\": {\"name\": \"test.pdf\"},\"launchUuid\": \"" + Launch.currentLaunch()
-								.getLaunch()
-								.blockingGet()
-								+ "\",\"level\": \"FATAL\",\"message\": \"custom\",\"time\": \"2021-11-11T14:35:55.006Z\"}]",
-						MediaType.get("application/json; charset=utf-8")
-				))
+		String launchUuid = ofNullable(Launch.currentLaunch()).map(Launch::getLaunch)
+				.map(Maybe::blockingGet)
+				.orElseThrow(() -> new AssertionError("Unable to get Launch UUID"));
+		RequestBody requestBody = new MultipartBody.Builder().setType(MediaType.get("multipart/form-data"))
+				.addFormDataPart(Constants.LOG_REQUEST_JSON_PART,
+						null,
+						RequestBody.create(String.format(REQUEST_PATTERN, launchUuid),
+								MediaType.get("application/json; charset=utf-8")
+						)
+				)
 				.addFormDataPart(Constants.LOG_REQUEST_BINARY_PART,
 						"test.pdf",
 						RequestBody.create(Utils.getFile(new File("files/test.pdf")).read(),
@@ -79,12 +89,15 @@ public class OkHttp3MultipartTest {
 						)
 				)
 				.build();
-		Request request = new Request.Builder().url(
-				parameters.getBaseUrl() + "/api/v1/" + parameters.getProjectName() + "/log").post(body).build();
+		Request request = new Request.Builder().url(String.format(REQUEST_URL_PATTERN,
+				parameters.getBaseUrl(),
+				parameters.getProjectName()
+		)).post(requestBody).build();
 		try (Response response = client.newCall(request).execute()) {
 			assertThat(response.code(), equalTo(201));
-			assertThat(response.body(), notNullValue());
-			assertThat(response.body().string(), not(emptyOrNullString()));
+			ResponseBody responseBody = response.body();
+			assertThat(responseBody, notNullValue());
+			assertThat(responseBody.string(), not(emptyOrNullString()));
 		}
 	}
 }
