@@ -16,9 +16,12 @@
 
 package com.epam.reportportal.example.testng.logback.logging.restassured;
 
+import com.epam.reportportal.formatting.http.converters.DefaultHttpHeaderConverter;
+import com.epam.reportportal.formatting.http.converters.SanitizingCookieConverter;
+import com.epam.reportportal.formatting.http.converters.SanitizingHttpHeaderConverter;
+import com.epam.reportportal.formatting.http.converters.SanitizingUriConverter;
 import com.epam.reportportal.listeners.LogLevel;
 import com.epam.reportportal.restassured.ReportPortalRestAssuredLoggingFilter;
-import com.epam.reportportal.restassured.support.Converters;
 import io.restassured.RestAssured;
 import io.restassured.http.Cookie;
 import org.testng.annotations.BeforeClass;
@@ -38,9 +41,10 @@ public class RestAssuredSanitizeTest {
 		RestAssured.filters(new ReportPortalRestAssuredLoggingFilter(
 				42,
 				LogLevel.INFO,
-				Converters.HEADER_SANITIZING_CONVERTER,
-				Converters.COOKIE_SANITIZING_CONVERTER,
-				Converters.URI_SANITIZING_CONVERTER
+				SanitizingHttpHeaderConverter.INSTANCE,
+				DefaultHttpHeaderConverter.INSTANCE,
+				SanitizingCookieConverter.INSTANCE,
+				SanitizingUriConverter.INSTANCE
 		));
 	}
 

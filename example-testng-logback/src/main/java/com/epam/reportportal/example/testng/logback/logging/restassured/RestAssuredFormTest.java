@@ -16,9 +16,10 @@
 
 package com.epam.reportportal.example.testng.logback.logging.restassured;
 
+import com.epam.reportportal.formatting.http.converters.DefaultHttpHeaderConverter;
+import com.epam.reportportal.formatting.http.converters.SanitizingHttpHeaderConverter;
 import com.epam.reportportal.listeners.LogLevel;
 import com.epam.reportportal.restassured.ReportPortalRestAssuredLoggingFilter;
-import com.epam.reportportal.restassured.support.Converters;
 import io.restassured.RestAssured;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -35,8 +36,7 @@ public class RestAssuredFormTest {
 	public void setupRestAssured() {
 		RestAssured.reset(); // Reset everything to avoid collisions with other REST Assured examples
 		RestAssured.filters(new ReportPortalRestAssuredLoggingFilter(42,
-				LogLevel.INFO,
-				Converters.HEADER_SANITIZING_CONVERTER
+				LogLevel.INFO, SanitizingHttpHeaderConverter.INSTANCE, DefaultHttpHeaderConverter.INSTANCE
 		));
 	}
 
