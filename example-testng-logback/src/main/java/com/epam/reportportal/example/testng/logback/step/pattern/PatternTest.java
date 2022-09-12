@@ -17,7 +17,7 @@
 package com.epam.reportportal.example.testng.logback.step.pattern;
 
 import com.epam.reportportal.annotations.Step;
-import com.epam.reportportal.annotations.StepTemplateConfig;
+import com.epam.reportportal.annotations.TemplateConfig;
 import com.epam.reportportal.testng.ReportPortalTestNGListener;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -58,7 +58,7 @@ public class PatternTest {
 
 	}
 
-	@Step(value = "My {method} explanation using test method - {m}", templateConfig = @StepTemplateConfig(methodNameTemplate = "m"))
+	@Step(value = "My {method} explanation using test method - {m}", config = @TemplateConfig(methodNameTemplate = "m"))
 	private void checkMethod(String method) {
 
 	}

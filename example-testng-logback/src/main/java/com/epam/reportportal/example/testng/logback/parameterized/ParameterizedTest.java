@@ -17,7 +17,7 @@
 package com.epam.reportportal.example.testng.logback.parameterized;
 
 import com.epam.reportportal.annotations.ParameterKey;
-import com.epam.reportportal.annotations.UniqueID;
+import com.epam.reportportal.annotations.TestCaseId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.DataProvider;
@@ -40,7 +40,7 @@ public class ParameterizedTest {
 
 	@Test
 	@Parameters({ "message" })
-	@UniqueID("HOOOOAA-my-very-unique-id")
+	@TestCaseId(value = "HOOOOAA-my-very-unique-id", parametrized = true)
 	public void testParametersFromSuite(String msg) throws InterruptedException {
 		for (int i = 0; i < 10; i++) {
 			LOGGER.info(msg + ": " + i);
