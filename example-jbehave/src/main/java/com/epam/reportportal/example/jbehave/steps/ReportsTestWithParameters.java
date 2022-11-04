@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 
 public class ReportsTestWithParameters {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger("ReportAttachmentsTest.class");
+	private static final Logger LOGGER = LoggerFactory.getLogger(ReportsTestWithParameters.class);
 
 	@Given("It is test with parameters")
 	public void infoLevel() {

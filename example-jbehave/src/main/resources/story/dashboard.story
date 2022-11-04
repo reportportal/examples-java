@@ -9,7 +9,7 @@ Narrative:
 In order to show the advance Dashboard functionality
 As a user
 I want to perform CRUD operations
-GivenStories: precondition.story
+GivenStories: story/precondition.story
 
 Scenario: Get dashboard
 When Get Dashboard:

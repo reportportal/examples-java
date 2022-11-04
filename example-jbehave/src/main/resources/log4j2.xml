@@ -11,15 +11,11 @@
         </ReportPortalLog4j2Appender>
     </Appenders>
     <Loggers>
-        <Root level="INFO">
+        <Root level="WARN">
             <AppenderRef ref="ConsoleAppender"/>
             <AppenderRef ref="ReportPortalAppender"/>
         </Root>
-        <Logger name="com.epam.reportportal.service" level="WARN" additivity="false">
-            <AppenderRef ref="ConsoleAppender"/>
-            <AppenderRef ref="ReportPortalAppender"/>
-        </Logger>
-        <Logger name="com.epam.reportportal.utils" level="WARN" additivity="false">
+        <Logger name="com.epam.reportportal" level="WARN" additivity="false">
             <AppenderRef ref="ConsoleAppender"/>
             <AppenderRef ref="ReportPortalAppender"/>
         </Logger>

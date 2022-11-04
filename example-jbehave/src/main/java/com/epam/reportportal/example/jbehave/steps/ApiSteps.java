@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.Date;
 
 public class ApiSteps {
-	private static final Logger logger = LoggerFactory.getLogger("ApiSteps.class");
+	private static final Logger logger = LoggerFactory.getLogger(ApiSteps.class);
 
 	@Given("preparedStep1")
 	public void preparedStep1() {

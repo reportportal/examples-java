@@ -2,8 +2,6 @@ package com.epam.reportportal.example.jbehave;
 
 import com.epam.reportportal.example.jbehave.steps.*;
 import com.epam.reportportal.jbehave.ReportPortalStepFormat;
-import com.epam.reportportal.utils.properties.PropertiesLoader;
-import org.apache.commons.lang3.StringUtils;
 import org.jbehave.core.Embeddable;
 import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.configuration.MostUsefulConfiguration;
@@ -23,14 +21,13 @@ import org.jbehave.core.steps.ParameterConverters;
 import org.jbehave.core.steps.ParameterConverters.DateConverter;
 import org.jbehave.core.steps.ParameterConverters.ExamplesTableConverter;
 
-import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static java.util.Optional.ofNullable;
 import static org.jbehave.core.io.CodeLocations.codeLocationFromClass;
+import static org.jbehave.core.io.CodeLocations.getPathFromURL;
 import static org.jbehave.core.reporters.Format.CONSOLE;
 import static org.jbehave.core.reporters.Format.HTML;
 
@@ -73,8 +70,8 @@ public class MyStories extends JUnitStories {
 		);
 		return new MostUsefulConfiguration().useStoryLoader(new LoadFromClasspath(embeddableClass))
 				.useStoryParser(new RegexStoryParser(examplesTableFactory))
-				.useStoryReporterBuilder(new StoryReporterBuilder().withCodeLocation(CodeLocations.codeLocationFromClass(embeddableClass))
-						.withFormats(CONSOLE, HTML, ReportPortalStepFormat.INSTANCE))
+				.useStoryReporterBuilder(new StoryReporterBuilder().withCodeLocation(CodeLocations.codeLocationFromClass(
+						embeddableClass)).withFormats(CONSOLE, HTML, ReportPortalStepFormat.INSTANCE))
 				.useParameterConverters(parameterConverters);
 	}
 
@@ -94,17 +91,10 @@ public class MyStories extends JUnitStories {
 		String storyPatternToRun = ofNullable(System.getProperty("story")).filter(s -> !s.isEmpty())
 				.map(s -> "**/" + s)
 				.orElse("**/*.story");
-		List<URL> resourceFolders = new ArrayList<>();
-		ofNullable(getClass().getClassLoader().getResource(PropertiesLoader.INNER_PATH)).map(p -> {
-			String filePath = CodeLocations.getPathFromURL(p);
-			String rootPath = StringUtils.removeEnd(filePath, "/" + PropertiesLoader.INNER_PATH);
-			return CodeLocations.codeLocationFromPath(rootPath);
-		}).ifPresent(resourceFolders::add);
-		resourceFolders.add(codeLocationFromClass(this.getClass()));
-
-		return resourceFolders.stream()
-				.flatMap(u -> new StoryFinder().findPaths(u, storyPatternToRun, "**/excluded*.story").stream())
-				.distinct()
-				.collect(Collectors.toList());
+		return new StoryFinder().findPaths(
+				getPathFromURL(codeLocationFromClass(this.getClass())),
+				storyPatternToRun,
+				"**/excluded*.story"
+		).stream().distinct().collect(Collectors.toList());
 	}
 }

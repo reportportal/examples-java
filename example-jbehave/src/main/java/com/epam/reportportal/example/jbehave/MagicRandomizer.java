@@ -14,7 +14,7 @@ import java.util.Random;
  */
 public class MagicRandomizer {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger("MagicRandomizer.class");
+	private static final Logger LOGGER = LoggerFactory.getLogger(MagicRandomizer.class);
 
 	private static final Range<Integer> PROBABILITY_RANGE = Range.openClosed(0, 100);
 

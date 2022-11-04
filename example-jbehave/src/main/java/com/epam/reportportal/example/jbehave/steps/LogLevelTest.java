@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 
 public class LogLevelTest {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger("Log level");
+	private static final Logger LOGGER = LoggerFactory.getLogger(LogLevelTest.class);
 
 	@BeforeScenario(uponType = ScenarioType.ANY)
 	public void beforeScenario() {
