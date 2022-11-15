@@ -11,7 +11,6 @@ import org.jbehave.core.io.LoadFromClasspath;
 import org.jbehave.core.io.StoryFinder;
 import org.jbehave.core.junit.JUnitStories;
 import org.jbehave.core.model.ExamplesTableFactory;
-import org.jbehave.core.model.TableParsers;
 import org.jbehave.core.model.TableTransformers;
 import org.jbehave.core.parsers.RegexStoryParser;
 import org.jbehave.core.reporters.StoryReporterBuilder;
@@ -57,11 +56,9 @@ public class MyStories extends JUnitStories {
 		ParameterConverters parameterConverters = new ParameterConverters();
 
 		TableTransformers tableTransformers = new TableTransformers();
-		TableParsers tableParsers = new TableParsers();
 		// factory to allow parameter conversion and loading from external resources (used by StoryParser too)
 		ExamplesTableFactory examplesTableFactory = new ExamplesTableFactory(new LocalizedKeywords(),
 				new LoadFromClasspath(embeddableClass),
-				tableParsers,
 				tableTransformers
 		);
 		// add custom converters
@@ -78,6 +75,7 @@ public class MyStories extends JUnitStories {
 	@Override
 	public InjectableStepsFactory stepsFactory() {
 		return new InstanceStepsFactory(configuration(),
+				// Your steps instantiation go here
 				new LogLevelTest(),
 				new ReportAttachmentsTest(),
 				new ReportsStepWithDefectTest(),
@@ -87,14 +85,16 @@ public class MyStories extends JUnitStories {
 	}
 
 	@Override
-	protected List<String> storyPaths() {
+	public List<String> storyPaths() {
 		String storyPatternToRun = ofNullable(System.getProperty("story")).filter(s -> !s.isEmpty())
 				.map(s -> "**/" + s)
 				.orElse("**/*.story");
-		return new StoryFinder().findPaths(
-				getPathFromURL(codeLocationFromClass(this.getClass())),
-				storyPatternToRun,
-				"**/excluded*.story"
-		).stream().distinct().collect(Collectors.toList());
+		return new StoryFinder().findPaths(getPathFromURL(codeLocationFromClass(this.getClass())),
+						storyPatternToRun,
+						"**/excluded*.story"
+				)
+				.stream()
+				.distinct()
+				.collect(Collectors.toList());
 	}
 }
