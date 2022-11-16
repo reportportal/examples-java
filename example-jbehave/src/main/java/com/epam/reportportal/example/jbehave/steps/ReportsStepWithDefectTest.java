@@ -4,7 +4,7 @@ import org.jbehave.core.annotations.Given;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ReportsStepWithDefectTest {
 
@@ -22,6 +22,6 @@ public class ReportsStepWithDefectTest {
 
 	@Given("Test is failed with message")
 	public void testFailureWithMessage() {
-		assertEquals("Failure msg", 2, 1);
+		assertEquals(2, 1, "Failure msg");
 	}
 }

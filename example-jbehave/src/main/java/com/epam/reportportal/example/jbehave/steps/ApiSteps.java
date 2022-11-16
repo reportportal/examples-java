@@ -5,7 +5,7 @@ import com.google.common.io.Files;
 import com.google.common.io.Resources;
 import org.jbehave.core.annotations.*;
 import org.jbehave.core.model.ExamplesTable;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -94,6 +94,6 @@ public class ApiSteps {
 
 	@Then("Widget response should contain: $table")
 	public void verifyWidget(final ExamplesTable table) {
-		Assert.fail("Widget response doesn't match to the expected one");
+		Assertions.fail("Widget response doesn't match to the expected one");
 	}
 }
