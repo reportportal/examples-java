@@ -86,8 +86,10 @@ public class HttpComponentsMultipartTest {
 		String launchUuid = ofNullable(Launch.currentLaunch()).map(Launch::getLaunch)
 				.map(Maybe::blockingGet)
 				.orElseThrow(() -> new AssertionError("Unable to get Launch UUID"));
+		String baseUrl = parameters.getBaseUrl();
+		baseUrl = baseUrl.endsWith("/") ? baseUrl.substring(0, baseUrl.length() - 1) : baseUrl;
 		HttpPost request = new HttpPost(String.format(REQUEST_URL_PATTERN,
-				parameters.getBaseUrl(),
+				baseUrl,
 				parameters.getProjectName()
 		));
 		HttpEntity requestBody = MultipartEntityBuilder.create()
