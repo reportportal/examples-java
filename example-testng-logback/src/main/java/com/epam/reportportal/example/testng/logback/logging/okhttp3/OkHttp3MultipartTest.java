@@ -89,8 +89,10 @@ public class OkHttp3MultipartTest {
 						)
 				)
 				.build();
+		String baseUrl = parameters.getBaseUrl();
+		baseUrl = baseUrl.endsWith("/") ? baseUrl.substring(0, baseUrl.length() - 1) : baseUrl;
 		Request request = new Request.Builder().url(String.format(REQUEST_URL_PATTERN,
-				parameters.getBaseUrl(),
+				baseUrl,
 				parameters.getProjectName()
 		)).post(requestBody).build();
 		try (Response response = client.newCall(request).execute()) {
