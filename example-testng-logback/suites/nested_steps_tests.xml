@@ -1,9 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Nested steps tests" parallel="methods" thread-count="10">
-    <listeners>
-        <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>
-    </listeners>
-
     <test verbose="1" name="Test internet shop">
         <classes>
             <class name="com.epam.reportportal.example.testng.logback.step.NestedStepsTest"/>
@@ -15,5 +11,4 @@
             <class name="com.epam.reportportal.example.testng.logback.step.NestedStepsWithDataProvider"/>
         </classes>
     </test>
-
 </suite>

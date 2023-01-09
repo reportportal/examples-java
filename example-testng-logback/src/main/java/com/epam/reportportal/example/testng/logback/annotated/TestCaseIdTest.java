@@ -18,16 +18,14 @@ package com.epam.reportportal.example.testng.logback.annotated;
 
 import com.epam.reportportal.annotations.TestCaseId;
 import com.epam.reportportal.annotations.TestCaseIdKey;
-import com.epam.reportportal.testng.ReportPortalTestNGListener;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 /**
  * @author <a href="mailto:ivan_budayeu@epam.com">Ivan Budayeu</a>
  */
-@Listeners(ReportPortalTestNGListener.class)
+@SuppressWarnings("unused")
 public class TestCaseIdTest {
 
 	@TestCaseId("TNG.1.0.1")

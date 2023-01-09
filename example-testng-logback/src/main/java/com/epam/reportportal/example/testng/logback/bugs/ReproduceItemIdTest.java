@@ -16,6 +16,7 @@
 
 package com.epam.reportportal.example.testng.logback.bugs;
 
+import com.epam.reportportal.testng.ReportPortalTestNGListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -24,6 +25,7 @@ import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.ITestAnnotation;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.lang.reflect.Constructor;
@@ -31,24 +33,18 @@ import java.lang.reflect.Method;
 
 /**
  * In case of failed {@link BeforeClass} and retry analyzed in a test, it should be reported correctly (test should be skipped).
- *
- * Source: https://github.com/reportportal/agent-java-testNG/issues/27
+ * <br />
+ * Source: <a href="https://github.com/reportportal/agent-java-testNG/issues/27">Issue #27</a>
  */
-//@Listeners({ReproduceItemIdTest.RetryAnnotationListener.class, ReportPortalTestNGListener.class })
+@Listeners({ReproduceItemIdTest.RetryAnnotationListener.class, ReportPortalTestNGListener.class })
 public class ReproduceItemIdTest {
 	final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@BeforeClass
 	public void bcReproduceItemIdTest() {
 		logger.info("bcReproduceItemIdTest");
-		Assert.assertTrue(false); // requirement: fail at non @Test method
+		Assert.fail(); // requirement: fail at non @Test method
 	}
-
-//	    @BeforeMethod
-//	    public void bmReproduceItemIdTest() {
-//	        logger.info("bmReproduceItemIdTest");
-//	        Assert.assertTrue(false); // requirement: fail at non @Test method
-//	    }
 
 	@Test
 	public void test0() {

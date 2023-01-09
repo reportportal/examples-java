@@ -18,8 +18,6 @@ package com.epam.reportportal.example.testng.logback.step.pattern;
 
 import com.epam.reportportal.annotations.Step;
 import com.epam.reportportal.annotations.TemplateConfig;
-import com.epam.reportportal.testng.ReportPortalTestNGListener;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
@@ -28,7 +26,7 @@ import java.util.List;
 /**
  * @author <a href="mailto:ivan_budayeu@epam.com">Ivan Budayeu</a>
  */
-@Listeners(ReportPortalTestNGListener.class)
+@SuppressWarnings("unused")
 public class PatternTest {
 
 	@Test
@@ -62,5 +60,4 @@ public class PatternTest {
 	private void checkMethod(String method) {
 
 	}
-
 }

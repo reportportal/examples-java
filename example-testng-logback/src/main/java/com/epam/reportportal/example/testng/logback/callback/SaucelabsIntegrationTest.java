@@ -20,7 +20,6 @@ import com.epam.reportportal.service.Launch;
 import com.epam.reportportal.service.ReportPortalClient;
 import com.epam.reportportal.service.tree.ItemTreeReporter;
 import com.epam.reportportal.service.tree.TestItemTree;
-import com.epam.reportportal.testng.ReportPortalTestNGListener;
 import com.epam.reportportal.testng.util.ItemTreeUtils;
 import com.epam.ta.reportportal.ws.model.FinishTestItemRQ;
 import com.epam.ta.reportportal.ws.model.attribute.ItemAttributesRQ;
@@ -33,7 +32,6 @@ import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
@@ -47,7 +45,6 @@ import static java.util.Optional.ofNullable;
  * An example of updating the last test item with Saucelabs `SLID` attribute necessary to make Saucelabs plugin works.
  * The test works only if <code>rp.reporting.callback</code> property set to <code>true</code>.
  */
-@Listeners(ReportPortalTestNGListener.class)
 public class SaucelabsIntegrationTest {
 
 	private static final String SAUCELABS_USERNAME_PARAMETER = "SAUCE_USERNAME";

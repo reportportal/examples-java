@@ -19,7 +19,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
         <aspectj.version>1.9.2</aspectj.version>
-        <selenium.version>4.4.0</selenium.version>
+        <selenium.version>4.7.2</selenium.version>
     </properties>
 
     <dependencies>
@@ -76,7 +76,7 @@
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
-            <version>5.1.1</version>
+            <version>5.3.0</version>
         </dependency>
         <dependency>
             <groupId>com.epam.reportportal</groupId>
@@ -98,7 +98,7 @@
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>logger-java-okhttp3</artifactId>
-            <version>5.0.0</version>
+            <version>5.0.1</version>
         </dependency>
 
         <dependency>
@@ -115,12 +115,12 @@
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
-            <version>6.7.1</version>
+            <version>6.11.0</version>
         </dependency>
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>5.3.0</version>
+            <version>5.3.1</version>
         </dependency>
         <dependency>
             <groupId>com.epam.reportportal</groupId>
@@ -144,7 +144,6 @@
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
-                    <!---->
 
                     <suiteXmlFiles>
                         <!--<xmlFile>suites/issue27.xml</xmlFile>-->
@@ -156,17 +155,14 @@
                     <!-- ADD working directory to get TestNG know we to find suite files -->
                     <workingDirectory>./</workingDirectory>
 
-                    <!--<properties>-->
-                    <!--<property>-->
-                    <!--<name>usedefaultlisteners</name>-->
-                    <!--<value>false</value>-->
-                    <!--</property>-->
-                    <!--<property>-->
-                    <!--<name>listener</name>-->
-                    <!--<value>com.epam.reportportal.testng.ReportPortalTestNGListener</value>-->
-                    <!--</property>-->
-                    <!--</properties>-->
+                    <properties>
+                        <property>
+                            <name>usedefaultlisteners</name>
+                            <value>false</value>
+                        </property>
+                    </properties>
                 </configuration>
+
                 <dependencies>
                     <!-- For nested steps only -->
                     <dependency>
@@ -174,7 +170,6 @@
                         <artifactId>aspectjweaver</artifactId>
                         <version>${aspectj.version}</version>
                     </dependency>
-                    <!---->
                 </dependencies>
             </plugin>
 
