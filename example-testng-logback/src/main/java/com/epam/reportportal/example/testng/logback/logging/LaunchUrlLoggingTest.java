@@ -43,6 +43,8 @@ public class LaunchUrlLoggingTest {
 		ListenerParameters parameters = ofNullable(Launch.currentLaunch()).map(Launch::getParameters)
 				.orElseThrow(() -> new IllegalStateException("Launch not found"));
 		String launchUuid = TestNGService.ITEM_TREE.getLaunchId().blockingGet();
-		LOGGER.info("Launch URL: {}/ui/#{}/launches/all/{}", parameters.getBaseUrl(), parameters.getProjectName(), launchUuid);
+		String baseUrl = parameters.getBaseUrl();
+		baseUrl = baseUrl.endsWith("/") ? baseUrl.substring(0, baseUrl.length() - 1) : baseUrl;
+		LOGGER.info("Launch URL: {}/ui/#{}/launches/all/{}", baseUrl, parameters.getProjectName(), launchUuid);
 	}
 }
