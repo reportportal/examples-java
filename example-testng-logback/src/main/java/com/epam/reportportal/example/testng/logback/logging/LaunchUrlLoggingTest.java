@@ -18,7 +18,6 @@ package com.epam.reportportal.example.testng.logback.logging;
 
 import com.epam.reportportal.listeners.ListenerParameters;
 import com.epam.reportportal.service.Launch;
-import com.epam.reportportal.testng.TestNGService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterClass;
@@ -40,9 +39,10 @@ public class LaunchUrlLoggingTest {
 
 	@AfterClass
 	public void logLaunchUrl() {
-		ListenerParameters parameters = ofNullable(Launch.currentLaunch()).map(Launch::getParameters)
-				.orElseThrow(() -> new IllegalStateException("Launch not found"));
-		String launchUuid = TestNGService.ITEM_TREE.getLaunchId().blockingGet();
+		Launch launch = ofNullable(Launch.currentLaunch()).orElseThrow(() -> new IllegalStateException(
+				"Launch not found"));
+		ListenerParameters parameters = launch.getParameters();
+		String launchUuid = launch.getLaunch().blockingGet();
 		String baseUrl = parameters.getBaseUrl();
 		baseUrl = baseUrl.endsWith("/") ? baseUrl.substring(0, baseUrl.length() - 1) : baseUrl;
 		LOGGER.info("Launch URL: {}/ui/#{}/launches/all/{}", baseUrl, parameters.getProjectName(), launchUuid);
