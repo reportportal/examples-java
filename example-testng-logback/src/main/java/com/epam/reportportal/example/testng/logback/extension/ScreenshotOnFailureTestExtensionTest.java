@@ -17,14 +17,13 @@
 package com.epam.reportportal.example.testng.logback.extension;
 
 import com.epam.reportportal.example.testng.logback.LoggingUtils;
-import com.epam.reportportal.listeners.ItemStatus;
-import com.epam.reportportal.testng.BaseTestNGListener;
-import com.epam.reportportal.testng.TestNGService;
+import com.epam.reportportal.testng.ReportPortalTestNGListener;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -35,15 +34,17 @@ import org.testng.annotations.Test;
 /**
  * More advanced way to report a screenshot. Reports screenshot as a separate log entry in 'Test' method.
  */
-@Listeners({ ScreenshotOnFailureTestExtension.ExtendedListener.class })
-public class ScreenshotOnFailureTestExtension {
+@Listeners({ScreenshotOnFailureTestExtensionTest.ExtendedListener.class})
+public class ScreenshotOnFailureTestExtensionTest {
 
 	private static WebDriver driver;
 
 	@BeforeMethod
 	public void initDriver() {
 		WebDriverManager.chromedriver().setup();
-		driver = new ChromeDriver();
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--remote-allow-origins=*");
+		driver = new ChromeDriver(options);
 	}
 
 	@Test
@@ -57,22 +58,16 @@ public class ScreenshotOnFailureTestExtension {
 		driver.quit();
 	}
 
-	public static class ExtendedListener extends BaseTestNGListener {
-		public ExtendedListener() {
-			super(new ScreenshotUploadService());
-		}
-	}
-
-	public static class ScreenshotUploadService extends TestNGService {
-		@Override
-		public void finishTestMethod(ItemStatus status, ITestResult testResult) {
+	public static class ExtendedListener extends ReportPortalTestNGListener {
+		public void onTestFailure(ITestResult testResult) {
 			if (!testResult.isSuccess()) {
 				if (driver instanceof TakesScreenshot) {
 					String screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
 					LoggingUtils.logBase64(screenshot, "Invalid page");
 				}
 			}
-			super.finishTestMethod(status, testResult);
+
+			super.onTestFailure(testResult);
 		}
 	}
 }
