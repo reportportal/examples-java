@@ -25,6 +25,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -38,6 +40,10 @@ public class SelenideScreenshotLoggingTest {
 	public static void initDriver() {
 		WebDriverManager.chromedriver().setup();
 		Configuration.browser = Browsers.CHROME;
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--remote-allow-origins=*");
+		Configuration.browserCapabilities = new DesiredCapabilities();
+		Configuration.browserCapabilities.setCapability(ChromeOptions.CAPABILITY, options);
 	}
 
 	@Test
