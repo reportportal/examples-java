@@ -39,8 +39,9 @@ public class LaunchUrlLoggingTest {
 
 	@AfterClass
 	public void logLaunchUrl() {
-		Launch launch = ofNullable(Launch.currentLaunch()).orElseThrow(() -> new IllegalStateException(
-				"Launch not found"));
+		Launch launch = ofNullable(Launch.currentLaunch())
+				.filter(l -> l != Launch.NOOP_LAUNCH)
+				.orElseThrow(() -> new IllegalStateException("Launch not found"));
 		ListenerParameters parameters = launch.getParameters();
 		String launchUuid = launch.getLaunch().blockingGet();
 		String baseUrl = parameters.getBaseUrl();
