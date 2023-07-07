@@ -1,0 +1,82 @@
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "push"'
+      when: never  # Prevent pipeline run for push event
+    - when: always # Run pipeline for all other cases
+
+stages:
+  - secrets
+  - test
+  - quality-gate
+
+secrets:
+  stage: secrets
+  image: vault:latest
+  before_script:
+    - apk add --no-cache curl
+  script:
+    - export VAULT_ADDR=https://vault.example.com:8200
+    - export VAULT_NAMESPACE=rp/test/
+    # Put your Certificate Authority certificate path here
+    - export VAULT_CACERT=cacert.pem
+    - export VAULT_TOKEN="$(vault write -field=token auth/jwt/login role=tests-develop jwt=$CI_JOB_JWT)"
+    # These fields we get from Vault to operate
+    - RP_ADMIN_PASSWORD=$(vault kv get -field=rp.admin.password secrets/demo/test)
+    - RP_DEMO_KEY=$(vault kv get -field=rp.demo.key secrets/demo/test)
+    - >
+      curl -f -s -X PUT --header "Private-Token: $GITLAB_API_TOKEN" --header "Content-Type: application/json"
+      --data '{"value": "'"$RP_ADMIN_PASSWORD"'"}'
+      "https://git.example.com/api/v4/projects/$CI_PROJECT_ID/variables/RP_ADMIN_PASSWORD" > /dev/null 2>&1
+    - >
+      curl -f -s -X PUT --header "Private-Token: $GITLAB_API_TOKEN" --header "Content-Type: application/json"
+      --data '{"value": "'"$RP_DEMO_KEY"'"}'
+      "https://git.example.com/api/v4/projects/$CI_PROJECT_ID/variables/RP_DEMO_KEY" > /dev/null 2>&1
+
+test:
+  stage: test
+  needs: ['secrets']
+  image: eclipse-temurin:11-jdk-jammy
+  variables:
+    KOTLIN_VERSION: '1.4.32'
+  before_script:
+    - apt-get update
+    - apt-get install -y unzip
+    - curl -L https://github.com/JetBrains/kotlin/releases/download/v$KOTLIN_VERSION/kotlin-compiler-$KOTLIN_VERSION.zip -o /tmp/kotlin-compiler.zip
+    - unzip /tmp/kotlin-compiler.zip -d /opt
+    - export PATH=$PATH:/opt/kotlinc/bin
+  script:
+    # Cast execution flag on gradle wrapper script file, just in case
+    - chmod +x ./gradlew
+    - ./gradlew --console=plain :service-api:demoSmoke -Prp.api.key=$RP_DEMO_KEY -Prp.admin.password=$RP_ADMIN_PASSWORD | tee ./console.log
+    - >
+      sed -rn 's/[ ]+Report Portal Launch UUID: ([^\\r\\n]+)/LAUNCH_UUID=\1/ w launch.env' ./console.log
+
+quality-gate:
+  stage: quality-gate
+  needs: ['test']
+  before_script:
+    - apt-get update || apk update
+    - apt-get install -y curl jq || apk add --no-cache curl jq
+  variables:
+    RP_INSTANCE: 'https://demo.reportportal.io'
+    SCRIPT_TIMEOUT_SECONDS: 60
+    REQUEST_TIMEOUT_SECONDS: 60
+  script: |
+    echo "Quality gate"
+    echo "LAUNCH_UUID: $LAUNCH_UUID"
+    QUALITY_GATE_STATUS=""
+    START_TIME=$(date +%s)
+    while [ -z "$QUALITY_GATE_STATUS" ] && [ $(( $(date +%s) - START_TIME )) -lt $SCRIPT_TIMEOUT_SECONDS ]; do
+      echo "Waiting for quality gate status..."
+      sleep 10
+      QUALITY_GATE_JSON=$(curl -s -H "Authorization: Bearer $RP_DEMO_KEY" --max-time "$REQUEST_TIMEOUT_SECONDS" "${RP_INSTANCE}/api/v1/report_portal_demo/launch/${LAUNCH_UUID}")
+      QUALITY_GATE_STATUS=$(echo "$QUALITY_GATE_JSON" | jq -r '.metadata.qualityGate.status // empty')
+    done
+    if [ "$QUALITY_GATE_STATUS" != "PASSED" ]; then
+      echo "Quality gate status: $QUALITY_GATE_STATUS"
+      echo "Failing the pipeline."
+      exit 1
+    else
+      echo "Quality gate status: $QUALITY_GATE_STATUS"
+      echo "Pipeline passed."
+    fi
