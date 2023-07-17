@@ -13,26 +13,26 @@
     <artifactId>example-junit</artifactId>
 
     <properties>
-        <aspectj.version>1.9.2</aspectj.version>
+        <aspectj.version>1.9.19</aspectj.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>agent-java-junit</artifactId>
-            <version>5.1.2</version>
+            <version>5.1.3</version>
         </dependency>
 
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>logger-java-logback</artifactId>
-            <version>5.1.5</version>
+            <version>5.1.6</version>
         </dependency>
 
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.2.11</version>
+            <version>1.3.8</version>
         </dependency>
 
         <dependency>
