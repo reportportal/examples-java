@@ -18,43 +18,38 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
+        <cucumber.version>2.4.0</cucumber.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>agent-java-cucumber2</artifactId>
-            <version>5.1.4</version>
+            <version>5.1.5</version>
         </dependency>
 
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>logger-java-logback</artifactId>
-            <version>5.1.5</version>
+            <version>5.1.6</version>
         </dependency>
 
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
-            <version>2.4.0</version>
+            <version>${cucumber.version}</version>
         </dependency>
 
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit</artifactId>
-            <version>2.4.0</version>
+            <version>${cucumber.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>junit</groupId>
                     <artifactId>junit</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>gherkin</artifactId>
-            <version>5.1.0</version>
         </dependency>
 
         <dependency>
@@ -66,7 +61,7 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.2.11</version>
+            <version>1.3.8</version>
         </dependency>
     </dependencies>
 </project>
