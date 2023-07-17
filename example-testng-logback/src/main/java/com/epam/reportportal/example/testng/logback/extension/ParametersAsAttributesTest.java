@@ -17,6 +17,7 @@
 package com.epam.reportportal.example.testng.logback.extension;
 
 import com.epam.reportportal.listeners.ItemStatus;
+import com.epam.reportportal.service.ReportPortal;
 import com.epam.reportportal.testng.BaseTestNGListener;
 import com.epam.reportportal.testng.TestMethodType;
 import com.epam.reportportal.testng.TestNGService;
@@ -24,6 +25,7 @@ import com.epam.ta.reportportal.ws.model.FinishTestItemRQ;
 import com.epam.ta.reportportal.ws.model.StartTestItemRQ;
 import com.epam.ta.reportportal.ws.model.attribute.ItemAttributesRQ;
 import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.ITestResult;
@@ -62,7 +64,7 @@ public class ParametersAsAttributesTest {
 
 	public static class ExtendedListener extends BaseTestNGListener {
 		public ExtendedListener() {
-			super(new ParamTaggingTestNgService());
+			super(new ParamTaggingTestNgService(ReportPortal.builder().build()));
 		}
 
 		@Override
@@ -76,7 +78,12 @@ public class ParametersAsAttributesTest {
 
 	public static class ParamTaggingTestNgService extends TestNGService {
 
+		public ParamTaggingTestNgService(@NotNull ReportPortal reportPortal) {
+			super(reportPortal);
+		}
+
 		@Override
+		@Nonnull
 		protected StartTestItemRQ buildStartStepRq(final @Nonnull ITestResult testResult, final @Nonnull TestMethodType type) {
 			final StartTestItemRQ rq = super.buildStartStepRq(testResult, type);
 			if (testResult.getParameters() != null && testResult.getParameters().length != 0) {
@@ -91,7 +98,8 @@ public class ParametersAsAttributesTest {
 		}
 
 		@Override
-		protected FinishTestItemRQ buildFinishTestMethodRq(ItemStatus status, ITestResult testResult) {
+		@Nonnull
+		protected FinishTestItemRQ buildFinishTestMethodRq(@Nonnull ItemStatus status, @Nonnull ITestResult testResult) {
 			FinishTestItemRQ finishTestItemRQ = super.buildFinishTestMethodRq(status, testResult);
 			if (testResult.getThrowable() != null) {
 				String description = "```error\n" + ExceptionUtils.getStackTrace(testResult.getThrowable()) + "\n```";
@@ -101,5 +109,4 @@ public class ParametersAsAttributesTest {
 			return finishTestItemRQ;
 		}
 	}
-
 }

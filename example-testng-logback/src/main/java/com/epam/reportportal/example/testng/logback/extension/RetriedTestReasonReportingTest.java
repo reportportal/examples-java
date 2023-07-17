@@ -16,10 +16,12 @@
 
 package com.epam.reportportal.example.testng.logback.extension;
 
+import com.epam.reportportal.service.ReportPortal;
 import com.epam.reportportal.testng.BaseTestNGListener;
 import com.epam.reportportal.testng.ITestNGService;
 import com.epam.reportportal.testng.TestNGService;
 import com.epam.reportportal.utils.MemoizingSupplier;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -36,10 +38,10 @@ import static java.util.Optional.ofNullable;
 /**
  * Extension example. The test publishes retry reason into skipped a test as a log entry.
  */
-@Listeners(RetriedTestReasonReporting.ExtendedListener.class)
-public class RetriedTestReasonReporting {
+@Listeners(RetriedTestReasonReportingTest.ExtendedListener.class)
+public class RetriedTestReasonReportingTest {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(RetriedTestReasonReporting.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(RetriedTestReasonReportingTest.class);
 
 	private static final int MAXIMUM_RETRIES = 1;
 
@@ -67,7 +69,8 @@ public class RetriedTestReasonReporting {
 	}
 
 	public static class ExtendedListener extends BaseTestNGListener {
-		public static final Supplier<ITestNGService> SERVICE = new MemoizingSupplier<>(SkipReasonLoggingService::new);
+		public static final Supplier<ITestNGService> SERVICE =
+				new MemoizingSupplier<>(() -> new SkipReasonLoggingService(ReportPortal.builder().build()));
 
 		public ExtendedListener() {
 			super(SERVICE.get());
@@ -75,6 +78,10 @@ public class RetriedTestReasonReporting {
 	}
 
 	public static class SkipReasonLoggingService extends TestNGService {
+		public SkipReasonLoggingService(@NotNull ReportPortal reportPortal) {
+			super(reportPortal);
+		}
+
 		@Override
 		protected void createSkippedSteps(ITestResult testResult) {
 			ofNullable(testResult.getThrowable()).ifPresent(t -> LOGGER.error("Test failed with: ", t));
