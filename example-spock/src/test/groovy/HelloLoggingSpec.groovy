@@ -23,7 +23,7 @@ class HelloLoggingSpec extends Specification {
 
 
     def "logging in a test example"() {
-        LOGGER.info("I'm logging from a test")
+        LOGGER.info("Hello! I'm logging from a test")
 
         expect: true
     }
