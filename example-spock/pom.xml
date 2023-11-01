@@ -85,8 +85,7 @@
                     <useModulePath>false</useModulePath> <!-- https://issues.apache.org/jira/browse/SUREFIRE-1809 -->
                     <useFile>false</useFile>
                     <includes>
-                        <include>**/*Test</include>
-                        <include>**/*Spec</include>
+                        <include>**/*Spec*</include>
                     </includes>
                 </configuration>
             </plugin>
