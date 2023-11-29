@@ -1,0 +1,51 @@
+name: CI Tests
+
+on:
+  workflow_dispatch:
+
+env:
+  KOTLIN_VERSION: '1.4.32'
+  RP_INSTANCE: 'https://demo.reportportal.io'
+  SCRIPT_TIMEOUT_SECONDS: 60
+  REQUEST_TIMEOUT_SECONDS: 60
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Kotlin
+        uses: fwilhe2/setup-kotlin@main
+        with:
+          install-native: true
+          version: '${{ env.KOTLIN_VERSION }}'
+
+      - name: Test
+        run: |
+          # Cast execution flag on gradle wrapper script file, just in case
+          chmod +x ./gradlew
+          ./gradlew :service-api:demoSmoke -Prp.api.key=${{ secrets.RP_DEMO_KEY }} -Prp.admin.password=${{ secrets.RP_ADMIN_PASSWORD }} | tee ./console.log
+          sed -rn 's/ReportPortal Launch UUID: ([^\\r\\n]+)/LAUNCH_UUID=\1/ p' ./console.log  >> "$GITHUB_ENV"
+
+      - name: Quality Gate
+        run: |
+          echo "Quality gate"
+          echo "LAUNCH_UUID: $LAUNCH_UUID"
+          QUALITY_GATE_STATUS=""
+          START_TIME=$(date +%s)
+          while [ -z "$QUALITY_GATE_STATUS" ] && [ $(( $(date +%s) - START_TIME )) -lt ${{ env.SCRIPT_TIMEOUT_SECONDS }} ]; do
+            echo "Waiting for quality gate status..."
+            sleep 10
+            QUALITY_GATE_JSON=$(curl -s -H "Authorization: Bearer $RP_DEMO_KEY" --max-time "${{ env.REQUEST_TIMEOUT_SECONDS }}" "${{ env.RP_INSTANCE }}/api/v1/report_portal_demo/launch/${LAUNCH_UUID}")
+            QUALITY_GATE_STATUS=$(echo "$QUALITY_GATE_JSON" | jq -r '.metadata.qualityGate.status // empty')
+          done
+          if [ "$QUALITY_GATE_STATUS" != "PASSED" ]; then
+            echo "Quality gate status: $QUALITY_GATE_STATUS"
+            echo "Failing the pipeline."
+            exit 1
+          else
+            echo "Quality gate status: $QUALITY_GATE_STATUS"
+            echo "Pipeline passed."
+          fi
