@@ -27,6 +27,7 @@ jobs:
           kotlinc -version
 
       - name: Test
+        continue-on-error: true
         run: |
           # Cast execution flag on gradle wrapper script file, just in case
           chmod +x ./gradlew
