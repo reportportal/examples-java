@@ -17,10 +17,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up Kotlin
-        uses: fwilhe2/setup-kotlin@main
-        with:
-          install-native: true
-          version: '${{ env.KOTLIN_VERSION }}'
+        run: |
+          kotlinc -version
+          curl -L https://github.com/JetBrains/kotlin/releases/download/v$KOTLIN_VERSION/kotlin-compiler-$KOTLIN_VERSION.zip -o /tmp/kotlin-compiler.zip
+          unzip /tmp/kotlin-compiler.zip -d /opt
+          export PATH=$PATH:/opt/kotlinc/bin
+          kotlinc -version
 
       - name: Test
         run: |
