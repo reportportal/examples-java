@@ -18,10 +18,12 @@ jobs:
 
       - name: Set up Kotlin
         run: |
+          echo "$PATH"
           kotlinc -version
-          curl -L https://github.com/JetBrains/kotlin/releases/download/v$KOTLIN_VERSION/kotlin-compiler-$KOTLIN_VERSION.zip -o /tmp/kotlin-compiler.zip
+          curl -L "https://github.com/JetBrains/kotlin/releases/download/v$KOTLIN_VERSION/kotlin-compiler-$KOTLIN_VERSION.zip" -o /tmp/kotlin-compiler.zip
           unzip /tmp/kotlin-compiler.zip -d /opt
-          export PATH=$PATH:/opt/kotlinc/bin
+          export PATH="$PATH:/opt/kotlinc/bin"
+          echo "$PATH"
           kotlinc -version
 
       - name: Test
