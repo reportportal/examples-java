@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 EPAM Systems
+ * Copyright 2021 EPAM Systems
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,20 +14,18 @@
  * limitations under the License.
  */
 
-package fail
+package fixtures
 
-import spock.lang.FailsWith
+
 import spock.lang.Specification
 
-class FailsWithAnnotationFail extends Specification {
+class SetupFixtureFailedSpec extends Specification {
 
-    @FailsWith(IllegalArgumentException.class)
-    def "simple test 1"() {
-        expect:
+    def setup() {
         throw new IllegalStateException("Fail!")
     }
 
-    def "simple test 2"() {
+    def "simple test"() {
         expect:
         //noinspection GroovyPointlessBoolean
         true == true

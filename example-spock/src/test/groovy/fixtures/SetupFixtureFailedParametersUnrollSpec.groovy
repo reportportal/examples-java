@@ -14,30 +14,25 @@
  * limitations under the License.
  */
 
-package ignore
+package fixtures
 
 
-import spock.lang.IgnoreRest
 import spock.lang.Specification
 
-class TestRestFeaturesIgnore extends Specification {
+class SetupFixtureFailedParametersUnrollSpec extends Specification {
 
-    @IgnoreRest
-    def "simple test 1"() {
-        expect:
-        //noinspection GroovyPointlessBoolean
-        true == true
+    def setup() {
+        throw new IllegalStateException("Fail!")
     }
 
-    def "simple test 2"() {
+    def "length of Spock's and his friends' names"() {
         expect:
-        //noinspection GroovyPointlessBoolean
-        true == true
-    }
+        name.size() == length
 
-    def "simple test 3"() {
-        expect:
-        //noinspection GroovyPointlessBoolean
-        true == true
+        where:
+        name     | length
+        "Spock"  | 5
+        "Kirk"   | 4
+        "Scotty" | 6
     }
 }

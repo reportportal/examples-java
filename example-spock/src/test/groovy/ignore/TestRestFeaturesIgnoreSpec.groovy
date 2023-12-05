@@ -14,16 +14,28 @@
  * limitations under the License.
  */
 
-package attributes
+package ignore
 
-import com.epam.reportportal.annotations.attribute.Attribute
-import com.epam.reportportal.annotations.attribute.Attributes
+
+import spock.lang.IgnoreRest
 import spock.lang.Specification
 
-class FixtureAttributes extends Specification {
+class TestRestFeaturesIgnoreSpec extends Specification {
 
-    @Attributes(attributes = @Attribute(key = "key", value = "value"))
-    def "my empty fixture"() {
+    @IgnoreRest
+    def "simple test 1"() {
+        expect:
+        //noinspection GroovyPointlessBoolean
+        true == true
+    }
+
+    def "simple test 2"() {
+        expect:
+        //noinspection GroovyPointlessBoolean
+        true == true
+    }
+
+    def "simple test 3"() {
         expect:
         //noinspection GroovyPointlessBoolean
         true == true

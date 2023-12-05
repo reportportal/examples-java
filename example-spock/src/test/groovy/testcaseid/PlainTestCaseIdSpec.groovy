@@ -14,25 +14,19 @@
  * limitations under the License.
  */
 
-package fixtures
+package testcaseid
 
-
+import com.epam.reportportal.annotations.TestCaseId
 import spock.lang.Specification
 
-class SetupFixtureFailedParametersUnroll extends Specification {
+class PlainTestCaseIdSpec extends Specification {
 
-    def setup() {
-        throw new IllegalStateException("Fail!")
-    }
+    public static final String TEST_CASE_ID = "my_test_case_id"
 
-    def "length of Spock's and his friends' names"() {
+    @TestCaseId(TEST_CASE_ID)
+    def "simple named test case id test"() {
         expect:
-        name.size() == length
-
-        where:
-        name     | length
-        "Spock"  | 5
-        "Kirk"   | 4
-        "Scotty" | 6
+        //noinspection GroovyPointlessBoolean
+        true == true
     }
 }

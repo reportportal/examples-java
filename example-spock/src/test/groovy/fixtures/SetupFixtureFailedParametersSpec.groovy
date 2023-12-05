@@ -16,18 +16,24 @@
 
 package fixtures
 
-
+import spock.lang.Rollup
 import spock.lang.Specification
 
-class CleanupFixture extends Specification {
+class SetupFixtureFailedParametersSpec extends Specification {
 
-    def cleanup() {
-
+    def setup() {
+        throw new IllegalStateException("Fail!")
     }
 
-    def "simple test"() {
+    @Rollup
+    def "length of Spock's and his friends' names"() {
         expect:
-        //noinspection GroovyPointlessBoolean
-        true == true
+        name.size() == length
+
+        where:
+        name     | length
+        "Spock"  | 5
+        "Kirk"   | 4
+        "Scotty" | 6
     }
 }

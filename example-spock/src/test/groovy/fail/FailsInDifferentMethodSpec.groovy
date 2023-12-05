@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 EPAM Systems
+ * Copyright 2023 EPAM Systems
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,20 +14,22 @@
  * limitations under the License.
  */
 
-package fixtures
-
+package fail
 
 import spock.lang.Specification
 
-class SetupFixture extends Specification {
+class FailsInDifferentMethodSpec extends Specification {
 
-    def setup() {
-
+    def anotherFailedMethod() {
+        throw new IllegalStateException("Some test flow failure")
     }
 
-    def "simple test"() {
-        expect:
-        //noinspection GroovyPointlessBoolean
-        true == true
+    def failedMethod() {
+        anotherFailedMethod()
+    }
+
+    def "failing test 1"() {
+        given:
+        failedMethod()
     }
 }

@@ -14,26 +14,23 @@
  * limitations under the License.
  */
 
-package fixtures
+package ignore
 
-import spock.lang.Rollup
+import spock.lang.Ignore
 import spock.lang.Specification
 
-class SetupFixtureFailedParameters extends Specification {
+class TestOneFeatureIgnoreSpec extends Specification {
 
-    def setup() {
-        throw new IllegalStateException("Fail!")
+    @Ignore
+    def "simple test 1"() {
+        expect:
+        //noinspection GroovyPointlessBoolean
+        true == true
     }
 
-    @Rollup
-    def "length of Spock's and his friends' names"() {
+    def "simple test 2"() {
         expect:
-        name.size() == length
-
-        where:
-        name     | length
-        "Spock"  | 5
-        "Kirk"   | 4
-        "Scotty" | 6
+        //noinspection GroovyPointlessBoolean
+        true == true
     }
 }

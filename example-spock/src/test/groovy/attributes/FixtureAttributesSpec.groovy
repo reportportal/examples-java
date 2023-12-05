@@ -14,17 +14,16 @@
  * limitations under the License.
  */
 
-package testcaseid
+package attributes
 
-import com.epam.reportportal.annotations.TestCaseId
+import com.epam.reportportal.annotations.attribute.Attribute
+import com.epam.reportportal.annotations.attribute.Attributes
 import spock.lang.Specification
 
-class PlainTestCaseId extends Specification {
+class FixtureAttributesSpec extends Specification {
 
-    public static final String TEST_CASE_ID = "my_test_case_id"
-
-    @TestCaseId(TEST_CASE_ID)
-    def "simple named test case id test"() {
+    @Attributes(attributes = @Attribute(key = "key", value = "value"))
+    def "my empty fixture"() {
         expect:
         //noinspection GroovyPointlessBoolean
         true == true

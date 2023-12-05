@@ -19,7 +19,7 @@ package fixtures
 
 import spock.lang.Specification
 
-class CleanupFixtureFailed extends Specification {
+class CleanupFixtureFailedSpec extends Specification {
 
     def cleanup() {
         throw new IllegalStateException("Fail!")

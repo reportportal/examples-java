@@ -19,10 +19,10 @@ package fixtures
 
 import spock.lang.Specification
 
-class SetupFixtureFailed extends Specification {
+class CleanupFixtureSpec extends Specification {
 
-    def setup() {
-        throw new IllegalStateException("Fail!")
+    def cleanup() {
+
     }
 
     def "simple test"() {

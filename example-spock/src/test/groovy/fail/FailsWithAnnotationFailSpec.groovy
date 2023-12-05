@@ -16,20 +16,20 @@
 
 package fail
 
+import spock.lang.FailsWith
 import spock.lang.Specification
 
-class FailsInDifferentMethod extends Specification {
+class FailsWithAnnotationFailSpec extends Specification {
 
-    def anotherFailedMethod() {
-        throw new IllegalStateException("Some test flow failure")
+    @FailsWith(IllegalArgumentException.class)
+    def "simple test 1"() {
+        expect:
+        throw new IllegalStateException("Fail!")
     }
 
-    def failedMethod() {
-        anotherFailedMethod()
-    }
-
-    def "failing test 1"() {
-        given:
-        failedMethod()
+    def "simple test 2"() {
+        expect:
+        //noinspection GroovyPointlessBoolean
+        true == true
     }
 }

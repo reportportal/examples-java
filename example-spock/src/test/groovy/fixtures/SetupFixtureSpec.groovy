@@ -14,21 +14,18 @@
  * limitations under the License.
  */
 
-package ignore
+package fixtures
 
-import spock.lang.Ignore
+
 import spock.lang.Specification
 
-class TestOneFeatureIgnore extends Specification {
+class SetupFixtureSpec extends Specification {
 
-    @Ignore
-    def "simple test 1"() {
-        expect:
-        //noinspection GroovyPointlessBoolean
-        true == true
+    def setup() {
+
     }
 
-    def "simple test 2"() {
+    def "simple test"() {
         expect:
         //noinspection GroovyPointlessBoolean
         true == true
