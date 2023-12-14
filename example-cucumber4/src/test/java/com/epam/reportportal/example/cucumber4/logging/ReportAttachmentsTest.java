@@ -16,7 +16,6 @@
 
 package com.epam.reportportal.example.cucumber4.logging;
 
-import com.epam.reportportal.example.cucumber4.util.LoggingUtils;
 import com.epam.reportportal.example.cucumber4.util.MagicRandomizer;
 import com.epam.reportportal.service.ReportPortal;
 
@@ -33,7 +32,7 @@ import java.util.Date;
 
 public class ReportAttachmentsTest {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(ReportAttachmentsTest.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger("binary_data_logger");
 	public static final String XML_FILE_PATH = "files/file.xml";
 	public static final String JSON_FILE_PATH = "files/file.json";
 
@@ -41,70 +40,70 @@ public class ReportAttachmentsTest {
 	public void logCss() throws IOException {
 		File file = File.createTempFile("rp-test", ".css");
 		Resources.asByteSource(Resources.getResource("files/file.css")).copyTo(Files.asByteSink(file));
-		LoggingUtils.log(file, "I'm logging CSS");
+		LOGGER.info("RP_MESSAGE#FILE#{}#{}", file.getAbsolutePath(), "I'm logging CSS");
 	}
 
 	@Given("I attach logHtml")
 	public void logHtml() throws IOException {
 		File file = File.createTempFile("rp-test", ".html");
 		Resources.asByteSource(Resources.getResource("files/file.html")).copyTo(Files.asByteSink(file));
-		LoggingUtils.log(file, "I'm logging HTML");
+		LOGGER.info("RP_MESSAGE#FILE#{}#{}", file.getAbsolutePath(), "I'm logging CSS");
 	}
 
 	@Given("I attach logPdf")
 	public void logPdf() throws IOException {
 		File file = File.createTempFile("rp-test", ".pdf");
 		Resources.asByteSource(Resources.getResource("files/file.pdf")).copyTo(Files.asByteSink(file));
-		LoggingUtils.log(file, "I'm logging PDF");
+		LOGGER.info("RP_MESSAGE#FILE#{}#{}", file.getAbsolutePath(), "I'm logging CSS");
 	}
 
 	@Given("I attach logZip")
 	public void logZip() throws IOException {
 		File file = File.createTempFile("rp-test", ".zip");
 		Resources.asByteSource(Resources.getResource("files/file.zip")).copyTo(Files.asByteSink(file));
-		LoggingUtils.log(file, "I'm logging ZIP");
+		LOGGER.info("RP_MESSAGE#FILE#{}#{}", file.getAbsolutePath(), "I'm logging CSS");
 	}
 
 	@Given("I attach logHar")
 	public void logHar() throws IOException {
 		File file = File.createTempFile("har", ".json");
 		Resources.asByteSource(Resources.getResource("files/file.har")).copyTo(Files.asByteSink(file));
-		LoggingUtils.log(file, "I'm logging HAR");
+		LOGGER.info("RP_MESSAGE#FILE#{}#{}", file.getAbsolutePath(), "I'm logging CSS");
 	}
 
 	@Given("I attach logJavascript")
 	public void logJavascript() throws IOException {
 		File file = File.createTempFile("rp-test", ".js");
 		Resources.asByteSource(Resources.getResource("files/file.js")).copyTo(Files.asByteSink(file));
-		LoggingUtils.log(file, "I'm logging JS");
+		LOGGER.info("RP_MESSAGE#FILE#{}#{}", file.getAbsolutePath(), "I'm logging CSS");
 	}
 
 	@Given("I attach logPhp")
 	public void logPhp() throws IOException {
 		File file = File.createTempFile("rp-test", ".php");
 		Resources.asByteSource(Resources.getResource("files/file.php")).copyTo(Files.asByteSink(file));
-		LoggingUtils.log(file, "I'm logging php");
+		LOGGER.info("RP_MESSAGE#FILE#{}#{}", file.getAbsolutePath(), "I'm logging CSS");
 	}
 
 	@Given("I attach logPlain")
 	public void logPlain() throws IOException {
 		File file = File.createTempFile("rp-test", ".txt");
 		Resources.asByteSource(Resources.getResource("files/file.txt")).copyTo(Files.asByteSink(file));
-		LoggingUtils.log(file, "I'm logging txt");
+		LOGGER.info("RP_MESSAGE#FILE#{}#{}", file.getAbsolutePath(), "I'm logging CSS");
 	}
 
 	@Given("I attach logCsv")
 	public void logCsv() throws IOException {
 		File file = File.createTempFile("rp-test", ".csv");
 		Resources.asByteSource(Resources.getResource("files/file.csv")).copyTo(Files.asByteSink(file));
-		LoggingUtils.log(file, "I'm logging txt");
+		LOGGER.info("RP_MESSAGE#FILE#{}#{}", file.getAbsolutePath(), "I'm logging CSS");
 	}
 
 	@Given("I attach logCmd")
 	public void logCmd() throws IOException {
 		File file = File.createTempFile("rp-test", ".cmd");
 		Resources.asByteSource(Resources.getResource("files/file.cmd")).copyTo(Files.asByteSink(file));
-		LoggingUtils.log(file, "I'm logging txt");
+		LOGGER.info("RP_MESSAGE#FILE#{}#{}", file.getAbsolutePath(), "I'm logging CSS");
 	}
 
 	@Given("I attach logXmlBase64")
