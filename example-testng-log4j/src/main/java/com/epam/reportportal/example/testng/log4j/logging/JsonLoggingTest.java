@@ -2,8 +2,6 @@ package com.epam.reportportal.example.testng.log4j.logging;
 
 import com.epam.reportportal.example.testng.log4j.LoggingUtils;
 import com.epam.reportportal.message.ReportPortalMessage;
-import com.google.common.io.Files;
-import com.google.common.io.Resources;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.message.ObjectMessage;

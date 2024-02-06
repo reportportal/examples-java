@@ -2,9 +2,10 @@ package com.epam.reportportal.example.testng.logback.logging;
 
 import com.epam.reportportal.example.testng.logback.LoggingUtils;
 import com.epam.reportportal.example.testng.logback.MagicRandomizer;
-import com.google.common.io.Resources;
+import com.epam.reportportal.utils.files.Utils;
 import org.testng.annotations.Test;
 
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -21,7 +22,7 @@ public class LuckyPugTest {
 			boolean happy = MagicRandomizer.checkYourLucky(30);
 			String image = getImageResource(happy);
 
-			LoggingUtils.log(Resources.asByteSource(Resources.getResource(image)).read(), "Pug is " + (happy ? "HAPPY" : "NOT HAPPY"));
+			LoggingUtils.log(Utils.getFile(new File(image)).read(), "Pug is " + (happy ? "HAPPY" : "NOT HAPPY"));
 		}
 	}
 

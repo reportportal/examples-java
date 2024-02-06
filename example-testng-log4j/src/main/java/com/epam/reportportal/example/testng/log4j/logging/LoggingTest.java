@@ -18,7 +18,6 @@ package com.epam.reportportal.example.testng.log4j.logging;
 
 import com.epam.reportportal.example.testng.log4j.LoggingUtils;
 import com.epam.reportportal.utils.files.Utils;
-import com.google.common.io.Files;
 import org.awaitility.Awaitility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,9 +40,7 @@ public class LoggingTest {
 
 	@Test
 	public void logCss() throws IOException {
-		File file = File.createTempFile("rp-test", ".css");
-		Utils.getFile(new File("files/css.css")).copyTo(Files.asByteSink(file));
-		LoggingUtils.log(file, "I'm logging CSS");
+		LoggingUtils.log(new File("files/css.css"), "I'm logging CSS");
 	}
 
 	@Test

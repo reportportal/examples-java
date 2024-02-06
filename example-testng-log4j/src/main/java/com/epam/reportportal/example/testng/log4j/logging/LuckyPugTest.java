@@ -2,7 +2,6 @@ package com.epam.reportportal.example.testng.log4j.logging;
 
 import com.epam.reportportal.example.testng.log4j.LoggingUtils;
 import com.epam.reportportal.example.testng.log4j.MagicRandomizer;
-import com.google.common.io.Resources;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
