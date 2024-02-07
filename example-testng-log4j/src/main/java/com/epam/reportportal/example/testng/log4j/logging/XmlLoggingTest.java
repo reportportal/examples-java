@@ -1,6 +1,7 @@
 package com.epam.reportportal.example.testng.log4j.logging;
 
 import com.epam.reportportal.example.testng.log4j.LoggingUtils;
+import com.epam.reportportal.utils.files.Utils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
@@ -21,15 +22,12 @@ public class XmlLoggingTest {
 	@Test
 	public void logXmlBase64() throws IOException {
 		/* here we are logging some binary data as BASE64 string */
-		LoggingUtils.log(Resources.asByteSource(Resources.getResource(XML_FILE_PATH)).read(), "I'm logging content via BASE64");
+		LoggingUtils.log(Utils.getFileAsByteSource(new File(XML_FILE_PATH)).read(), "I'm logging content via BASE64");
 	}
 
 	@Test
-	public void logXmlFile() throws IOException {
+	public void logXmlFile() {
 		/* here we are logging some binary data as file (useful for selenium) */
-		File file = File.createTempFile("rp-test", "xml");
-		Resources.asByteSource(Resources.getResource(XML_FILE_PATH)).copyTo(Files.asByteSink(file));
-
-		LOGGER.info("RP_MESSAGE#FILE#{}#{}", file.getAbsolutePath(), "I'm logging content via temp file");
+		LOGGER.info("RP_MESSAGE#FILE#{}#{}", new File(XML_FILE_PATH), "I'm logging content via temp file");
 	}
 }
