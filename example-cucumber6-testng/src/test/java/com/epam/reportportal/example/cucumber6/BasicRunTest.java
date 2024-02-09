@@ -19,7 +19,7 @@ package com.epam.reportportal.example.cucumber6;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
-@CucumberOptions(plugin = { "pretty", "html:report.html", "com.epam.reportportal.example.cucumber6.attributes.CustomAttributeReporter" },
-		features = "src/test/resources/features/attributes", tags = "not @ignore",	glue = "com.epam.reportportal.example.cucumber6.attributes")
-public class RunAttributesTests extends AbstractTestNGCucumberTests {
+@CucumberOptions(plugin = "com.epam.reportportal.cucumber.ScenarioReporter",
+		features = "src/test/resources/features/attributes", glue = "com.epam.reportportal.example.cucumber6.attributes")
+public class BasicRunTest extends AbstractTestNGCucumberTests {
 }
