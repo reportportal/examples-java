@@ -90,8 +90,8 @@ public class ReportAttachmentsTest {
 		LOGGER.info("RP_MESSAGE#FILE#{}#{}", file.getAbsolutePath(), "I'm logging content via temp file");
 	}
 
-	@Given("I attach logJsonBase64")
-	public void logJsonBase64() throws IOException {
+	@Given("I attach logBase64")
+	public void logBase64() throws IOException {
 		/* here we are logging some binary data as BASE64 string */
 		ReportPortal.emitLog("ITEM LOG MESSAGE", "error", new Date());
 		ReportPortal.emitLog("ITEM LOG MESSAGE WITH ATTACHMENT", "error", new Date(), new File("src/test/resources/files/file.css"));
@@ -107,15 +107,13 @@ public class ReportAttachmentsTest {
 	public void logJsonFile() throws IOException {
 		/* here we are logging some binary data as file (useful for selenium) */
 		File file = File.createTempFile("rp-test", ".json");
-		try (InputStream is = new FileInputStream(XML_FILE_PATH)) {
+		try (InputStream is = new FileInputStream(JSON_FILE_PATH)) {
 			try (OutputStream os = new FileOutputStream(file)) {
 				Utils.copyStreams(is, os);
 			}
 		}
 
-		for (int i = 0; i < 1; i++) {
-			LOGGER.info("RP_MESSAGE#FILE#{}#{}", file.getAbsolutePath(), "I'm logging content via temp file");
-		}
+		LOGGER.info("RP_MESSAGE#FILE#{}#{}", file.getAbsolutePath(), "I'm logging content via temp file");
 	}
 
 	@Given("I attach logImageBase64")
