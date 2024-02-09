@@ -22,6 +22,8 @@ import gherkin.formatter.model.Match;
 import gherkin.formatter.model.Scenario;
 import gherkin.formatter.model.Step;
 
+import javax.annotation.Nonnull;
+
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 /**
@@ -33,8 +35,9 @@ public class ScenarioReporterTestCaseId extends ScenarioReporter {
 	public static final String TEST_TRACKING_TICKET_PREFIX = "JIRA";
 
 	// Getting our custom tag from already parsed attributes and set it as Test Case ID for the item
+	@Nonnull
 	@Override
-	protected StartTestItemRQ buildStartScenarioRequest(Scenario scenario, String uri) {
+	protected StartTestItemRQ buildStartScenarioRequest(@Nonnull Scenario scenario, @Nonnull String uri) {
 		StartTestItemRQ rq = super.buildStartScenarioRequest(scenario, uri);
 		rq.getAttributes()
 				.stream()
@@ -46,8 +49,9 @@ public class ScenarioReporterTestCaseId extends ScenarioReporter {
 	}
 
 	// Removing Test Case ID from nested steps as redundant
+	@Nonnull
 	@Override
-	protected StartTestItemRQ buildStartStepRequest(Step step, String stepPrefix, Match match) {
+	protected StartTestItemRQ buildStartStepRequest(@Nonnull Step step, String stepPrefix, @Nonnull Match match) {
 		StartTestItemRQ rq = super.buildStartStepRequest(step, stepPrefix, match);
 		rq.setTestCaseId(null);
 		return rq;

@@ -1,7 +1,3 @@
-import cucumber.api.CucumberOptions
-import cucumber.api.junit.Cucumber
-import org.junit.runner.RunWith
-
 /*
  * Copyright 2021 EPAM Systems
  *
@@ -18,11 +14,18 @@ import org.junit.runner.RunWith
  * limitations under the License.
  */
 
-@RunWith(Cucumber.class)
-@CucumberOptions(plugin = ["pretty",
-        "com.epam.reportportal.cucumber.StepReporter"], features = ["src/test/resources/features/attribute"]
-        , glue = ["src/test/groovy/cucumber"]
-)
-class RunCucumberGroovy {
+package com.epam.reportportal.example.cucumber;
 
+import com.epam.reportportal.example.cucumber.reporter.ScenarioReporterTestCaseId;
+import cucumber.api.CucumberOptions;
+import cucumber.api.junit.Cucumber;
+import org.junit.runner.RunWith;
+
+/**
+ * A JUnit runner for Cucumber which is using customized {@link ScenarioReporterTestCaseId} reporter.
+ */
+@RunWith(Cucumber.class)
+@CucumberOptions(plugin = { "pretty", "com.epam.reportportal.example.cucumber.reporter.ScenarioReporterTestCaseId" },
+		features = "src/test/resources/features/attribute")
+public class RunScenarioReporterTest {
 }

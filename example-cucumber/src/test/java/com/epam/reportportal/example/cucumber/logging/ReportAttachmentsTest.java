@@ -16,57 +16,57 @@ import java.util.Date;
 public class ReportAttachmentsTest {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ReportAttachmentsTest.class);
-	public static final String XML_FILE_PATH = "files/file.xml";
-	public static final String JSON_FILE_PATH = "files/file.json";
+	public static final String XML_FILE_PATH = "src/test/resources/files/file.xml";
+	public static final String JSON_FILE_PATH = "src/test/resources/files/file.json";
 
 	@Given("I attach logCss")
 	public void logCss() {
-		LoggingUtils.log(new File("files/file.css"), "I'm logging CSS");
+		LoggingUtils.log(new File("src/test/resources/files/file.css"), "I'm logging CSS");
 	}
 
 	@Given("I attach logHtml")
 	public void logHtml() {
-		LoggingUtils.log(new File("files/file.html"), "I'm logging HTML");
+		LoggingUtils.log(new File("src/test/resources/files/file.html"), "I'm logging HTML");
 	}
 
 	@Given("I attach logPdf")
 	public void logPdf() {
-		LoggingUtils.log(new File("files/file.pdf"), "I'm logging PDF");
+		LoggingUtils.log(new File("src/test/resources/files/file.pdf"), "I'm logging PDF");
 	}
 
 	@Given("I attach logZip")
 	public void logZip() {
-		LoggingUtils.log(new File("files/file.zip"), "I'm logging ZIP");
+		LoggingUtils.log(new File("src/test/resources/files/file.zip"), "I'm logging ZIP");
 	}
 
 	@Given("I attach logHar")
 	public void logHar() {
-		LoggingUtils.log(new File("files/file.har"), "I'm logging HAR");
+		LoggingUtils.log(new File("src/test/resources/files/file.har"), "I'm logging HAR");
 	}
 
 	@Given("I attach logJavascript")
 	public void logJavascript() {
-		LoggingUtils.log(new File("files/file.js"), "I'm logging JS");
+		LoggingUtils.log(new File("src/test/resources/files/file.js"), "I'm logging JS");
 	}
 
 	@Given("I attach logPhp")
 	public void logPhp() {
-		LoggingUtils.log(new File("files/file.php"), "I'm logging php");
+		LoggingUtils.log(new File("src/test/resources/files/file.php"), "I'm logging PHP");
 	}
 
 	@Given("I attach logPlain")
 	public void logPlain() {
-		LoggingUtils.log(new File("files/file.txt"), "I'm logging txt");
+		LoggingUtils.log(new File("src/test/resources/files/file.txt"), "I'm logging TXT");
 	}
 
 	@Given("I attach logCsv")
 	public void logCsv() {
-		LoggingUtils.log(new File("files/file.csv"), "I'm logging txt");
+		LoggingUtils.log(new File("src/test/resources/files/file.csv"), "I'm logging CSV");
 	}
 
 	@Given("I attach logCmd")
 	public void logCmd() {
-		LoggingUtils.log(new File("files/file.cmd"), "I'm logging txt");
+		LoggingUtils.log(new File("src/test/resources/files/file.cmd"), "I'm logging CMD");
 	}
 
 	@Given("I attach logXmlBase64")
@@ -88,7 +88,7 @@ public class ReportAttachmentsTest {
 	public void logJsonBase64() throws IOException {
 		/* here we are logging some binary data as BASE64 string */
 		ReportPortal.emitLog("ITEM LOG MESSAGE", "error", new Date());
-		ReportPortal.emitLog("ITEM LOG MESSAGE WITH ATTACHMENT", "error", new Date(), new File("files/css.css"));
+		ReportPortal.emitLog("ITEM LOG MESSAGE WITH ATTACHMENT", "error", new Date(), new File("src/test/resources/files/file.css"));
 		LOGGER.info(
 				"RP_MESSAGE#BASE64#{}#{}",
 				Base64.getEncoder().encodeToString(Utils.getFileAsByteSource(new File(JSON_FILE_PATH)).read()),
@@ -121,6 +121,6 @@ public class ReportAttachmentsTest {
 	}
 
 	private String getImageResource(boolean lucky) {
-		return "pug/" + (lucky ? "lucky.jpg" : "unlucky.jpg");
+		return "src/test/resources/pug/" + (lucky ? "lucky.jpg" : "unlucky.jpg");
 	}
 }
