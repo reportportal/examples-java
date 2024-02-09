@@ -1,10 +1,10 @@
 package com.epam.reportportal.example.cucumber2.util;
 
-import com.google.common.io.Files;
-import com.google.common.io.Resources;
+import com.epam.reportportal.utils.files.Utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 
 public class AttachmentHelper {
 
@@ -14,7 +14,10 @@ public class AttachmentHelper {
 		File file = null;
 		try {
 			file = File.createTempFile("rp-test", extension);
-			Resources.asByteSource(Resources.getResource(String.format("files/%s%s", name, extension))).copyTo(Files.asByteSink(file));
+			Utils.copyStreams(
+					Utils.getFile(new File(String.format("files/%s%s", name, extension))).openStream(),
+					Files.newOutputStream(file.toPath())
+			);
 		} catch (IOException ignored) {
 		}
 		return file;
