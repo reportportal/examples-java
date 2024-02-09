@@ -17,7 +17,7 @@
 package com.epam.reportportal.example.junit5.nested.step.pattern;
 
 import com.epam.reportportal.annotations.Step;
-import com.epam.reportportal.annotations.StepTemplateConfig;
+import com.epam.reportportal.annotations.TemplateConfig;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -26,6 +26,7 @@ import java.util.List;
 /**
  * @author <a href="mailto:ivan_budayeu@epam.com">Ivan Budayeu</a>
  */
+@SuppressWarnings("unused")
 public class PatternTest {
 
 	@Test
@@ -55,7 +56,8 @@ public class PatternTest {
 
 	}
 
-	@Step(value = "My {method} explanation using test method - {m}", templateConfig = @StepTemplateConfig(methodNameTemplate = "m"))
+	@SuppressWarnings("SameParameterValue")
+	@Step(value = "My {method} explanation using test method - {m}", config = @TemplateConfig(methodNameTemplate = "m"))
 	private void checkMethod(String method) {
 
 	}
