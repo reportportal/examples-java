@@ -57,11 +57,6 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-            </plugin>
-
             <!-- This provides the path to the Java agent -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
