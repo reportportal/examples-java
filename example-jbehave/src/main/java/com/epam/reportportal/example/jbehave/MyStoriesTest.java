@@ -1,7 +1,7 @@
 package com.epam.reportportal.example.jbehave;
 
 import com.epam.reportportal.example.jbehave.steps.*;
-import com.epam.reportportal.jbehave.ReportPortalStepFormat;
+import com.epam.reportportal.jbehave.ReportPortalScenarioFormat;
 import org.jbehave.core.Embeddable;
 import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.configuration.MostUsefulConfiguration;
@@ -38,9 +38,9 @@ import static org.jbehave.core.reporters.Format.HTML;
  * Stories are specified in classpath and correspondingly the {@link LoadFromClasspath} story loader is configured.
  * </p>
  */
-public class MyStories extends JUnitStories {
+public class MyStoriesTest extends JUnitStories {
 
-	public MyStories() {
+	public MyStoriesTest() {
 		configuredEmbedder().embedderControls()
 				.doGenerateViewAfterStories(true)
 				.doIgnoreFailureInStories(true)
@@ -68,7 +68,7 @@ public class MyStories extends JUnitStories {
 		return new MostUsefulConfiguration().useStoryLoader(new LoadFromClasspath(embeddableClass))
 				.useStoryParser(new RegexStoryParser(examplesTableFactory))
 				.useStoryReporterBuilder(new StoryReporterBuilder().withCodeLocation(CodeLocations.codeLocationFromClass(
-						embeddableClass)).withFormats(CONSOLE, HTML, ReportPortalStepFormat.INSTANCE))
+						embeddableClass)).withFormats(CONSOLE, HTML, ReportPortalScenarioFormat.INSTANCE))
 				.useParameterConverters(parameterConverters);
 	}
 
