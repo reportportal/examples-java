@@ -31,12 +31,4 @@
         <module>example-testng-fork-execution</module>
         <module>example-spock</module>
     </modules>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.10.1</version>
-        </dependency>
-    </dependencies>
 </project>
