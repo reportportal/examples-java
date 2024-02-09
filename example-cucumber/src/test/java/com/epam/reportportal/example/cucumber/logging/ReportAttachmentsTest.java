@@ -79,9 +79,16 @@ public class ReportAttachmentsTest {
 		);
 	}
 
+	@SuppressWarnings("IOStreamConstructor")
 	@Given("I attach logXmlFile")
-	public void logXmlFile() {
-		LOGGER.info("RP_MESSAGE#FILE#{}#{}", new File(XML_FILE_PATH).getAbsolutePath(), "I'm logging content via temp file");
+	public void logXmlFile() throws IOException {
+		File file = File.createTempFile("rp-test", "xml");
+		try (InputStream is = new FileInputStream(XML_FILE_PATH)) {
+			try (OutputStream os = new FileOutputStream(file)) {
+				Utils.copyStreams(is, os);
+			}
+		}
+		LOGGER.info("RP_MESSAGE#FILE#{}#{}", file.getAbsolutePath(), "I'm logging content via temp file");
 	}
 
 	@Given("I attach logJsonBase64")
@@ -96,11 +103,19 @@ public class ReportAttachmentsTest {
 		);
 	}
 
+	@SuppressWarnings("IOStreamConstructor")
 	@Given("I attach logJsonFile")
-	public void logJsonFile() {
+	public void logJsonFile() throws IOException {
 		/* here we are logging some binary data as file (useful for selenium) */
+		File file = File.createTempFile("rp-test", ".json");
+		try (InputStream is = new FileInputStream(XML_FILE_PATH)) {
+			try (OutputStream os = new FileOutputStream(file)) {
+				Utils.copyStreams(is, os);
+			}
+		}
+
 		for (int i = 0; i < 1; i++) {
-			LOGGER.info("RP_MESSAGE#FILE#{}#{}", new File(JSON_FILE_PATH).getAbsolutePath(), "I'm logging content via temp file");
+			LOGGER.info("RP_MESSAGE#FILE#{}#{}", file.getAbsolutePath(), "I'm logging content via temp file");
 		}
 	}
 

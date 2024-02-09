@@ -27,5 +27,5 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(plugin = { "pretty", "com.epam.reportportal.example.cucumber2.reporter.ScenarioReporterTestCaseId" }, features = {
 		"src/test/resources/features/attribute" }, glue = { "com.epam.reportportal.example.cucumber2.attribute" })
-public class RunCukesTestScenarioReporter {
+public class RunScenarioReporterTest {
 }

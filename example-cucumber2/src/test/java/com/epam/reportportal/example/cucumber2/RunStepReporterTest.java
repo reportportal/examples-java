@@ -8,5 +8,5 @@ import org.junit.runner.RunWith;
 @CucumberOptions(plugin = { "pretty", "com.epam.reportportal.cucumber.StepReporter" },
 		features = {"src/test/resources/features/attribute"},
 		glue = {"com.epam.reportportal.example.cucumber2.attribute"})
-public class RunCukesTestStepReporter {
+public class RunStepReporterTest {
 }
