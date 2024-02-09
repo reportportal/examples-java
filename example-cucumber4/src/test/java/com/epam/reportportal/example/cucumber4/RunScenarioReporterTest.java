@@ -16,12 +16,16 @@
 
 package com.epam.reportportal.example.cucumber4;
 
+import com.epam.reportportal.example.cucumber4.reporter.ScenarioReporterTestCaseId;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
 
+/**
+ * A JUnit runner for Cucumber which is using customized {@link ScenarioReporterTestCaseId} reporter.
+ */
 @RunWith(Cucumber.class)
-@CucumberOptions(plugin = { "pretty", "com.epam.reportportal.cucumber.StepReporter" }, features = {
+@CucumberOptions(plugin = { "pretty", "com.epam.reportportal.example.cucumber4.reporter.ScenarioReporterTestCaseId" }, features = {
 		"src/test/resources/features/attribute" }, glue = { "com.epam.reportportal.example.cucumber4.attribute" })
-public class RunCukesTestStepReporter {
+public class RunScenarioReporterTest {
 }
