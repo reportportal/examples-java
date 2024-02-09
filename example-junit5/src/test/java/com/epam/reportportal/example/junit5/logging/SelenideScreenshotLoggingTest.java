@@ -20,7 +20,6 @@ import com.codeborne.selenide.Browsers;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.epam.reportportal.example.junit5.ScreenShootOnFailureExtension;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -38,7 +37,6 @@ public class SelenideScreenshotLoggingTest {
 
 	@BeforeAll
 	public static void initDriver() {
-		WebDriverManager.chromedriver().setup();
 		Configuration.browser = Browsers.CHROME;
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--remote-allow-origins=*");

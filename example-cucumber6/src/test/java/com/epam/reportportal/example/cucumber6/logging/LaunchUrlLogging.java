@@ -16,7 +16,7 @@
 
 package com.epam.reportportal.example.cucumber6.logging;
 
-import com.epam.reportportal.example.cucumber6.RunLoggingTests;
+import com.epam.reportportal.example.cucumber6.RunLoggingTest;
 import com.epam.reportportal.listeners.ListenerParameters;
 import com.epam.reportportal.service.Launch;
 import io.cucumber.java.en.Given;
@@ -26,7 +26,7 @@ import org.slf4j.LoggerFactory;
 import static java.util.Optional.ofNullable;
 
 /**
- * An example how to get and report current Launch URL, run {@link RunLoggingTests} class to see results.
+ * An example how to get and report current Launch URL, run {@link RunLoggingTest} class to see results.
  */
 public class LaunchUrlLogging {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LaunchUrlLogging.class);

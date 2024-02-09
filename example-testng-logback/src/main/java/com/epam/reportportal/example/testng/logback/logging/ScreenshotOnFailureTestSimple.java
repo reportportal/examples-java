@@ -17,7 +17,6 @@
 package com.epam.reportportal.example.testng.logback.logging;
 
 import com.epam.reportportal.example.testng.logback.LoggingUtils;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -37,7 +36,6 @@ public class ScreenshotOnFailureTestSimple {
 
 	@BeforeMethod
 	public void initDriver() {
-		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
 	}
 
