@@ -17,7 +17,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
         <jbehave.core.version>5.0</jbehave.core.version>
-        <embeddables>**/*Stories.java</embeddables>
+        <embeddables>**/*StoriesTest.java</embeddables>
         <meta.filter>-skip</meta.filter>
         <retrofit.version>2.9.0</retrofit.version>
     </properties>
@@ -46,10 +46,16 @@
             <artifactId>slf4j-api</artifactId>
             <version>2.0.7</version>
         </dependency>
+
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-slf4j-impl</artifactId>
-            <version>2.17.2</version>
+            <artifactId>log4j-slf4j2-impl</artifactId>
+            <version>2.19.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.19.0</version>
         </dependency>
 
         <!-- For unknown reason 'jbehave-maven-plugin' does not see these dependencies -->

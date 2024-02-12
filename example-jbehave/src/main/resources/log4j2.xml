@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration packages="com.epam.ta.reportportal.log4j.appender" status="WARN">
+<Configuration status="WARN">
     <Appenders>
         <Console name="ConsoleAppender" target="SYSTEM_OUT">
-            <PatternLayout
-                    pattern="%d [%t] %-5level %logger{36} - %msg%n%throwable"/>
+            <PatternLayout pattern="%d [%t] %-5level %logger{36} - %msg%n%throwable"/>
         </Console>
         <ReportPortalLog4j2Appender name="ReportPortalAppender">
-            <PatternLayout
-                    pattern="%d [%t] %-5level %logger{36} - %msg%n%throwable"/>
+            <PatternLayout pattern="%logger{36} - %msg%n%throwable"/>
         </ReportPortalLog4j2Appender>
     </Appenders>
     <Loggers>
@@ -15,11 +13,11 @@
             <AppenderRef ref="ConsoleAppender"/>
             <AppenderRef ref="ReportPortalAppender"/>
         </Root>
-        <Logger name="com.epam.reportportal" level="WARN" additivity="false">
+        <Logger name="com.epam.reportportal.example" level="TRACE" additivity="false">
             <AppenderRef ref="ConsoleAppender"/>
             <AppenderRef ref="ReportPortalAppender"/>
         </Logger>
-        <Logger name="binary_data_logger" level="DEBUG" additivity="false">
+        <Logger name="binary_data_logger" level="TRACE" additivity="false">
             <AppenderRef ref="ReportPortalAppender"/>
         </Logger>
     </Loggers>
