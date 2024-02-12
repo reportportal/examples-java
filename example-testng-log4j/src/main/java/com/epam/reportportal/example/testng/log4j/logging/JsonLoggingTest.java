@@ -20,7 +20,7 @@ import java.io.IOException;
 public class JsonLoggingTest {
 
 	private static final Logger LOGGER = LogManager.getLogger(JsonLoggingTest.class);
-	public static final String FILE_FOLDER_PATH = "src/test/resources/xml";
+	public static final String FILE_FOLDER_PATH = "src/main/resources/xml";
 	public static final String JSON_FILE_PATH = FILE_FOLDER_PATH + "/file.json";
 
 	@Test
@@ -41,7 +41,7 @@ public class JsonLoggingTest {
 	@Test
 	public void logRepMessage() throws IOException {
 		/* here we are logging some binary data as file (useful for selenium) */
-		File file = File.createTempFile("rp-test", ".json");
+		File file = AttachmentHelper.getFileFromResources(FILE_FOLDER_PATH, "file", "json");
 		LOGGER.info(new ObjectMessage(new ReportPortalMessage(file, "File message")));
 	}
 

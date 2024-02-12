@@ -27,6 +27,6 @@ public class LuckyPugTest {
 	}
 
 	private String getImageResource(boolean lucky) {
-		return "pug/" + (lucky ? "lucky.jpg" : "unlucky.jpg");
+		return "src/main/resources/pug/" + (lucky ? "lucky.jpg" : "unlucky.jpg");
 	}
 }
