@@ -16,7 +16,7 @@
 
 package com.epam.reportportal.example.testng.logback.randomizer;
 
-import com.epam.reportportal.example.testng.logback.MagicRandomizer;
+import com.epam.reportportal.example.testng.logback.util.MagicRandomizer;
 import com.google.common.collect.Range;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

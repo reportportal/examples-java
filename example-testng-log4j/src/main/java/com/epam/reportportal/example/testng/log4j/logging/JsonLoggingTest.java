@@ -1,6 +1,7 @@
 package com.epam.reportportal.example.testng.log4j.logging;
 
-import com.epam.reportportal.example.testng.log4j.LoggingUtils;
+import com.epam.reportportal.example.testng.log4j.util.AttachmentHelper;
+import com.epam.reportportal.example.testng.log4j.util.LoggingUtils;
 import com.epam.reportportal.message.ReportPortalMessage;
 import com.epam.reportportal.utils.files.Utils;
 import org.apache.logging.log4j.LogManager;
@@ -10,10 +11,6 @@ import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 /**
  * JUST an example of file logging
@@ -23,7 +20,8 @@ import java.nio.file.Path;
 public class JsonLoggingTest {
 
 	private static final Logger LOGGER = LogManager.getLogger(JsonLoggingTest.class);
-	public static final String JSON_FILE_PATH = "xml/file.json";
+	public static final String FILE_FOLDER_PATH = "src/test/resources/xml";
+	public static final String JSON_FILE_PATH = FILE_FOLDER_PATH + "/file.json";
 
 	@Test
 	public void logJsonBase64() throws IOException {
@@ -32,20 +30,12 @@ public class JsonLoggingTest {
 	}
 
 	@Test
-	public void logJsonFile() throws IOException, InterruptedException {
+	public void logJsonFile() {
 		/* here we are logging some binary data as file (useful for selenium) */
-		File file = File.createTempFile("rp-test", ".json");
-		try (InputStream is = Files.newInputStream(Path.of(JSON_FILE_PATH))) {
-			try (OutputStream os = Files.newOutputStream(file.toPath())){
-				Utils.copyStreams(is, os);
-			}
-		}
-
+		File file = AttachmentHelper.getFileFromResources(FILE_FOLDER_PATH, "file", "json");
 		for (int i = 0; i < 1; i++) {
 			LoggingUtils.log(file, "I'm logging content via temp file");
 		}
-		Thread.sleep(5000L);
-
 	}
 
 	@Test

@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+/**
+ * Utility file to copy / read resource files.
+ */
 public class AttachmentHelper {
 	public static final String FILE_NAME = "file";
 

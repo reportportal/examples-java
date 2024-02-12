@@ -1,4 +1,4 @@
-package com.epam.reportportal.example.testng.log4j;
+package com.epam.reportportal.example.testng.log4j.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +26,7 @@ public class MagicRandomizer {
 	}
 
 	/**
-	 * Just put probability and check your luckyness
+	 * Just put probability and check your luckiness
 	 *
 	 * @param probability value [0--100]
 	 * @return TRUE if you are really lucky!

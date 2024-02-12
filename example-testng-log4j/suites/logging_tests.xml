@@ -12,12 +12,6 @@
         </classes>
     </test>
 
-    <test verbose="1" name="Better XML logging">
-        <classes>
-            <class name="com.epam.reportportal.example.testng.log4j.logging.XmlLoggingBetterTest"/>
-        </classes>
-    </test>
-
     <test verbose="1" name="Json logging">
         <classes>
             <class name="com.epam.reportportal.example.testng.log4j.logging.JsonLoggingTest"/>

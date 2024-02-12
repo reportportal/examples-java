@@ -16,7 +16,7 @@
 
 package com.epam.reportportal.example.testng.log4j.extension;
 
-import com.epam.reportportal.example.testng.log4j.LoggingUtils;
+import com.epam.reportportal.example.testng.log4j.util.LoggingUtils;
 import com.epam.reportportal.testng.ReportPortalTestNGListener;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;

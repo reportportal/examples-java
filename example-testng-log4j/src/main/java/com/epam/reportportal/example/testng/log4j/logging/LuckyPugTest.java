@@ -1,7 +1,7 @@
 package com.epam.reportportal.example.testng.log4j.logging;
 
-import com.epam.reportportal.example.testng.log4j.LoggingUtils;
-import com.epam.reportportal.example.testng.log4j.MagicRandomizer;
+import com.epam.reportportal.example.testng.log4j.util.LoggingUtils;
+import com.epam.reportportal.example.testng.log4j.util.MagicRandomizer;
 import com.epam.reportportal.utils.files.Utils;
 import org.testng.annotations.Test;
 

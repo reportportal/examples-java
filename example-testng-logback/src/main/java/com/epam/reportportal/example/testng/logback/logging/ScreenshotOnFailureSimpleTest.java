@@ -16,7 +16,7 @@
 
 package com.epam.reportportal.example.testng.logback.logging;
 
-import com.epam.reportportal.example.testng.logback.LoggingUtils;
+import com.epam.reportportal.example.testng.logback.util.LoggingUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -30,7 +30,7 @@ import org.testng.annotations.Test;
 /**
  * The simplest way to report a screenshot on a test failure. Reports screenshot as a separate log entry in 'After method' method.
  */
-public class ScreenshotOnFailureTestSimple {
+public class ScreenshotOnFailureSimpleTest {
 
 	private WebDriver driver;
 

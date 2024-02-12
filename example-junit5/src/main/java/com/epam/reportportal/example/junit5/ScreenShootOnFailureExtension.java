@@ -17,6 +17,7 @@
 package com.epam.reportportal.example.junit5;
 
 import com.codeborne.selenide.Selenide;
+import com.epam.reportportal.example.junit5.util.LoggingUtils;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.InvocationInterceptor;
 import org.junit.jupiter.api.extension.ReflectiveInvocationContext;

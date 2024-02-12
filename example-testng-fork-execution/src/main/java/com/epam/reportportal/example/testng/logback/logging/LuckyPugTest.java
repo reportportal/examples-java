@@ -1,7 +1,7 @@
 package com.epam.reportportal.example.testng.logback.logging;
 
-import com.epam.reportportal.example.testng.logback.LoggingUtils;
-import com.epam.reportportal.example.testng.logback.MagicRandomizer;
+import com.epam.reportportal.example.testng.logback.util.LoggingUtils;
+import com.epam.reportportal.example.testng.logback.util.MagicRandomizer;
 import com.epam.reportportal.utils.files.Utils;
 import org.testng.annotations.Test;
 
@@ -15,7 +15,7 @@ import java.io.IOException;
  */
 public class LuckyPugTest {
 	@Test
-	public void logImageBase64() throws IOException, InterruptedException {
+	public void logImageBase64() throws IOException {
 		/* Generate 10 logs with pugs. Pug may be lucky or unlucky based on randomizer */
 		for (int i = 0; i < 20; i++) {
 			/* 50 percents. So we should have approximately same count of lucky and unlucky pugs */
@@ -27,6 +27,6 @@ public class LuckyPugTest {
 	}
 
 	private String getImageResource(boolean lucky) {
-		return "pug/" + (lucky ? "lucky.jpg" : "unlucky.jpg");
+		return "src/main/resources/pug/" + (lucky ? "lucky.jpg" : "unlucky.jpg");
 	}
 }

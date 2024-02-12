@@ -1,4 +1,4 @@
-package com.epam.reportportal.example.junit5.util;
+package com.epam.reportportal.example.jbehave.util;
 
 import com.epam.reportportal.utils.files.ByteSource;
 import com.epam.reportportal.utils.files.Utils;
@@ -8,9 +8,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+/**
+ * Utility file to copy / read resource files.
+ */
 public class AttachmentHelper {
-	public static final String FILE_NAME = "file";
-
 	public static File getFileFromResources(String path, String name, String extension) {
 		File file = null;
 		try {
@@ -24,9 +25,5 @@ public class AttachmentHelper {
 		} catch (IOException ignored) {
 		}
 		return file;
-	}
-
-	public static File getFileFromResources(String name, String extension) {
-		return getFileFromResources("src/test/resources/files", name, extension);
 	}
 }

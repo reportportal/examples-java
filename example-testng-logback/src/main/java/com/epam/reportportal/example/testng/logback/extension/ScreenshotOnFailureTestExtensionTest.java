@@ -16,7 +16,7 @@
 
 package com.epam.reportportal.example.testng.logback.extension;
 
-import com.epam.reportportal.example.testng.logback.LoggingUtils;
+import com.epam.reportportal.example.testng.logback.util.LoggingUtils;
 import com.epam.reportportal.testng.ReportPortalTestNGListener;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;

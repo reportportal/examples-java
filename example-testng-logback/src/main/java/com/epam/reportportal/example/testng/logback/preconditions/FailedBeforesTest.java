@@ -16,7 +16,7 @@
 
 package com.epam.reportportal.example.testng.logback.preconditions;
 
-import com.epam.reportportal.example.testng.logback.MagicRandomizer;
+import com.epam.reportportal.example.testng.logback.util.MagicRandomizer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -31,7 +31,7 @@ import org.testng.annotations.Test;
  */
 public class FailedBeforesTest {
 
-	private Logger LOGGER = LoggerFactory.getLogger(FailedBeforesTest.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(FailedBeforesTest.class);
 
 	@BeforeClass
 	public void noChancesBeforeClass() {

@@ -1,6 +1,7 @@
 package com.epam.reportportal.example.junit5;
 
 import com.epam.reportportal.example.junit5.util.Attachment;
+import com.epam.reportportal.example.junit5.util.LoggingUtils;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,9 +27,7 @@ public class LogTest {
 
 	@Test
 	void logWithAttachmentTest() {
-		Arrays.stream(Attachment.values()).forEach(it -> {
-			LoggingUtils.log(getFileFromResources(FILE_NAME, it.getExtension()),
-					String.format("I'm logging content via temp %s file", it.name()));
-		});
+		Arrays.stream(Attachment.values()).forEach(it -> LoggingUtils.log(getFileFromResources(FILE_NAME, it.getExtension()),
+				String.format("I'm logging content via temp %s file", it.name())));
 	}
 }

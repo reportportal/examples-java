@@ -16,7 +16,7 @@
 
 package com.epam.reportportal.example.testng.logback.logging;
 
-import com.epam.reportportal.example.testng.logback.LoggingUtils;
+import com.epam.reportportal.example.testng.logback.util.LoggingUtils;
 import org.awaitility.Awaitility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,52 +33,53 @@ import static org.hamcrest.Matchers.greaterThanOrEqualTo;
  * Different logging types and options example test
  */
 public class LoggingTest {
+	public static final String FILE_FOLDER_PATH = "src/main/resources/files";
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LoggingTest.class);
 
 	@Test
 	public void logCss() {
-		LoggingUtils.log(new File("files/css.css"), "I'm logging CSS");
+		LoggingUtils.log(new File(FILE_FOLDER_PATH + "/css.css"), "I'm logging CSS");
 	}
 
 	@Test
 	public void logHtml() {
-		LoggingUtils.log(new File("files/html.html"), "I'm logging HTML");
+		LoggingUtils.log(new File(FILE_FOLDER_PATH + "/html.html"), "I'm logging HTML");
 	}
 
 	@Test
 	public void logPdf() {
-		LoggingUtils.log(new File("files/test.pdf"), "I'm logging PDF");
+		LoggingUtils.log(new File(FILE_FOLDER_PATH + "/test.pdf"), "I'm logging PDF");
 	}
 
 	@Test
 	public void logZip() {
-		LoggingUtils.log(new File("files/demo.zip"), "I'm logging ZIP");
+		LoggingUtils.log(new File(FILE_FOLDER_PATH + "/demo.zip"), "I'm logging ZIP");
 	}
 
 	@Test
 	public void logJavascript() {
-		LoggingUtils.log(new File("files/javascript.js"), "I'm logging JS");
+		LoggingUtils.log(new File(FILE_FOLDER_PATH + "/javascript.js"), "I'm logging JS");
 	}
 
 	@Test
 	public void logPhp() {
-		LoggingUtils.log(new File("files/php.php"), "I'm logging php");
+		LoggingUtils.log(new File(FILE_FOLDER_PATH + "/php.php"), "I'm logging php");
 	}
 
 	@Test
 	public void logPlain() {
-		LoggingUtils.log(new File("files/plain.txt"), "I'm logging txt");
+		LoggingUtils.log(new File(FILE_FOLDER_PATH + "/plain.txt"), "I'm logging txt");
 	}
 
 	@Test
 	public void logCsv() {
-		LoggingUtils.log(new File("files/Test.csv"), "I'm logging txt");
+		LoggingUtils.log(new File(FILE_FOLDER_PATH + "/Test.csv"), "I'm logging txt");
 	}
 
 	@Test
 	public void logCmd() {
-		LoggingUtils.log(new File("files/Test.cmd"), "I'm logging txt");
+		LoggingUtils.log(new File(FILE_FOLDER_PATH + "/Test.cmd"), "I'm logging txt");
 	}
 
 	@Test(timeOut = 10)

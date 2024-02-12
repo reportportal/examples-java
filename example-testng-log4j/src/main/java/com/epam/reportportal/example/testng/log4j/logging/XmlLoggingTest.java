@@ -1,9 +1,7 @@
 package com.epam.reportportal.example.testng.log4j.logging;
 
-import com.epam.reportportal.example.testng.log4j.LoggingUtils;
+import com.epam.reportportal.example.testng.log4j.util.LoggingUtils;
 import com.epam.reportportal.utils.files.Utils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
 
 import java.io.File;
@@ -15,8 +13,6 @@ import java.io.IOException;
  * @author Andrei Varabyeu
  */
 public class XmlLoggingTest {
-
-	private static final Logger LOGGER = LogManager.getLogger(XmlLoggingTest.class);
 	public static final String XML_FILE_PATH = "xml/file.xml";
 
 	@Test
@@ -28,6 +24,6 @@ public class XmlLoggingTest {
 	@Test
 	public void logXmlFile() {
 		/* here we are logging some binary data as file (useful for selenium) */
-		LOGGER.info("RP_MESSAGE#FILE#{}#{}", new File(XML_FILE_PATH), "I'm logging content via temp file");
+		LoggingUtils.log(new File(XML_FILE_PATH), "I'm logging content via temp file");
 	}
 }

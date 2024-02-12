@@ -1,4 +1,4 @@
-package com.epam.reportportal.example.cucumber2.util;
+package com.epam.reportportal.example.testng.logback.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

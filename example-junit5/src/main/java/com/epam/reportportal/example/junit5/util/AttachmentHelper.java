@@ -1,4 +1,4 @@
-package com.epam.reportportal.example.cucumber4.util;
+package com.epam.reportportal.example.junit5.util;
 
 import com.epam.reportportal.utils.files.ByteSource;
 import com.epam.reportportal.utils.files.Utils;

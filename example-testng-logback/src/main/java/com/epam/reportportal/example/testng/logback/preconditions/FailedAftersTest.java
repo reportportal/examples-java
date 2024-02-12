@@ -16,7 +16,7 @@
 
 package com.epam.reportportal.example.testng.logback.preconditions;
 
-import com.epam.reportportal.example.testng.logback.MagicRandomizer;
+import com.epam.reportportal.example.testng.logback.util.MagicRandomizer;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
