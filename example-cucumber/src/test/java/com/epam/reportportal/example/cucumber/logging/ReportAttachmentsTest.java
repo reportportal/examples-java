@@ -1,5 +1,6 @@
 package com.epam.reportportal.example.cucumber.logging;
 
+import com.epam.reportportal.example.cucumber.util.AttachmentHelper;
 import com.epam.reportportal.example.cucumber.util.LoggingUtils;
 import com.epam.reportportal.example.cucumber.util.MagicRandomizer;
 import com.epam.reportportal.service.ReportPortal;
@@ -15,8 +16,9 @@ import java.util.Date;
 public class ReportAttachmentsTest {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ReportAttachmentsTest.class);
-	public static final String XML_FILE_PATH = "src/test/resources/files/file.xml";
-	public static final String JSON_FILE_PATH = "src/test/resources/files/file.json";
+	public static final String FILE_FOLDER_PATH = "src/test/resources/files";
+	public static final String XML_FILE_PATH = FILE_FOLDER_PATH + "/file.xml";
+	public static final String JSON_FILE_PATH = FILE_FOLDER_PATH + "/file.json";
 
 	@Given("I attach logCss")
 	public void logCss() {
@@ -78,15 +80,9 @@ public class ReportAttachmentsTest {
 		);
 	}
 
-	@SuppressWarnings("IOStreamConstructor")
 	@Given("I attach logXmlFile")
-	public void logXmlFile() throws IOException {
-		File file = File.createTempFile("rp-test", "xml");
-		try (InputStream is = new FileInputStream(XML_FILE_PATH)) {
-			try (OutputStream os = new FileOutputStream(file)) {
-				Utils.copyStreams(is, os);
-			}
-		}
+	public void logXmlFile() {
+		File file = AttachmentHelper.getFileFromResources(FILE_FOLDER_PATH, "file", "xml");
 		LOGGER.info("RP_MESSAGE#FILE#{}#{}", file.getAbsolutePath(), "I'm logging content via temp file");
 	}
 
@@ -102,17 +98,10 @@ public class ReportAttachmentsTest {
 		);
 	}
 
-	@SuppressWarnings("IOStreamConstructor")
 	@Given("I attach logJsonFile")
-	public void logJsonFile() throws IOException {
+	public void logJsonFile() {
 		/* here we are logging some binary data as file (useful for selenium) */
-		File file = File.createTempFile("rp-test", ".json");
-		try (InputStream is = new FileInputStream(JSON_FILE_PATH)) {
-			try (OutputStream os = new FileOutputStream(file)) {
-				Utils.copyStreams(is, os);
-			}
-		}
-
+		File file = AttachmentHelper.getFileFromResources(FILE_FOLDER_PATH, "file", "json");
 		LOGGER.info("RP_MESSAGE#FILE#{}#{}", file.getAbsolutePath(), "I'm logging content via temp file");
 	}
 
