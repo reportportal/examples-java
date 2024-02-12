@@ -21,9 +21,6 @@
     <logger name="binary_data_logger" level="TRACE" additivity="false">
         <appender-ref ref="RP"/>
     </logger>
-    <logger name="com.epam.reportportal.example" level="TRACE" additivity="false">
-        <appender-ref ref="RP"/>
-    </logger>
 
     <logger name="com.epam.reportportal.service" level="WARN"/>
     <logger name="com.epam.reportportal.utils" level="WARN"/>

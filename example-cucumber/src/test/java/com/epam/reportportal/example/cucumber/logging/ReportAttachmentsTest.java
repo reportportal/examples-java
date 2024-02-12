@@ -6,16 +6,12 @@ import com.epam.reportportal.example.cucumber.util.MagicRandomizer;
 import com.epam.reportportal.service.ReportPortal;
 import com.epam.reportportal.utils.files.Utils;
 import cucumber.api.java.en.Given;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.io.*;
-import java.util.Base64;
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 
 public class ReportAttachmentsTest {
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(ReportAttachmentsTest.class);
 	public static final String FILE_FOLDER_PATH = "src/test/resources/files";
 	public static final String XML_FILE_PATH = FILE_FOLDER_PATH + "/file.xml";
 	public static final String JSON_FILE_PATH = FILE_FOLDER_PATH + "/file.json";
@@ -73,17 +69,13 @@ public class ReportAttachmentsTest {
 	@Given("I attach logXmlBase64")
 	public void logXmlBase64() throws IOException {
 		/* here we are logging some binary data as BASE64 string */
-		LOGGER.info(
-				"RP_MESSAGE#BASE64#{}#{}",
-				Base64.getEncoder().encodeToString(Utils.getFileAsByteSource(new File(XML_FILE_PATH)).read()),
-				"I'm logging content via BASE64"
-		);
+		LoggingUtils.log(Utils.getFileAsByteSource(new File(XML_FILE_PATH)).read(), "I'm logging content via BASE64");
 	}
 
 	@Given("I attach logXmlFile")
 	public void logXmlFile() {
 		File file = AttachmentHelper.getFileFromResources(FILE_FOLDER_PATH, "file", "xml");
-		LOGGER.info("RP_MESSAGE#FILE#{}#{}", file.getAbsolutePath(), "I'm logging content via temp file");
+		LoggingUtils.log(file, "I'm logging content via temp file");
 	}
 
 	@Given("I attach logBase64")
@@ -91,18 +83,14 @@ public class ReportAttachmentsTest {
 		/* here we are logging some binary data as BASE64 string */
 		ReportPortal.emitLog("ITEM LOG MESSAGE", "error", new Date());
 		ReportPortal.emitLog("ITEM LOG MESSAGE WITH ATTACHMENT", "error", new Date(), new File("src/test/resources/files/file.css"));
-		LOGGER.info(
-				"RP_MESSAGE#BASE64#{}#{}",
-				Base64.getEncoder().encodeToString(Utils.getFileAsByteSource(new File(JSON_FILE_PATH)).read()),
-				"I'm logging content via BASE64"
-		);
+		LoggingUtils.log(Utils.getFileAsByteSource(new File(JSON_FILE_PATH)).read(), "I'm logging content via BASE64");
 	}
 
 	@Given("I attach logJsonFile")
 	public void logJsonFile() {
 		/* here we are logging some binary data as file (useful for selenium) */
 		File file = AttachmentHelper.getFileFromResources(FILE_FOLDER_PATH, "file", "json");
-		LOGGER.info("RP_MESSAGE#FILE#{}#{}", file.getAbsolutePath(), "I'm logging content via temp file");
+		LoggingUtils.log(file, "I'm logging content via temp file");
 	}
 
 	@Given("I attach logImageBase64")
@@ -113,11 +101,7 @@ public class ReportAttachmentsTest {
 			boolean happy = MagicRandomizer.checkYourLucky(30);
 			String image = getImageResource(happy);
 
-			LOGGER.info(
-					"RP_MESSAGE#BASE64#{}#{}",
-					Base64.getEncoder().encodeToString(Utils.getFileAsByteSource(new File(image)).read()),
-					"Pug is " + (happy ? "HAPPY" : "NOT HAPPY")
-			);
+			LoggingUtils.log(Utils.getFileAsByteSource(new File(image)).read(), "Pug is " + (happy ? "HAPPY" : "NOT HAPPY"));
 		}
 	}
 
