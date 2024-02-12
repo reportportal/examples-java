@@ -1,14 +1,16 @@
 package com.epam.reportportal.example.junit;
 
 import com.epam.reportportal.service.ReportPortal;
-import com.google.common.io.Files;
-import com.google.common.io.Resources;
+import com.epam.reportportal.utils.files.ByteSource;
+import com.epam.reportportal.utils.files.Utils;
 import org.junit.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -40,12 +42,17 @@ public class DummyTest {
 		LOGGER.info("Inside Dummy test 1");
 		// Report launch log
 		File file = File.createTempFile("rp-test", ".xml");
-		Resources.asByteSource(Resources.getResource("logback.xml")).copyTo(Files.asByteSink(file));
+		ByteSource source = Utils.getFileAsByteSource(new File("logback.xml"));
+		try (InputStream is = source.openStream()) {
+			try (OutputStream os = java.nio.file.Files.newOutputStream(file.toPath())) {
+				Utils.copyStreams(is, os);
+			}
+		}
 		int n = 5;
 		while (n-- > 0) {
-			LoggingUtils.log(file, "LAUNCH LOG MESSAGE WITH ATTACHMENT");
+			LOGGER.info("RP_MESSAGE#FILE#{}#{}", file.getAbsolutePath(), "LAUNCH LOG MESSAGE WITH ATTACHMENT");
 		}
-		ReportPortal.emitLaunchLog("LAUNCH LOG MESAGE WITH ATTACHMENT", "error", new Date(), file);
+		ReportPortal.emitLaunchLog("LAUNCH LOG MESSAGE WITH ATTACHMENT", "error", new Date(), file);
 
 		assertTrue(true);
 	}
