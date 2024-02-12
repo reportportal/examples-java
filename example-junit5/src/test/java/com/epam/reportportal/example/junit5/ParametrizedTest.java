@@ -154,7 +154,7 @@ public class ParametrizedTest {
 
 	private static class Checks {
 		static boolean isBlank(String input) {
-			return null == input || input.trim().length() == 0;
+			return null == input || input.trim().isEmpty();
 		}
 
 		static boolean isOdd(Integer input) {
