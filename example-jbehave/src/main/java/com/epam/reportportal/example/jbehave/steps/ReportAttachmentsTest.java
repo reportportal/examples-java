@@ -1,6 +1,5 @@
 package com.epam.reportportal.example.jbehave.steps;
 
-import com.epam.reportportal.example.jbehave.LoggingUtils;
 import com.epam.reportportal.example.jbehave.MagicRandomizer;
 import com.epam.reportportal.service.ReportPortal;
 import com.epam.reportportal.utils.files.Utils;
@@ -8,65 +7,65 @@ import org.jbehave.core.annotations.Given;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.Base64;
 import java.util.Date;
 
+@SuppressWarnings("unused")
 public class ReportAttachmentsTest {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ReportAttachmentsTest.class);
-	public static final String XML_FILE_PATH = "xml/file.xml";
-	public static final String JSON_FILE_PATH = "xml/file.json";
+	public static final String XML_FILE_PATH = "src/test/resources/files/file.xml";
+	public static final String JSON_FILE_PATH = "src/test/resources/files/file.json";
 
 	@Given("I attach logCss")
 	public void logCss() {
-		LoggingUtils.log(new File("files/css.css"), "I'm logging CSS");
+		LOGGER.info("RP_MESSAGE#FILE#{}#{}", new File("src/test/resources/files/file.css").getAbsolutePath(), "I'm logging CSS");
 	}
 
 	@Given("I attach logHtml")
 	public void logHtml() {
-		LoggingUtils.log(new File("files/html.html"), "I'm logging HTML");
+		LOGGER.info("RP_MESSAGE#FILE#{}#{}", new File("src/test/resources/files/file.html").getAbsolutePath(), "I'm logging HTML");
 	}
 
 	@Given("I attach logPdf")
 	public void logPdf() {
-		LoggingUtils.log(new File("files/test.pdf"), "I'm logging PDF");
+		LOGGER.info("RP_MESSAGE#FILE#{}#{}", new File("src/test/resources/files/file.pdf").getAbsolutePath(), "I'm logging PDF");
 	}
 
 	@Given("I attach logZip")
 	public void logZip() {
-		LoggingUtils.log(new File("files/demo.zip"), "I'm logging ZIP");
+		LOGGER.info("RP_MESSAGE#FILE#{}#{}", new File("src/test/resources/files/file.zip").getAbsolutePath(), "I'm logging ZIP");
 	}
 
 	@Given("I attach logHar")
 	public void logHar() {
-		LoggingUtils.log(new File("files/har.har"), "I'm logging HAR");
+		LOGGER.info("RP_MESSAGE#FILE#{}#{}", new File("src/test/resources/files/file.har").getAbsolutePath(), "I'm logging HAR");
 	}
 
 	@Given("I attach logJavascript")
 	public void logJavascript() {
-		LoggingUtils.log(new File("files/javascript.js"), "I'm logging JS");
+		LOGGER.info("RP_MESSAGE#FILE#{}#{}", new File("src/test/resources/files/file.js").getAbsolutePath(), "I'm logging JS");
 	}
 
 	@Given("I attach logPhp")
 	public void logPhp() {
-		LoggingUtils.log(new File("files/php.php"), "I'm logging php");
+		LOGGER.info("RP_MESSAGE#FILE#{}#{}", new File("src/test/resources/files/file.php").getAbsolutePath(), "I'm logging PHP");
 	}
 
 	@Given("I attach logPlain")
 	public void logPlain() {
-		LoggingUtils.log(new File("files/plain.txt"), "I'm logging txt");
+		LOGGER.info("RP_MESSAGE#FILE#{}#{}", new File("src/test/resources/files/file.txt").getAbsolutePath(), "I'm logging TXT");
 	}
 
 	@Given("I attach logCsv")
 	public void logCsv() {
-		LoggingUtils.log(new File("files/Test.csv"), "I'm logging txt");
+		LOGGER.info("RP_MESSAGE#FILE#{}#{}", new File("src/test/resources/files/file.csv").getAbsolutePath(), "I'm logging CSV");
 	}
 
 	@Given("I attach logCmd")
 	public void logCmd() {
-		LoggingUtils.log(new File("files/Test.cmd"), "I'm logging txt");
+		LOGGER.info("RP_MESSAGE#FILE#{}#{}", new File("src/test/resources/files/file.cmd").getAbsolutePath(), "I'm logging CMD");
 	}
 
 	@Given("I attach logXmlBase64")
@@ -79,16 +78,23 @@ public class ReportAttachmentsTest {
 		);
 	}
 
+	@SuppressWarnings("IOStreamConstructor")
 	@Given("I attach logXmlFile")
-	public void logXmlFile() {
-		LOGGER.info("RP_MESSAGE#FILE#{}#{}", new File(XML_FILE_PATH).getAbsolutePath(), "I'm logging content via temp file");
+	public void logXmlFile() throws IOException {
+		File file = File.createTempFile("rp-test", "xml");
+		try (InputStream is = new FileInputStream(XML_FILE_PATH)) {
+			try (OutputStream os = new FileOutputStream(file)) {
+				Utils.copyStreams(is, os);
+			}
+		}
+		LOGGER.info("RP_MESSAGE#FILE#{}#{}", file.getAbsolutePath(), "I'm logging content via temp file");
 	}
 
-	@Given("I attach logJsonBase64")
-	public void logJsonBase64() throws IOException {
+	@Given("I attach logBase64")
+	public void logBase64() throws IOException {
 		/* here we are logging some binary data as BASE64 string */
 		ReportPortal.emitLog("ITEM LOG MESSAGE", "error", new Date());
-		ReportPortal.emitLog("ITEM LOG MESSAGE WITH ATTACHMENT", "error", new Date(), new File("files/css.css"));
+		ReportPortal.emitLog("ITEM LOG MESSAGE WITH ATTACHMENT", "error", new Date(), new File("src/test/resources/files/file.css"));
 		LOGGER.info(
 				"RP_MESSAGE#BASE64#{}#{}",
 				Base64.getEncoder().encodeToString(Utils.getFileAsByteSource(new File(JSON_FILE_PATH)).read()),
@@ -96,12 +102,18 @@ public class ReportAttachmentsTest {
 		);
 	}
 
+	@SuppressWarnings("IOStreamConstructor")
 	@Given("I attach logJsonFile")
-	public void logJsonFile() {
+	public void logJsonFile() throws IOException {
 		/* here we are logging some binary data as file (useful for selenium) */
-		for (int i = 0; i < 1; i++) {
-			LOGGER.info("RP_MESSAGE#FILE#{}#{}", new File(JSON_FILE_PATH).getAbsolutePath(), "I'm logging content via temp file");
+		File file = File.createTempFile("rp-test", ".json");
+		try (InputStream is = new FileInputStream(JSON_FILE_PATH)) {
+			try (OutputStream os = new FileOutputStream(file)) {
+				Utils.copyStreams(is, os);
+			}
 		}
+
+		LOGGER.info("RP_MESSAGE#FILE#{}#{}", file.getAbsolutePath(), "I'm logging content via temp file");
 	}
 
 	@Given("I attach logImageBase64")
@@ -121,6 +133,6 @@ public class ReportAttachmentsTest {
 	}
 
 	private String getImageResource(boolean lucky) {
-		return "pug/" + (lucky ? "lucky.jpg" : "unlucky.jpg");
+		return "src/test/resources/pug/" + (lucky ? "lucky.jpg" : "unlucky.jpg");
 	}
 }
