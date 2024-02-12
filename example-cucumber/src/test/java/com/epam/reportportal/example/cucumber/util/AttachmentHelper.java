@@ -1,10 +1,12 @@
 package com.epam.reportportal.example.cucumber.util;
 
+import com.epam.reportportal.utils.files.ByteSource;
 import com.epam.reportportal.utils.files.Utils;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 public class AttachmentHelper {
 
