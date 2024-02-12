@@ -1,12 +1,10 @@
 package com.epam.reportportal.example.junit.logging;
 
-import com.epam.reportportal.example.junit.LoggingUtils;
+import com.epam.reportportal.example.junit.util.AttachmentHelper;
+import com.epam.reportportal.example.junit.util.LoggingUtils;
 import com.epam.reportportal.service.ReportPortal;
-import com.google.common.io.Files;
-import com.google.common.io.Resources;
+import com.epam.reportportal.utils.files.Utils;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,30 +16,25 @@ import java.util.Date;
  * @author Andrei Varabyeu
  */
 public class JsonLoggingTest {
-
-	public static final String JSON_FILE_PATH = "xml/file.json";
-	private static final Logger LOGGER = LoggerFactory.getLogger(JsonLoggingTest.class);
+	public static final String JSON_FILE_PATH = "src/test/resources/xml";
 
 	@Test
 	public void logJsonBase64() throws IOException {
 		/* here we are logging some binary data as BASE64 string */
-		ReportPortal.emitLog("LAUNCH LOG MESAGE", "error", new Date());
+		ReportPortal.emitLog("LAUNCH LOG MESSAGE", "error", new Date());
 
-		File file = File.createTempFile("rp-test", ".css");
-		Resources.asByteSource(Resources.getResource("files/file.css")).copyTo(Files.asByteSink(file));
-		ReportPortal.emitLog("LAUNCH LOG MESAGE WITH ATTACHMENT", "error", new Date(), file);
-
-		LoggingUtils.log(Resources.asByteSource(Resources.getResource(JSON_FILE_PATH)).read(), "I'm logging content via BASE64");
+		File file = AttachmentHelper.getFileFromResources(JSON_FILE_PATH, "file", "json");
+		ReportPortal.emitLog("LAUNCH LOG MESSAGE WITH ATTACHMENT", "error", new Date(), file);
+		LoggingUtils.log(file, "I'm logging content via temp file");
+		LoggingUtils.log(Utils.getFileAsByteSource(file).read(), "I'm logging content via BASE64");
 	}
 
 	@Test
-	public void logJsonFile() throws IOException {
+	public void logJsonFile() {
 		/* here we are logging some binary data as file (useful for selenium) */
-		File file = File.createTempFile("rp-test", ".json");
-		Resources.asByteSource(Resources.getResource(JSON_FILE_PATH)).copyTo(Files.asByteSink(file));
-
+		File file = AttachmentHelper.getFileFromResources(JSON_FILE_PATH, "file", "json");
 		for (int i = 0; i < 1; i++) {
-			LOGGER.info("RP_MESSAGE#FILE#{}#{}", file.getAbsolutePath(), "I'm logging content via temp file");
+			LoggingUtils.log(file, "I'm logging content via temp file");
 		}
 	}
 

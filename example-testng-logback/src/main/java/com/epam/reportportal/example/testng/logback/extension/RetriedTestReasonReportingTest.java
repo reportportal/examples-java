@@ -21,7 +21,6 @@ import com.epam.reportportal.testng.BaseTestNGListener;
 import com.epam.reportportal.testng.ITestNGService;
 import com.epam.reportportal.testng.TestNGService;
 import com.epam.reportportal.utils.MemoizingSupplier;
-import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -30,6 +29,7 @@ import org.testng.ITestResult;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import javax.annotation.Nonnull;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Supplier;
 
@@ -78,7 +78,7 @@ public class RetriedTestReasonReportingTest {
 	}
 
 	public static class SkipReasonLoggingService extends TestNGService {
-		public SkipReasonLoggingService(@NotNull ReportPortal reportPortal) {
+		public SkipReasonLoggingService(@Nonnull ReportPortal reportPortal) {
 			super(reportPortal);
 		}
 

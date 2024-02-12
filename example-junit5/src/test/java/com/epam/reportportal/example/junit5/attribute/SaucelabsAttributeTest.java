@@ -10,9 +10,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.google.common.collect.Sets;
 
 import java.util.Calendar;
+import java.util.Collections;
 
 import static com.epam.reportportal.junit5.ReportPortalExtension.REPORT_PORTAL;
 import static com.epam.reportportal.junit5.ReportPortalExtension.TEST_ITEM_TREE;
@@ -39,7 +39,7 @@ public class SaucelabsAttributeTest {
 		FinishTestItemRQ request = new FinishTestItemRQ();
 		request.setStatus("passed");
 		request.setEndTime(Calendar.getInstance().getTime());
-		request.setAttributes(Sets.newHashSet(new ItemAttributesRQ("SLID", "0586c1c90fcd4a499591109692426d54")));
+		request.setAttributes(Collections.singleton(new ItemAttributesRQ("SLID", "0586c1c90fcd4a499591109692426d54")));
 		ItemTreeReporter.finishItem(REPORT_PORTAL.getClient(), request, TEST_ITEM_TREE.getLaunchId(), leaf).cache().subscribe();
 	}
 }

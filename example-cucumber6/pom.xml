@@ -34,7 +34,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
-        <cucumber.version>7.13.0</cucumber.version>
+        <cucumber.version>7.15.0</cucumber.version>
+        <selenium.version>4.17.0</selenium.version>
     </properties>
 
 
@@ -42,13 +43,13 @@
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>agent-java-cucumber6</artifactId>
-            <version>5.2.0</version>
+            <version>5.3.1</version>
         </dependency>
 
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>logger-java-logback</artifactId>
-            <version>5.1.6</version>
+            <version>5.2.1</version>
             <scope>test</scope>
         </dependency>
 
@@ -68,20 +69,13 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.4.8</version>
+            <version>1.4.12</version>
         </dependency>
 
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.3.0</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>io.github.bonigarcia</groupId>
-            <artifactId>webdrivermanager</artifactId>
-            <version>5.4.0</version>
+            <version>${selenium.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

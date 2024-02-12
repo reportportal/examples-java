@@ -19,32 +19,32 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
         <aspectj.version>1.9.19</aspectj.version>
-        <selenium.version>4.8.1</selenium.version>
+        <selenium.version>4.17.0</selenium.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>agent-java-testng</artifactId>
-            <version>5.3.1</version>
+            <version>5.4.1</version>
         </dependency>
 
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>logger-java-logback</artifactId>
-            <version>5.1.6</version>
+            <version>5.2.1</version>
         </dependency>
 
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.8.0</version>
+            <version>7.9.0</version>
         </dependency>
 
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.4.8</version>
+            <version>1.4.12</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -86,35 +86,35 @@
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>logger-java-rest-assured</artifactId>
-            <version>5.2.4</version>
+            <version>5.3.2</version>
         </dependency>
 
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>logger-java-okhttp3</artifactId>
-            <version>5.0.3</version>
+            <version>5.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>4.12.0</version>
         </dependency>
 
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>logger-java-httpcomponents</artifactId>
-            <version>5.0.2</version>
+            <version>5.1.2</version>
         </dependency>
 
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
-            <version>6.12.3</version>
-        </dependency>
-        <dependency>
-            <groupId>io.github.bonigarcia</groupId>
-            <artifactId>webdrivermanager</artifactId>
-            <version>5.4.0</version>
+            <version>6.19.1</version>
         </dependency>
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>logger-java-selenide</artifactId>
-            <version>5.1.4</version>
+            <version>5.2.1</version>
         </dependency>
     </dependencies>
 
@@ -160,13 +160,6 @@
                         <version>${aspectj.version}</version>
                     </dependency>
                 </dependencies>
-            </plugin>
-
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.10.0</version>
             </plugin>
         </plugins>
     </build>

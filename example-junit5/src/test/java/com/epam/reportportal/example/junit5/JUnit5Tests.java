@@ -1,14 +1,12 @@
 package com.epam.reportportal.example.junit5;
 
+import com.epam.reportportal.example.junit5.util.AttachmentHelper;
 import com.epam.reportportal.junit5.ReportPortalExtension;
 import com.epam.reportportal.service.ReportPortal;
-import com.google.common.io.Files;
-import com.google.common.io.Resources;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -32,13 +30,10 @@ class JUnit5Tests {
 	@Test
 	@Tag("tag1")
 	@Tag("tag2")
-	void baseClassTest() throws IOException {
+	void baseClassTest() {
 		// Report launch log
-		File file = File.createTempFile("rp-test", ".css");
-		Resources.asByteSource(Resources.getResource("files/file.css")).copyTo(Files.asByteSink(file));
+		File file = AttachmentHelper.getFileFromResources("src/test/resources/files", "file", "css");
 		ReportPortal.emitLaunchLog("LAUNCH LOG MESSAGE WITH ATTACHMENT", "error", new Date(), file);
-
-		System.out.println("base-class-test");
 	}
 
 	@Disabled

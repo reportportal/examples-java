@@ -1,11 +1,9 @@
 package com.epam.reportportal.example.junit.logging;
 
-import com.epam.reportportal.example.junit.LoggingUtils;
-import com.google.common.io.Files;
-import com.google.common.io.Resources;
+import com.epam.reportportal.example.junit.util.AttachmentHelper;
+import com.epam.reportportal.example.junit.util.LoggingUtils;
+import com.epam.reportportal.utils.files.Utils;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,21 +14,19 @@ import java.io.IOException;
  * @author Andrei Varabyeu
  */
 public class XmlLoggingTest {
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(XmlLoggingTest.class);
-	public static final String XML_FILE_PATH = "xml/file.xml";
+	public static final String XML_FILE_FOLDER_PATH = "src/test/resources/xml";
+	public static final String XML_FILE_PATH = XML_FILE_FOLDER_PATH + "/file.xml";
 
 	@Test
 	public void logXmlBase64() throws IOException {
 		/* here we are logging some binary data as BASE64 string */
-		LoggingUtils.log(Resources.asByteSource(Resources.getResource(XML_FILE_PATH)).read(), "I'm logging content via BASE64");
+		LoggingUtils.log(Utils.getFileAsByteSource(new File(XML_FILE_PATH)).read(), "I'm logging content via BASE64");
 	}
 
 	@Test
-	public void logXmlFile() throws IOException {
+	public void logXmlFile() {
 		/* here we are logging some binary data as file (useful for selenium) */
-		File file = File.createTempFile("rp-test", "xml");
-		Resources.asByteSource(Resources.getResource(XML_FILE_PATH)).copyTo(Files.asByteSink(file));
-		LoggingUtils.log(file, "I'm logging content via temp file");
+		File file = AttachmentHelper.getFileFromResources(XML_FILE_FOLDER_PATH, "file", "xml");
+		LoggingUtils.log(file, "I'm logging content via BASE64");
 	}
 }

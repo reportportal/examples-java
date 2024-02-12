@@ -17,7 +17,7 @@
 package com.epam.reportportal.example.testng.log4j.step.pattern;
 
 import com.epam.reportportal.annotations.Step;
-import com.epam.reportportal.annotations.StepTemplateConfig;
+import com.epam.reportportal.annotations.TemplateConfig;
 import com.epam.reportportal.testng.ReportPortalTestNGListener;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -28,6 +28,7 @@ import java.util.List;
 /**
  * @author <a href="mailto:ivan_budayeu@epam.com">Ivan Budayeu</a>
  */
+@SuppressWarnings("unused")
 @Listeners(ReportPortalTestNGListener.class)
 public class PatternTest {
 
@@ -58,7 +59,8 @@ public class PatternTest {
 
 	}
 
-	@Step(value = "My {method} explanation using test method - {m}", templateConfig = @StepTemplateConfig(methodNameTemplate = "m"))
+	@SuppressWarnings({ "SameParameterValue", "unused" })
+	@Step(value = "My {method} explanation using test method - {m}", config = @TemplateConfig(methodNameTemplate = "m"))
 	private void checkMethod(String method) {
 
 	}

@@ -10,7 +10,7 @@ Given I attach logHar
 Given I attach logHtml
 Given I attach logImageBase64
 Given I attach logJavascript
-Given I attach logJsonBase64
+Given I attach logBase64
 Given I attach logJsonFile
 Given I attach logPdf
 Given I attach logPhp

@@ -1,12 +1,11 @@
 package com.epam.reportportal.example.junit.logging;
 
-import com.epam.reportportal.example.junit.LoggingUtils;
-import com.epam.reportportal.example.junit.MagicRandomizer;
-import com.google.common.io.Resources;
+import com.epam.reportportal.example.junit.util.LoggingUtils;
+import com.epam.reportportal.example.junit.util.MagicRandomizer;
+import com.epam.reportportal.utils.files.Utils;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -15,9 +14,6 @@ import java.io.IOException;
  * @author Andrei Varabyeu
  */
 public class LuckyPugTest {
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(LuckyPugTest.class);
-
 	@Test
 	public void logImageBase64() throws IOException {
 
@@ -26,11 +22,11 @@ public class LuckyPugTest {
 			/* 50 percents. So we should have approximately same count of lucky and unlucky pugs */
 			boolean happy = MagicRandomizer.checkYourLucky(30);
 			String image = getImageResource(happy);
-			LoggingUtils.log(Resources.asByteSource(Resources.getResource(image)).read(), "Pug is " + (happy ? "HAPPY" : "NOT HAPPY"));
+			LoggingUtils.log(Utils.getFileAsByteSource(new File(image)).read(), "Pug is " + (happy ? "HAPPY" : "NOT HAPPY"));
 		}
 	}
 
 	private String getImageResource(boolean lucky) {
-		return "pug/" + (lucky ? "lucky.jpg" : "unlucky.jpg");
+		return "src/test/resources/pug/" + (lucky ? "lucky.jpg" : "unlucky.jpg");
 	}
 }

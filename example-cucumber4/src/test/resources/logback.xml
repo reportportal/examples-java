@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ Copyright 2021 EPAM Systems
+  ~ Copyright 2024 EPAM Systems
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -33,16 +33,16 @@
         </encoder>
     </appender>
 
-     <!--'additivity' flag is important! Without it logback will double-log log messages-->
+    <!-- We turned off framework logging by setting root level="WARN" to avoid logging encoded data into console. By setting level="TRACE"
+         for "binary_data_logger" and connected it only to RP appender to log that data to ReportPortal. The 'additivity' flag is important!
+         Without it logback will double-log log messages -->
     <logger name="binary_data_logger" level="TRACE" additivity="false">
         <appender-ref ref="RP"/>
     </logger>
-
-    <logger name="com.epam.reportportal.service" level="WARN"/>
-    <logger name="com.epam.reportportal.utils" level="WARN"/>
+    <logger name="com.epam.reportportal.example" level="TRACE"/>
 
     <!-- By default, the level of the root level is set to DEBUG -->
-    <root level="TRACE">
+    <root level="WARN">
         <appender-ref ref="RP"/>
         <appender-ref ref="STDOUT"/>
     </root>

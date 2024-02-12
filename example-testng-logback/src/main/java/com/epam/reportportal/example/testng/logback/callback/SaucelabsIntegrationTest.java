@@ -23,7 +23,6 @@ import com.epam.reportportal.service.tree.TestItemTree;
 import com.epam.reportportal.testng.util.ItemTreeUtils;
 import com.epam.ta.reportportal.ws.model.FinishTestItemRQ;
 import com.epam.ta.reportportal.ws.model.attribute.ItemAttributesRQ;
-import com.google.common.collect.Sets;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -37,6 +36,7 @@ import org.testng.annotations.Test;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Calendar;
+import java.util.Collections;
 
 import static com.epam.reportportal.testng.TestNGService.ITEM_TREE;
 import static java.util.Optional.ofNullable;
@@ -125,7 +125,7 @@ public class SaucelabsIntegrationTest {
 		FinishTestItemRQ finishTestItemRQ = new FinishTestItemRQ();
 		finishTestItemRQ.setStatus("PASSED");
 		finishTestItemRQ.setEndTime(Calendar.getInstance().getTime());
-		finishTestItemRQ.setAttributes(Sets.newHashSet(new ItemAttributesRQ("SLID", sauceLabsJobId)));
+		finishTestItemRQ.setAttributes(Collections.singleton(new ItemAttributesRQ("SLID", sauceLabsJobId)));
 		ItemTreeReporter.finishItem(getClient(), finishTestItemRQ, ITEM_TREE.getLaunchId(), testResultLeaf)
 				.cache()
 				.blockingGet();

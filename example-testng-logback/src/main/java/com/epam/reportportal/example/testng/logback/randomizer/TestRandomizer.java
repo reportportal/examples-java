@@ -16,7 +16,7 @@
 
 package com.epam.reportportal.example.testng.logback.randomizer;
 
-import com.epam.reportportal.example.testng.logback.MagicRandomizer;
+import com.epam.reportportal.example.testng.logback.util.MagicRandomizer;
 import com.google.common.collect.Range;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +24,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  * Several tests for magic randomizer
@@ -37,7 +38,7 @@ public class TestRandomizer {
 	/*let's say this is error for defined above execution count */
 	private static final int PROBABILITY_ERROR = 5;
 
-	private Logger LOGGER = LoggerFactory.getLogger(TestRandomizer.class);
+	private final Logger LOGGER = LoggerFactory.getLogger(TestRandomizer.class);
 
 	@Test
 	public void testRandomizerGenerator() {
@@ -79,7 +80,7 @@ public class TestRandomizer {
 	}
 
 	private Integer calculatePercentage(int count, int value, int scale) {
-		return BigDecimal.valueOf(value).divide(BigDecimal.valueOf(count), scale, BigDecimal.ROUND_HALF_UP)
+		return BigDecimal.valueOf(value).divide(BigDecimal.valueOf(count), scale, RoundingMode.HALF_UP)
 				.multiply(BigDecimal.valueOf(100)).intValue();
 	}
 }

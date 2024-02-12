@@ -16,9 +16,8 @@
 
 package com.epam.reportportal.example.testng.logback.extension;
 
-import com.epam.reportportal.example.testng.logback.LoggingUtils;
+import com.epam.reportportal.example.testng.logback.util.LoggingUtils;
 import com.epam.reportportal.testng.ReportPortalTestNGListener;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -41,7 +40,6 @@ public class ScreenshotOnFailureTestExtensionTest {
 
 	@BeforeMethod
 	public void initDriver() {
-		WebDriverManager.chromedriver().setup();
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--remote-allow-origins=*");
 		driver = new ChromeDriver(options);

@@ -16,7 +16,7 @@
 
 package com.epam.reportportal.example.testng.logback.randomizer;
 
-import com.epam.reportportal.example.testng.logback.MagicRandomizer;
+import com.epam.reportportal.example.testng.logback.util.MagicRandomizer;
 import org.testng.annotations.Test;
 
 /**

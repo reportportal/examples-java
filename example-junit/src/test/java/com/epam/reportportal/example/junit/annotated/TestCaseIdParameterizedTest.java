@@ -25,7 +25,7 @@ public class TestCaseIdParameterizedTest implements ArtifactParams {
 	public final AtomIdentity identity = new AtomIdentity(this);
 
 	@TestCaseIdKey
-	private String input;
+	private final String input;
 
 	public TestCaseIdParameterizedTest(String input) {
 		this.input = input;

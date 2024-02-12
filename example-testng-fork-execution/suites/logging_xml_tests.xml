@@ -8,7 +8,6 @@
     <test verbose="1" name="XML logging">
         <classes>
             <class name="com.epam.reportportal.example.testng.logback.logging.XmlLoggingTest"/>
-            <class name="com.epam.reportportal.example.testng.logback.logging.XmlLoggingBetterTest"/>
         </classes>
     </test>
 

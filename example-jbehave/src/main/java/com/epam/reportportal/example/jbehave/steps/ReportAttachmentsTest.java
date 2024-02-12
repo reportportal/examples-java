@@ -1,138 +1,97 @@
 package com.epam.reportportal.example.jbehave.steps;
 
-import com.epam.reportportal.example.jbehave.LoggingUtils;
-import com.epam.reportportal.example.jbehave.MagicRandomizer;
+import com.epam.reportportal.example.jbehave.util.AttachmentHelper;
+import com.epam.reportportal.example.jbehave.util.LoggingUtils;
+import com.epam.reportportal.example.jbehave.util.MagicRandomizer;
 import com.epam.reportportal.service.ReportPortal;
-import com.google.common.io.Files;
-import com.google.common.io.Resources;
+import com.epam.reportportal.utils.files.Utils;
 import org.jbehave.core.annotations.Given;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Base64;
+import java.io.*;
 import java.util.Date;
 
+@SuppressWarnings("unused")
 public class ReportAttachmentsTest {
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(ReportAttachmentsTest.class);
-	public static final String XML_FILE_PATH = "xml/file.xml";
-	public static final String JSON_FILE_PATH = "xml/file.json";
+	public static final String RESOURCE_FOLDER_PATH = "src/main/resources";
+	public static final String FILE_FOLDER_PATH = RESOURCE_FOLDER_PATH + "/files";
+	public static final String XML_FILE_PATH = FILE_FOLDER_PATH + "/file.xml";
+	public static final String JSON_FILE_PATH = FILE_FOLDER_PATH + "/file.json";
 
 	@Given("I attach logCss")
-	public void logCss() throws IOException {
-		File file = File.createTempFile("rp-test", ".css");
-		Resources.asByteSource(Resources.getResource("files/css.css")).copyTo(Files.asByteSink(file));
-		LoggingUtils.log(file, "I'm logging CSS");
+	public void logCss() {
+		LoggingUtils.log(new File(FILE_FOLDER_PATH + "/file.css"), "I'm logging CSS");
 	}
 
 	@Given("I attach logHtml")
-	public void logHtml() throws IOException {
-		File file = File.createTempFile("rp-test", ".html");
-		Resources.asByteSource(Resources.getResource("files/html.html")).copyTo(Files.asByteSink(file));
-		LoggingUtils.log(file, "I'm logging HTML");
+	public void logHtml() {
+		LoggingUtils.log(new File(FILE_FOLDER_PATH + "/file.html"), "I'm logging HTML");
 	}
 
 	@Given("I attach logPdf")
-	public void logPdf() throws IOException {
-		File file = File.createTempFile("rp-test", ".pdf");
-		Resources.asByteSource(Resources.getResource("files/test.pdf")).copyTo(Files.asByteSink(file));
-		LoggingUtils.log(file, "I'm logging PDF");
+	public void logPdf() {
+		LoggingUtils.log(new File(FILE_FOLDER_PATH + "/file.pdf"), "I'm logging PDF");
 	}
 
 	@Given("I attach logZip")
-	public void logZip() throws IOException {
-		File file = File.createTempFile("rp-test", ".zip");
-		Resources.asByteSource(Resources.getResource("files/demo.zip")).copyTo(Files.asByteSink(file));
-		LoggingUtils.log(file, "I'm logging ZIP");
+	public void logZip() {
+		LoggingUtils.log(new File(FILE_FOLDER_PATH + "/file.zip"), "I'm logging ZIP");
 	}
 
 	@Given("I attach logHar")
-	public void logHar() throws IOException {
-		File file = File.createTempFile("har", ".json");
-		Resources.asByteSource(Resources.getResource("files/har.har")).copyTo(Files.asByteSink(file));
-		LoggingUtils.log(file, "I'm logging HAR");
+	public void logHar() {
+		LoggingUtils.log(new File(FILE_FOLDER_PATH + "/file.har"), "I'm logging HAR");
 	}
 
 	@Given("I attach logJavascript")
-	public void logJavascript() throws IOException {
-		File file = File.createTempFile("rp-test", ".js");
-		Resources.asByteSource(Resources.getResource("files/javascript.js")).copyTo(Files.asByteSink(file));
-		LoggingUtils.log(file, "I'm logging JS");
+	public void logJavascript() {
+		LoggingUtils.log(new File(FILE_FOLDER_PATH + "/file.js"), "I'm logging JS");
 	}
 
 	@Given("I attach logPhp")
-	public void logPhp() throws IOException {
-		File file = File.createTempFile("rp-test", ".php");
-		Resources.asByteSource(Resources.getResource("files/php.php")).copyTo(Files.asByteSink(file));
-		LoggingUtils.log(file, "I'm logging php");
+	public void logPhp() {
+		LoggingUtils.log(new File(FILE_FOLDER_PATH + "/file.php"), "I'm logging PHP");
 	}
 
 	@Given("I attach logPlain")
-	public void logPlain() throws IOException {
-		File file = File.createTempFile("rp-test", ".txt");
-		Resources.asByteSource(Resources.getResource("files/plain.txt")).copyTo(Files.asByteSink(file));
-		LoggingUtils.log(file, "I'm logging txt");
+	public void logPlain() {
+		LoggingUtils.log(new File(FILE_FOLDER_PATH + "/file.txt"), "I'm logging TXT");
 	}
 
 	@Given("I attach logCsv")
-	public void logCsv() throws IOException {
-		File file = File.createTempFile("rp-test", ".csv");
-		Resources.asByteSource(Resources.getResource("files/Test.csv")).copyTo(Files.asByteSink(file));
-		LoggingUtils.log(file, "I'm logging txt");
+	public void logCsv() {
+		LoggingUtils.log(new File(FILE_FOLDER_PATH + "/file.csv"), "I'm logging CSV");
 	}
 
 	@Given("I attach logCmd")
-	public void logCmd() throws IOException {
-		File file = File.createTempFile("rp-test", ".cmd");
-		Resources.asByteSource(Resources.getResource("files/Test.cmd")).copyTo(Files.asByteSink(file));
-		LoggingUtils.log(file, "I'm logging txt");
+	public void logCmd() {
+		LoggingUtils.log(new File(FILE_FOLDER_PATH + "/file.cmd"), "I'm logging CMD");
 	}
 
 	@Given("I attach logXmlBase64")
 	public void logXmlBase64() throws IOException {
 		/* here we are logging some binary data as BASE64 string */
-		LOGGER.info(
-				"RP_MESSAGE#BASE64#{}#{}",
-				Base64.getEncoder().encodeToString(Resources.asByteSource(Resources.getResource(XML_FILE_PATH)).read()),
-				"I'm logging content via BASE64"
-		);
+		LoggingUtils.log(Utils.getFileAsByteSource(new File(XML_FILE_PATH)).read(), "I'm logging content via BASE64");
 	}
 
 	@Given("I attach logXmlFile")
-	public void logXmlFile() throws IOException {
-		File file = File.createTempFile("rp-test", "xml");
-		Resources.asByteSource(Resources.getResource(XML_FILE_PATH)).copyTo(Files.asByteSink(file));
-
-		LOGGER.info("RP_MESSAGE#FILE#{}#{}", file.getAbsolutePath(), "I'm logging content via temp file");
+	public void logXmlFile() {
+		File file = AttachmentHelper.getFileFromResources(FILE_FOLDER_PATH, "file", "xml");
+		LoggingUtils.log(file, "I'm logging content via temp file");
 	}
 
-	@Given("I attach logJsonBase64")
-	public void logJsonBase64() throws IOException {
+	@Given("I attach logBase64")
+	public void logBase64() throws IOException {
 		/* here we are logging some binary data as BASE64 string */
 		ReportPortal.emitLog("ITEM LOG MESSAGE", "error", new Date());
-
-		File file = File.createTempFile("rp-test", ".css");
-		Resources.asByteSource(Resources.getResource("files/css.css")).copyTo(Files.asByteSink(file));
-		ReportPortal.emitLog("ITEM LOG MESSAGE WITH ATTACHMENT", "error", new Date(), file);
-
-		LOGGER.info(
-				"RP_MESSAGE#BASE64#{}#{}",
-				Base64.getEncoder().encodeToString(Resources.asByteSource(Resources.getResource(JSON_FILE_PATH)).read()),
-				"I'm logging content via BASE64"
-		);
+		ReportPortal.emitLog("ITEM LOG MESSAGE WITH ATTACHMENT", "error", new Date(), new File(FILE_FOLDER_PATH + "/file.css"));
+		LoggingUtils.log(Utils.getFileAsByteSource(new File(JSON_FILE_PATH)).read(), "I'm logging content via BASE64");
 	}
 
 	@Given("I attach logJsonFile")
-	public void logJsonFile() throws IOException, InterruptedException {
+	public void logJsonFile() {
 		/* here we are logging some binary data as file (useful for selenium) */
-		File file = File.createTempFile("rp-test", ".json");
-		Resources.asByteSource(Resources.getResource(JSON_FILE_PATH)).copyTo(Files.asByteSink(file));
-
-		for (int i = 0; i < 1; i++) {
-			LOGGER.info("RP_MESSAGE#FILE#{}#{}", file.getAbsolutePath(), "I'm logging content via temp file");
-		}
+		File file = AttachmentHelper.getFileFromResources(FILE_FOLDER_PATH, "file", "json");
+		LoggingUtils.log(file, "I'm logging content via temp file");
 	}
 
 	@Given("I attach logImageBase64")
@@ -142,16 +101,11 @@ public class ReportAttachmentsTest {
 			/* 50 percents. So we should have approximately same count of lucky and unlucky pugs */
 			boolean happy = MagicRandomizer.checkYourLucky(30);
 			String image = getImageResource(happy);
-
-			LOGGER.info(
-					"RP_MESSAGE#BASE64#{}#{}",
-					Base64.getEncoder().encodeToString(Resources.asByteSource(Resources.getResource(image)).read()),
-					"Pug is " + (happy ? "HAPPY" : "NOT HAPPY")
-			);
+			LoggingUtils.log(Utils.getFileAsByteSource(new File(image)).read(), "Pug is " + (happy ? "HAPPY" : "NOT HAPPY"));
 		}
 	}
 
 	private String getImageResource(boolean lucky) {
-		return "pug/" + (lucky ? "lucky.jpg" : "unlucky.jpg");
+		return RESOURCE_FOLDER_PATH + "/pug/" + (lucky ? "lucky.jpg" : "unlucky.jpg");
 	}
 }

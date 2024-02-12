@@ -1,8 +1,6 @@
 package com.epam.reportportal.example.jbehave.steps;
 
 import com.epam.reportportal.service.ReportPortal;
-import com.google.common.io.Files;
-import com.google.common.io.Resources;
 import org.jbehave.core.annotations.*;
 import org.jbehave.core.model.ExamplesTable;
 import org.junit.jupiter.api.Assertions;
@@ -30,10 +28,7 @@ public class ApiSteps {
 	@Composite(steps = { "Given preparedStep1", "Given preparedStep2" })
 	public void precondition() throws IOException {
 		// Report launch log
-		File file = File.createTempFile("rp-test", ".css");
-		Resources.asByteSource(Resources.getResource("files/css.css")).copyTo(Files.asByteSink(file));
-		ReportPortal.emitLaunchLog("LAUNCH LOG MESSAGE WITH ATTACHMENT", "error", new Date(), file);
-
+		ReportPortal.emitLaunchLog("LAUNCH LOG MESSAGE WITH ATTACHMENT", "error", new Date(), new File("files/css.css"));
 		logger.info("It is a composite step which contain preparedStep1 and  preparedStep2");
 	}
 

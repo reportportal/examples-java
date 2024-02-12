@@ -23,13 +23,13 @@
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>agent-java-cucumber</artifactId>
-            <version>5.1.4</version>
+            <version>5.2.1</version>
         </dependency>
 
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>logger-java-logback</artifactId>
-            <version>5.1.6</version>
+            <version>5.2.1</version>
         </dependency>
 
         <dependency>
@@ -59,7 +59,7 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.3.8</version>
+            <version>1.3.12</version>
         </dependency>
 
         <dependency>
@@ -87,18 +87,6 @@
                     <execution>
                         <goals>
                             <goal>compileTests</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>compile</goal>
-                            <goal>testCompile</goal>
                         </goals>
                     </execution>
                 </executions>

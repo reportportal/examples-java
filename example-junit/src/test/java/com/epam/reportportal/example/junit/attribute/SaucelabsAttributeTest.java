@@ -7,7 +7,6 @@ import com.epam.reportportal.service.tree.ItemTreeReporter;
 import com.epam.reportportal.service.tree.TestItemTree;
 import com.epam.ta.reportportal.ws.model.FinishTestItemRQ;
 import com.epam.ta.reportportal.ws.model.attribute.ItemAttributesRQ;
-import com.google.common.collect.Sets;
 import org.junit.AfterClass;
 import org.junit.Rule;
 import org.junit.Test;
@@ -19,6 +18,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 import static java.util.Optional.ofNullable;
@@ -35,8 +35,7 @@ public class SaucelabsAttributeTest {
 	public TestRule rule = new TestWatcher() {
 		@Override
 		protected void finished(Description description) {
-			ofNullable(ItemTreeUtils.retrieveLeaf(
-					description,
+			ofNullable(ItemTreeUtils.retrieveLeaf(description,
 					ParallelRunningContext.getCurrent().getItemTree()
 			)).ifPresent(testItemLeaves::add);
 		}
@@ -56,9 +55,8 @@ public class SaucelabsAttributeTest {
 		FinishTestItemRQ request = new FinishTestItemRQ();
 		request.setEndTime(Calendar.getInstance().getTime());
 		request.setStatus("PASSED");
-		request.setAttributes(Sets.newHashSet(new ItemAttributesRQ("SLID", "0586c1c90fcd4a499591109692426d54")));
-		ItemTreeReporter.finishItem(
-				ReportPortalListener.getReportPortal().getClient(),
+		request.setAttributes(Collections.singleton(new ItemAttributesRQ("SLID", "0586c1c90fcd4a499591109692426d54")));
+		ItemTreeReporter.finishItem(ReportPortalListener.getReportPortal().getClient(),
 				request,
 				ParallelRunningContext.getCurrent().getItemTree().getLaunchId(),
 				testItemLeaves.get(0)

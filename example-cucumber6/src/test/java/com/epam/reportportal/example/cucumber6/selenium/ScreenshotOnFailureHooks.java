@@ -20,7 +20,6 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -39,7 +38,6 @@ public class ScreenshotOnFailureHooks {
 
 	@Before
 	public void beforeScenario() {
-		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
 	}
 

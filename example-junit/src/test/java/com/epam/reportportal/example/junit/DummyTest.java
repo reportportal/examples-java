@@ -1,14 +1,13 @@
 package com.epam.reportportal.example.junit;
 
+import com.epam.reportportal.example.junit.util.AttachmentHelper;
+import com.epam.reportportal.example.junit.util.LoggingUtils;
 import com.epam.reportportal.service.ReportPortal;
-import com.google.common.io.Files;
-import com.google.common.io.Resources;
 import org.junit.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -36,16 +35,15 @@ public class DummyTest {
 	}
 
 	@Test
-	public void test1() throws IOException {
+	public void test1() {
 		LOGGER.info("Inside Dummy test 1");
 		// Report launch log
-		File file = File.createTempFile("rp-test", ".xml");
-		Resources.asByteSource(Resources.getResource("logback.xml")).copyTo(Files.asByteSink(file));
+		File file = AttachmentHelper.getFileFromResources("src/test/resources", "logback", "xml");
 		int n = 5;
 		while (n-- > 0) {
 			LoggingUtils.log(file, "LAUNCH LOG MESSAGE WITH ATTACHMENT");
 		}
-		ReportPortal.emitLaunchLog("LAUNCH LOG MESAGE WITH ATTACHMENT", "error", new Date(), file);
+		ReportPortal.emitLaunchLog("LAUNCH LOG MESSAGE WITH ATTACHMENT", "error", new Date(), file);
 
 		assertTrue(true);
 	}
