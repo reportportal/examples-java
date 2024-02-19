@@ -15,7 +15,6 @@
     <properties>
         <aspectj.version>1.9.19</aspectj.version>
         <junit.version>5.9.1</junit.version>
-        <junit.runner.version>1.9.1</junit.runner.version>
     </properties>
 
     <dependencies>
