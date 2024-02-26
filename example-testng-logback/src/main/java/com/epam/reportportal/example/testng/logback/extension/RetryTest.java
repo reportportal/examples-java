@@ -32,8 +32,9 @@ public class RetryTest {
 	private static final AtomicInteger COUNTER = new AtomicInteger(0);
 
 	@Test(retryAnalyzer = RetryImpl.class)
-	public void failOne() {
+	public void failOne() throws InterruptedException {
 		String errorMsg = "Ooops";
+		Thread.sleep(10L);
 		if (20 != COUNTER.get()) {
 			for (int i = 0; i < 10; i++) {
 				LOGGER.error(errorMsg);
