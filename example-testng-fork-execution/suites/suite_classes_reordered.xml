@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Demo Suite">
+    <test name="Demo Test">
+        <classes>
+            <class name="module1.SecondFeatureTest"/>
+            <class name="module1.MyFeatureTest"/>
+        </classes>
+    </test>
+</suite>

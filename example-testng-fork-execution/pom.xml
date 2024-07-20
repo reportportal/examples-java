@@ -61,10 +61,6 @@
                     <reuseForks>false</reuseForks>
                     <reportsDirectory>target/surefire-reports-${surefire.forkNumber}</reportsDirectory>
                     <workingDirectory>./</workingDirectory>
-                    <suiteXmlFiles>
-                        <suiteXmlFile>suites/logging_tests.xml</suiteXmlFile>
-                        <suiteXmlFile>suites/logging_xml_tests.xml</suiteXmlFile>
-                    </suiteXmlFiles>
 <!--                    <properties>-->
 <!--                        <property>-->
 <!--                            <name>listener</name>-->
