@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Custom Annotations Test">
+    <test name="Description Annotation Test">
+        <classes>
+            <class name="com.epam.reportportal.example.testng.logback.annotated.DescriptionTest" />
+        </classes>
+    </test>
+    <test name="Display Name Annotation Test">
+        <classes>
+            <class name="com.epam.reportportal.example.testng.logback.annotated.DisplayNameTest" />
+        </classes>
+    </test>
+</suite>
