@@ -22,9 +22,9 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		plugin = { "pretty", "html:report.html", "com.epam.reportportal.example.cucumber6.attributes.CustomAttributeReporter" },
-		features = "src/test/resources/features/attributes/belly.feature",
+		plugin = { "pretty", "html:report.html", "com.epam.reportportal.example.cucumber6.attributes.KeyValueAttributeReporter" },
+		features = "src/test/resources/features/attributes/key-value.feature",
 		tags = "not @ignore",
 		glue = "com.epam.reportportal.example.cucumber6.attributes")
-public class RunAttributesCustomReporterTest {
+public class RunAttributesKeyValueReporterTest {
 }
