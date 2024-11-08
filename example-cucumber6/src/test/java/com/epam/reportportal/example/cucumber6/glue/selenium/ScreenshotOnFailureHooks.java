@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.epam.reportportal.example.cucumber6.selenium;
+package com.epam.reportportal.example.cucumber6.glue.selenium;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -36,7 +36,7 @@ public class ScreenshotOnFailureHooks {
 
 	private WebDriver driver;
 
-	@Before
+	@Before("@selenium")
 	public void beforeScenario() {
 		driver = new ChromeDriver();
 	}
@@ -45,10 +45,11 @@ public class ScreenshotOnFailureHooks {
 	public void test() {
 		driver.navigate().to("https://www.example.com");
 		LOGGER.warn("A failure test for demonstration, check out 'After hooks' for the failure screenshot");
-		Assert.assertEquals("Google", driver.getTitle());
+		String envTitle = System.getenv("RP_EXPECTED_TITLE");
+		Assert.assertEquals(envTitle == null ? "Google" : envTitle, driver.getTitle());
 	}
 
-	@After
+	@After("@selenium")
 	public void afterScenario(Scenario scenario) {
 		takeScreenshot(scenario);
 		driver.quit();

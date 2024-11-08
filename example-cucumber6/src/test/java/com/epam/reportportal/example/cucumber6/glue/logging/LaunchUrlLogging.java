@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.epam.reportportal.example.cucumber6.logging;
+package com.epam.reportportal.example.cucumber6.glue.logging;
 
-import com.epam.reportportal.example.cucumber6.RunLoggingTest;
+import com.epam.reportportal.example.cucumber6.BasicRunTest;
+import com.epam.reportportal.listeners.ListenerParameters;
 import com.epam.reportportal.service.Launch;
-import com.epam.ta.reportportal.ws.model.launch.LaunchResource;
 import io.cucumber.java.en.Given;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,17 +26,17 @@ import org.slf4j.LoggerFactory;
 import static java.util.Optional.ofNullable;
 
 /**
- * An example how to get and report current Launch ID, run {@link RunLoggingTest} class to see results.
+ * An example how to get and report current Launch URL, run {@link BasicRunTest} class to see results.
  */
-public class LaunchIdLogging {
-	private static final Logger LOGGER = LoggerFactory.getLogger(LaunchIdLogging.class);
+public class LaunchUrlLogging {
+	private static final Logger LOGGER = LoggerFactory.getLogger(LaunchUrlLogging.class);
 
-	@Given("I log the Launch ID")
+	@Given("I log the Launch link")
 	public void logLaunchLink() {
 		ofNullable(Launch.currentLaunch()).ifPresent(l -> {
+			ListenerParameters parameters = l.getParameters();
 			String launchUuid = l.getLaunch().blockingGet();
-			LaunchResource launchInfo = l.getClient().getLaunchByUuid(launchUuid).blockingGet();
-			LOGGER.info("Launch ID: {}", launchInfo.getLaunchId());
+			LOGGER.info("Launch URL: {}/ui/#{}/launches/all/{}", parameters.getBaseUrl(), parameters.getProjectName(), launchUuid);
 		});
 	}
 }
