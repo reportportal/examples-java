@@ -6,10 +6,8 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		plugin = { "pretty", "html:report.html", "com.epam.reportportal.example.cucumber6.attributes.KeyValueAttributeReporter",
-				"rerun:rerun.txt" },
-		features = "src/test/resources/features",
-		tags = "not @ignore",
+		plugin = { "pretty", "html:report.html", "com.epam.reportportal.example.cucumber6.attributes.KeyValueAttributeReporter" },
+		features = "@rerun.txt",
 		glue = "com.epam.reportportal.example.cucumber6.glue")
-public class BasicRunTest {
+public class BasicReRunTest {
 }
