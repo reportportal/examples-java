@@ -114,6 +114,7 @@
                             </includes>
                             <environmentVariables>
                                 <RP_RERUN>true</RP_RERUN>
+                                <!-- Expected title for the rerun to not fail the test -->
                                 <RP_EXPECTED_TITLE>Example Domain</RP_EXPECTED_TITLE>
                             </environmentVariables>
                         </configuration>
