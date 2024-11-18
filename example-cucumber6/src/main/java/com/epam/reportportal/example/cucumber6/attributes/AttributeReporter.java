@@ -40,6 +40,7 @@ import java.util.stream.Collectors;
  * Case 2: Process key-value attributes for scenarios.
  */
 public class AttributeReporter extends ScenarioReporter {
+	public static final String TAG_PREFIX = "@";
 	public static final String ATTRIBUTE_VALUE_SEPARATOR = ":";
 	public static final String TEST_TRACKING_TICKET_PREFIX = "JIRA";
 
@@ -76,14 +77,15 @@ public class AttributeReporter extends ScenarioReporter {
 			if (attr.contains(ATTRIBUTE_VALUE_SEPARATOR)) {
 				// split attribute value by separator and create an attribute object with key-value
 				String[] parts = attr.split(ATTRIBUTE_VALUE_SEPARATOR, 2);
-				return new ItemAttributesRQ(parts[0].trim(), parts[1].trim());
-			} else if (attr.startsWith(TEST_TRACKING_TICKET_PREFIX)) {
+				// Also strip tag prefix (usually redundant '@')
+				return new ItemAttributesRQ(parts[0].trim().substring(TAG_PREFIX.length()), parts[1].trim());
+			} else if (attr.startsWith(TAG_PREFIX + TEST_TRACKING_TICKET_PREFIX)) {
 				// set Test Case ID if attribute starts with a specific prefix
-				rq.setTestCaseId(attr);
+				rq.setTestCaseId(attr.substring(TAG_PREFIX.length())); // strip tag prefix to make Test Case ID equal to real ticket ID
 				return null;
 			} else {
 				// Leave attribute as Tag in all other cases
-				return new ItemAttributesRQ(null, attr);
+				return new ItemAttributesRQ(null, attr.substring(TAG_PREFIX.length())); // strip tag prefix (usually redundant '@')
 			}
 		}).filter(Objects::nonNull).collect(Collectors.toUnmodifiableSet()));
 	}
