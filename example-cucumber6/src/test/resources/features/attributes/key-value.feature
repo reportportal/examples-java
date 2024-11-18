@@ -1,4 +1,4 @@
-Feature: Belly
+Feature: Belly with key-value attributes
 
   @MyAttribute:MyValue
   Scenario: a few cukes
