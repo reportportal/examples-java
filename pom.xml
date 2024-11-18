@@ -19,7 +19,6 @@
 
     <modules>
         <module>example-cucumber</module>
-        <module>example-cucumber2</module>
         <module>example-cucumber4</module>
         <module>example-cucumber6</module>
         <module>example-cucumber6-testng</module>
