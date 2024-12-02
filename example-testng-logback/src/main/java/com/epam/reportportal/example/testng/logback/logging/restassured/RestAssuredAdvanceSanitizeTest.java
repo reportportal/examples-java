@@ -30,7 +30,7 @@ import org.testng.annotations.Test;
 /**
  * An example of a header, cookies and URI credentials hiding in case they contain sensitive data.
  */
-public class RestAssuredSanitizeTest {
+public class RestAssuredAdvanceSanitizeTest {
 
 	/**
 	 * Set {@link ReportPortalRestAssuredLoggingFilter} as one of the REST Assured filters.

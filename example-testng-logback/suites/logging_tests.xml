@@ -39,10 +39,19 @@
             <class name="com.epam.reportportal.example.testng.logback.logging.restassured.RestAssuredBasicLoggingTest" />
         </classes>
     </test>
-    <test name="REST Assured request sanitizing test">
+    <test name="REST Assured Form request logging test">
         <classes>
-            <class name="com.epam.reportportal.example.testng.logback.logging.restassured.RestAssuredSanitizeTest" />
+            <class name="com.epam.reportportal.example.testng.logback.logging.restassured.RestAssuredFormTest" />
         </classes>
     </test>
-
+    <test name="REST Assured simple request headers sanitizing test">
+        <classes>
+            <class name="com.epam.reportportal.example.testng.logback.logging.restassured.RestAssuredAdvanceSanitizeTest" />
+        </classes>
+    </test>
+    <test name="REST Assured advance request sanitizing test">
+        <classes>
+            <class name="com.epam.reportportal.example.testng.logback.logging.restassured.RestAssuredAdvanceSanitizeTest" />
+        </classes>
+    </test>
 </suite>

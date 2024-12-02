@@ -16,18 +16,24 @@
 
 package com.epam.reportportal.example.testng.logback.logging.restassured;
 
-import com.epam.reportportal.formatting.http.converters.DefaultHttpHeaderConverter;
-import com.epam.reportportal.formatting.http.converters.SanitizingHttpHeaderConverter;
 import com.epam.reportportal.listeners.LogLevel;
 import com.epam.reportportal.restassured.ReportPortalRestAssuredLoggingFilter;
 import io.restassured.RestAssured;
+import io.restassured.config.LogConfig;
+import io.restassured.config.RestAssuredConfig;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 /**
- * An example of a form data request logging.
+ * An example of a header credentials hiding in case they contain sensitive data.
  */
-public class RestAssuredFormTest {
+public class RestAssuredSimpleSanitizeTest {
+
+	/**
+	 * Create Rest Assured Logging Config with hidden headers.
+	 */
+	private static final RestAssuredConfig CONFIG = RestAssuredConfig.config()
+			.logConfig(LogConfig.logConfig().blacklistHeader("Authorization"));
 
 	/**
 	 * Set {@link ReportPortalRestAssuredLoggingFilter} as one of the REST Assured filters.
@@ -35,24 +41,20 @@ public class RestAssuredFormTest {
 	@BeforeClass
 	public void setupRestAssured() {
 		RestAssured.reset(); // Reset everything to avoid collisions with other REST Assured examples
-		RestAssured.filters(new ReportPortalRestAssuredLoggingFilter(42,
-				LogLevel.INFO, SanitizingHttpHeaderConverter.INSTANCE, DefaultHttpHeaderConverter.INSTANCE
-		));
+		RestAssured.filters(new ReportPortalRestAssuredLoggingFilter(42, LogLevel.INFO));
 	}
 
 	/**
-	 * Make a Form Data request to a test API and validate the response. Request / Response logs should appear on Report Portal.
+	 * Make a simple request to a test API and validate the response. Sanitized Request / Response logs should appear on Report Portal.
 	 */
 	@Test
 	public void restAssuredLoggingTest() {
 		RestAssured.given()
+				.config(CONFIG)
 				.header("Authorization", "Bearer test_token")
-				.formParam("username", "user")
-				.formParam("password", "password")
-				.formParam("grant_type", "password")
-				.post("https://example.com/api/test")
+				.get("https://jsonplaceholder.typicode.com/todos/1")
 				.then()
 				.assertThat()
-				.statusCode(405);
+				.statusCode(200);
 	}
 }
