@@ -3,7 +3,16 @@
     <test verbose="1" name="Lucky Pug logging">
         <classes>
             <class name="com.epam.reportportal.example.testng.logback.logging.LuckyPugTest"/>
+        </classes>
+    </test>
+    <test verbose="1" name="Simple Logging">
+        <classes>
             <class name="com.epam.reportportal.example.testng.logback.logging.LoggingTest"/>
+        </classes>
+    </test>
+    <test verbose="1" name="Launch URL logging">
+        <classes>
+            <class name="com.epam.reportportal.example.testng.logback.logging.LaunchUrlLoggingTest"/>
         </classes>
     </test>
 </suite>
