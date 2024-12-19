@@ -26,8 +26,8 @@ import static java.util.Optional.ofNullable;
 /**
  * Test class to demonstrate how to add runtime attributes to a Launch or a Test.
  */
-@Listeners({ RuntimeLaunchAttributesTest.ExtendedListener.class })
-public class RuntimeLaunchAttributesTest {
+@Listeners({ RuntimeAttributesTest.ExtendedListener.class })
+public class RuntimeAttributesTest {
 	private static final Set<ItemAttributesRQ> RUNTIME_LAUNCH_ATTRIBUTES = Collections.newSetFromMap(new ConcurrentHashMap<>());
 	private static final Set<ItemAttributesRQ> RUNTIME_TEST_ATTRIBUTES = Collections.newSetFromMap(new ConcurrentHashMap<>());
 
