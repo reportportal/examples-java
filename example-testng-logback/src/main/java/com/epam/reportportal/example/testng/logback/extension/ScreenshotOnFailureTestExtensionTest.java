@@ -33,7 +33,7 @@ import org.testng.annotations.Test;
 /**
  * More advanced way to report a screenshot. Reports screenshot as a separate log entry in 'Test' method.
  */
-@Listeners({ScreenshotOnFailureTestExtensionTest.ExtendedListener.class})
+@Listeners({ ScreenshotOnFailureTestExtensionTest.ExtendedListener.class })
 public class ScreenshotOnFailureTestExtensionTest {
 
 	private static WebDriver driver;

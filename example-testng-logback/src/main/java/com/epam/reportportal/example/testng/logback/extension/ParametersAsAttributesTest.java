@@ -43,13 +43,12 @@ import java.util.concurrent.TimeUnit;
  */
 @Listeners({ ParametersAsAttributesTest.ExtendedListener.class })
 public class ParametersAsAttributesTest {
-
 	private static final Logger LOGGER = LoggerFactory.getLogger(ParametersAsAttributesTest.class);
 
 	@Test(threadPoolSize = 2, dataProvider = "bla-bla")
 	public void testParams(String msg) throws InterruptedException {
 		for (int i = 0; i < 10; i++) {
-			LOGGER.info(msg + ": " + i);
+			LOGGER.info("{}: {}", msg, i);
 			if (i == 1) {
 				Thread.sleep(TimeUnit.SECONDS.toMillis(5L));
 			}
@@ -76,7 +75,6 @@ public class ParametersAsAttributesTest {
 	}
 
 	public static class ParamTaggingTestNgService extends TestNGService {
-
 		public ParamTaggingTestNgService(@Nonnull ReportPortal reportPortal) {
 			super(reportPortal);
 		}
@@ -91,7 +89,6 @@ public class ParametersAsAttributesTest {
 					attributes.add(new ItemAttributesRQ(null, param.toString()));
 				}
 				rq.setAttributes(attributes);
-
 			}
 			return rq;
 		}

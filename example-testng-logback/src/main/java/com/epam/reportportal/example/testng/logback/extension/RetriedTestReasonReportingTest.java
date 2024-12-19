@@ -51,7 +51,7 @@ public class RetriedTestReasonReportingTest {
 	public void failOne() {
 		int retry = COUNTER.incrementAndGet();
 		if (retry <= MAXIMUM_RETRIES) {
-			LOGGER.warn("Failed attempt: " + retry);
+			LOGGER.warn("Failed attempt: {}", retry);
 			Assert.fail();
 		}
 		LOGGER.info("Success attempt");
@@ -63,14 +63,14 @@ public class RetriedTestReasonReportingTest {
 		@Override
 		public boolean retry(ITestResult result) {
 			int retry = retryNumber.incrementAndGet();
-			LOGGER.info("Retry attempt: " + retry);
+			LOGGER.info("Retry attempt: {}", retry);
 			return retry <= MAXIMUM_RETRIES;
 		}
 	}
 
 	public static class ExtendedListener extends BaseTestNGListener {
-		public static final Supplier<ITestNGService> SERVICE =
-				new MemoizingSupplier<>(() -> new SkipReasonLoggingService(ReportPortal.builder().build()));
+		public static final Supplier<ITestNGService> SERVICE = new MemoizingSupplier<>(() -> new SkipReasonLoggingService(ReportPortal.builder()
+				.build()));
 
 		public ExtendedListener() {
 			super(SERVICE.get());
