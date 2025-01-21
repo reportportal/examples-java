@@ -2,7 +2,6 @@ package com.epam.reportportal.example.junit.annotated;
 
 import com.epam.reportportal.annotations.TestCaseId;
 import com.epam.reportportal.annotations.TestCaseIdKey;
-import com.google.common.base.Optional;
 import com.nordstrom.automation.junit.ArtifactParams;
 import com.nordstrom.automation.junit.AtomIdentity;
 import org.junit.Assert;
@@ -14,6 +13,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import java.util.Map;
+import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
