@@ -19,26 +19,26 @@
         <jbehave.core.version>5.0</jbehave.core.version>
         <embeddables>**/*StoriesTest.java</embeddables>
         <meta.filter>-skip</meta.filter>
-        <retrofit.version>2.9.0</retrofit.version>
+        <retrofit.version>2.11.0</retrofit.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>agent-java-jbehave</artifactId>
-            <version>5.3.4</version>
+            <version>5.3.6</version>
         </dependency>
 
         <dependency>
             <groupId>org.jbehave</groupId>
             <artifactId>jbehave-core</artifactId>
-            <version>5.2.0</version>
+            <version>${jbehave.core.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>logger-java-log4j</artifactId>
-            <version>5.2.2</version>
+            <version>5.2.3</version>
         </dependency>
 
         <dependency>
@@ -98,7 +98,7 @@
         <dependency>
             <groupId>io.reactivex.rxjava2</groupId>
             <artifactId>rxjava</artifactId>
-            <version>2.2.10</version>
+            <version>2.2.21</version>
         </dependency>
 
 
