@@ -46,7 +46,11 @@ import static java.util.Optional.ofNullable;
  */
 public class RestAssuredAdvanceSanitizeTest {
 
-	private static final Function<Header, String> SANITIZING_HTTP_HEADER_CONVERTER = new Function<Header, String>() {
+	/**
+	 * A converter that hides the value of the "Set-Cookie" headers and passes the rest of the headers to
+	 * {@link SanitizingHttpHeaderConverter}.
+	 */
+	private static final Function<Header, String> SANITIZING_HTTP_HEADER_CONVERTER = new Function<>() {
 		@Override
 		public @Nullable String apply(@Nullable Header header) {
 			return SanitizingHttpHeaderConverter.INSTANCE.apply(ofNullable(header).filter(h -> "Set-Cookie".equalsIgnoreCase(h.getName()))
@@ -78,6 +82,9 @@ public class RestAssuredAdvanceSanitizeTest {
 		));
 	}
 
+	/**
+	 * Start WireMock server before each test. Stub a response for the login request.
+	 */
 	@BeforeMethod
 	public void startWireMock() {
 		wireMockServer = new WireMockServer(options().dynamicPort());
@@ -100,6 +107,9 @@ public class RestAssuredAdvanceSanitizeTest {
 				.statusCode(200);
 	}
 
+	/**
+	 * Stop WireMock server after each test.
+	 */
 	@AfterMethod
 	public void stopWireMock() {
 		wireMockServer.stop();
