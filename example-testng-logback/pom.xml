@@ -86,13 +86,13 @@
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>logger-java-rest-assured</artifactId>
-            <version>5.3.6</version>
+            <version>5.3.7</version>
         </dependency>
 
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>logger-java-okhttp3</artifactId>
-            <version>5.1.2</version>
+            <version>5.1.5</version>
         </dependency>
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
@@ -103,7 +103,7 @@
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>logger-java-httpcomponents</artifactId>
-            <version>5.1.2</version>
+            <version>5.1.5</version>
         </dependency>
 
         <dependency>
@@ -114,7 +114,7 @@
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>logger-java-selenide</artifactId>
-            <version>5.2.1</version>
+            <version>5.2.3</version>
         </dependency>
     </dependencies>
 
