@@ -20,17 +20,47 @@ import com.epam.reportportal.formatting.http.converters.DefaultHttpHeaderConvert
 import com.epam.reportportal.formatting.http.converters.SanitizingCookieConverter;
 import com.epam.reportportal.formatting.http.converters.SanitizingHttpHeaderConverter;
 import com.epam.reportportal.formatting.http.converters.SanitizingUriConverter;
+import com.epam.reportportal.formatting.http.entities.Header;
 import com.epam.reportportal.listeners.LogLevel;
 import com.epam.reportportal.restassured.ReportPortalRestAssuredLoggingFilter;
+import com.github.tomakehurst.wiremock.WireMockServer;
 import io.restassured.RestAssured;
-import io.restassured.http.Cookie;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import javax.annotation.Nullable;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+import java.util.function.Function;
+
+import static com.epam.reportportal.formatting.http.Constants.REMOVED_TAG;
+import static com.github.tomakehurst.wiremock.client.WireMock.ok;
+import static com.github.tomakehurst.wiremock.client.WireMock.post;
+import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
+import static java.util.Optional.ofNullable;
 
 /**
  * An example of a header, cookies and URI credentials hiding in case they contain sensitive data.
  */
 public class RestAssuredAdvanceSanitizeTest {
+
+	private static final Function<Header, String> SANITIZING_HTTP_HEADER_CONVERTER = new Function<Header, String>() {
+		@Override
+		public @Nullable String apply(@Nullable Header header) {
+			return SanitizingHttpHeaderConverter.INSTANCE.apply(ofNullable(header).filter(h -> "Set-Cookie".equalsIgnoreCase(h.getName()))
+					.map(h -> {
+						Header newHeader = h.clone();
+						newHeader.setValue(REMOVED_TAG);
+						return newHeader;
+					})
+					.orElse(header));
+		}
+	};
+
+	private WireMockServer wireMockServer;
+	private int mockPort;
 
 	/**
 	 * Set {@link ReportPortalRestAssuredLoggingFilter} as one of the REST Assured filters.
@@ -41,11 +71,20 @@ public class RestAssuredAdvanceSanitizeTest {
 		RestAssured.filters(new ReportPortalRestAssuredLoggingFilter(
 				42,
 				LogLevel.INFO,
-				SanitizingHttpHeaderConverter.INSTANCE,
+				SANITIZING_HTTP_HEADER_CONVERTER,
 				DefaultHttpHeaderConverter.INSTANCE,
 				SanitizingCookieConverter.INSTANCE,
 				SanitizingUriConverter.INSTANCE
 		));
+	}
+
+	@BeforeMethod
+	public void startWireMock() {
+		wireMockServer = new WireMockServer(options().dynamicPort());
+		wireMockServer.stubFor(post("/auth/login").willReturn(ok().withHeader("Set-Cookie", "session_id=test_session_id; Path=/; HttpOnly")
+				.withHeader("Set-Cookie", "scope=view-all, edit-self; Path=/; HttpOnly")));
+		wireMockServer.start();
+		mockPort = wireMockServer.port();
 	}
 
 	/**
@@ -54,11 +93,15 @@ public class RestAssuredAdvanceSanitizeTest {
 	@Test
 	public void restAssuredLoggingTest() {
 		RestAssured.given()
-				.header("Authorization", "Bearer test_token")
-				.cookie(new Cookie.Builder("session_id", "test_session_id").build())
-				.get("https://user:password@jsonplaceholder.typicode.com/todos/1")
+				.header("Authorization", "Basic " + Base64.getEncoder().encodeToString("ui:password".getBytes(StandardCharsets.UTF_8)))
+				.post("http://user:password@localhost:" + mockPort + "/auth/login")
 				.then()
 				.assertThat()
 				.statusCode(200);
+	}
+
+	@AfterMethod
+	public void stopWireMock() {
+		wireMockServer.stop();
 	}
 }
