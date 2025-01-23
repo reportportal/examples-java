@@ -16,13 +16,17 @@
 
 package com.epam.reportportal.example.testng.logback.logging.restassured;
 
+import com.epam.reportportal.listeners.ListenerParameters;
 import com.epam.reportportal.listeners.LogLevel;
 import com.epam.reportportal.restassured.ReportPortalRestAssuredLoggingFilter;
+import com.epam.reportportal.service.Launch;
 import io.restassured.RestAssured;
 import io.restassured.config.LogConfig;
 import io.restassured.config.RestAssuredConfig;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import static java.util.Optional.ofNullable;
 
 /**
  * An example of a header credentials hiding in case they contain sensitive data.
@@ -49,10 +53,12 @@ public class RestAssuredSimpleSanitizeTest {
 	 */
 	@Test
 	public void restAssuredLoggingTest() {
+		ListenerParameters parameters = ofNullable(Launch.currentLaunch()).map(Launch::getParameters)
+				.orElseThrow(() -> new IllegalStateException("Launch is not started"));
 		RestAssured.given()
 				.config(CONFIG)
-				.header("Authorization", "Bearer test_token")
-				.get("https://jsonplaceholder.typicode.com/todos/1")
+				.header("Authorization", "Bearer " + parameters.getApiKey())
+				.get(parameters.getBaseUrl() + "/api/v1/" + parameters.getProjectName() + "/settings")
 				.then()
 				.assertThat()
 				.statusCode(200);
