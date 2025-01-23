@@ -86,7 +86,7 @@
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>logger-java-rest-assured</artifactId>
-            <version>5.3.7</version>
+            <version>5.3.8</version>
         </dependency>
 
         <dependency>
