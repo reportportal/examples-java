@@ -34,7 +34,7 @@ import static java.util.Optional.ofNullable;
 public class RestAssuredSimpleSanitizeTest {
 
 	/**
-	 * Create Rest Assured Logging Config with hidden headers.
+	 * Create REST Assured Logging Config with hidden headers.
 	 */
 	private static final RestAssuredConfig CONFIG = RestAssuredConfig.config()
 			.logConfig(LogConfig.logConfig().blacklistHeader("Authorization"));
@@ -52,7 +52,7 @@ public class RestAssuredSimpleSanitizeTest {
 	 * Make a simple request to a test API and validate the response. Sanitized Request / Response logs should appear on Report Portal.
 	 */
 	@Test
-	public void restAssuredLoggingTest() {
+	public void simpleRestAssuredLoggingTest() {
 		ListenerParameters parameters = ofNullable(Launch.currentLaunch()).map(Launch::getParameters)
 				.orElseThrow(() -> new IllegalStateException("Launch is not started"));
 		RestAssured.given()
