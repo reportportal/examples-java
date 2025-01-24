@@ -98,7 +98,7 @@ public class RestAssuredAdvanceSanitizeTest {
 	 * Make a simple request to a test API and validate the response. Request / Response logs should appear on Report Portal.
 	 */
 	@Test
-	public void restAssuredLoggingTest() {
+	public void advanceRestAssuredLoggingTest() {
 		RestAssured.given()
 				.header("Authorization", "Basic " + Base64.getEncoder().encodeToString("ui:password".getBytes(StandardCharsets.UTF_8)))
 				.post("http://user:password@localhost:" + mockPort + "/auth/login")
