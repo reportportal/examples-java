@@ -67,7 +67,7 @@ public class RestAssuredFormTest {
 	 * @return updated prettifier map
 	 */
 	@NotNull
-	private static Map<String, Function<String, String>> getStringFunctionMap(@Nonnull Map<String, Function<String, String>> prettifiers) {
+	private static Map<String, Function<String, String>> getUpdatedPrettifiersMap(@Nonnull Map<String, Function<String, String>> prettifiers) {
 		Map<String, Function<String, String>> myPrettifiers = new HashMap<>(prettifiers);
 		Function<String, String> jsonPrettifier = myPrettifiers.get("application/json");
 		Function<String, String> jsonSanitizer = json -> jsonPrettifier.apply(json.replaceAll(
@@ -94,7 +94,7 @@ public class RestAssuredFormTest {
 				DefaultUriConverter.INSTANCE,
 				SANITIZING_PARAM_CONVERTER
 		);
-		Map<String, Function<String, String>> prettifiers = getStringFunctionMap(logger.getContentPrettifiers());
+		Map<String, Function<String, String>> prettifiers = getUpdatedPrettifiersMap(logger.getContentPrettifiers());
 		logger.setContentPrettifiers(prettifiers);
 		RestAssured.filters(logger);
 	}
