@@ -94,8 +94,7 @@ public class RestAssuredFormTest {
 				DefaultUriConverter.INSTANCE,
 				SANITIZING_PARAM_CONVERTER
 		);
-		Map<String, Function<String, String>> prettifiers = getUpdatedPrettifiersMap(logger.getContentPrettifiers());
-		logger.setContentPrettifiers(prettifiers);
+		logger.setContentPrettifiers(getUpdatedPrettifiersMap(logger.getContentPrettifiers()));
 		RestAssured.filters(logger);
 	}
 
