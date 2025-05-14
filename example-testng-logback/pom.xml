@@ -145,6 +145,8 @@
                         <xmlFile>suites/logging_tests.xml</xmlFile>
                         <xmlFile>suites/nested_steps_tests.xml</xmlFile>
                         <xmlFile>suites/callback_suite.xml</xmlFile>
+                        <xmlFile>suites/parameterized_tests.xml</xmlFile>
+                        <xmlFile>suites/custom_annotations.xml</xmlFile>
                     </suiteXmlFiles>
                     <!-- ADD working directory to get TestNG know we to find suite files -->
                     <workingDirectory>./</workingDirectory>
