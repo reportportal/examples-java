@@ -41,7 +41,8 @@
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>agent-java-cucumber6</artifactId>
-            <version>5.3.5</version>
+            <version>5.4.1</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -62,12 +63,14 @@
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
             <version>${cucumber.version}</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>1.4.14</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>
