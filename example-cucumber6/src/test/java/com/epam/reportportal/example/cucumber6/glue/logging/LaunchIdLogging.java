@@ -40,7 +40,7 @@ public class LaunchIdLogging {
 			LaunchResource launchInfo = null;
 			do {
 				try {
-					launchInfo =  l.getClient().getLaunchByUuid(launchUuid).blockingGet();
+					launchInfo = l.getClient().getLaunchByUuid(launchUuid).blockingGet();
 					break;
 				} catch (HttpException e) {
 					LOGGER.error("Failed to get launch ID", e);
