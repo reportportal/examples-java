@@ -20,6 +20,6 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(plugin = "com.epam.reportportal.cucumber.ScenarioReporter",
-		features = "src/test/resources/features/attributes", glue = "com.epam.reportportal.example.cucumber6.attributes")
+		features = "classpath:features", glue = "com.epam.reportportal.example.cucumber6.basic")
 public class BasicRunTest extends AbstractTestNGCucumberTests {
 }
