@@ -13,10 +13,7 @@
     <artifactId>example-jbehave</artifactId>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <jbehave.core.version>5.0</jbehave.core.version>
+        <jbehave.core.version>5.2.0</jbehave.core.version>
         <embeddables>**/*StoriesTest.java</embeddables>
         <meta.filter>-skip</meta.filter>
         <retrofit.version>2.11.0</retrofit.version>
@@ -26,7 +23,7 @@
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>agent-java-jbehave</artifactId>
-            <version>5.3.6</version>
+            <version>5.5.0</version>
         </dependency>
 
         <dependency>
@@ -38,7 +35,7 @@
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>logger-java-log4j</artifactId>
-            <version>5.2.3</version>
+            <version>5.4.0</version>
         </dependency>
 
         <dependency>

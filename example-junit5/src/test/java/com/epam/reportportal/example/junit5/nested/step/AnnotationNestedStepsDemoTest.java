@@ -40,7 +40,7 @@ public class AnnotationNestedStepsDemoTest {
 
 	private static final String METHODS_NAME_TEMPLATE = "My name is - `{method}` and I am a nested step of the `{parent}`";
 
-	private static final ThreadLocal<Integer> COUNTER = new InheritableThreadLocal<Integer>() {
+	private static final ThreadLocal<Integer> COUNTER = new InheritableThreadLocal<>() {
 		@Override
 		protected Integer initialValue() {
 			return 0;
