@@ -27,8 +27,8 @@ import org.apache.commons.lang3.StringUtils;
 
 import javax.annotation.Nonnull;
 import java.net.URI;
+import java.time.Instant;
 import java.util.Collections;
-import java.util.Date;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -61,7 +61,7 @@ public class AttributeReporter extends ScenarioReporter {
 	 * @return StartLaunchRQ object
 	 */
 	@Override
-	protected StartLaunchRQ buildStartLaunchRq(Date startTime, ListenerParameters parameters) {
+	protected StartLaunchRQ buildStartLaunchRq(Instant startTime, ListenerParameters parameters) {
 		StartLaunchRQ rq = super.buildStartLaunchRq(startTime, parameters);
 		getCustomLaunchAttributes().forEach((key, value) -> rq.getAttributes().add(new ItemAttributesRQ(key, value)));
 		return rq;
