@@ -23,11 +23,12 @@
         <module>example-cucumber6</module>
         <module>example-cucumber6-testng</module>
         <module>example-jbehave</module>
-        <module>example-testng-logback</module>
-        <module>example-testng-log4j</module>
-        <module>example-junit5</module>
         <module>example-junit</module>
-        <module>example-testng-fork-execution</module>
+        <module>example-junit5</module>
+        <module>example-karate</module>
         <module>example-spock</module>
+        <module>example-testng-fork-execution</module>
+        <module>example-testng-log4j</module>
+        <module>example-testng-logback</module>
     </modules>
 </project>
