@@ -26,15 +26,15 @@ public class KarateRunnerTest {
 
 	@Test
 	public void testAll() {
-		ReportPortalHook karateHook = new ReportPortalHook(); // Initialize ReportPortal runtime Karate hook
+		ReportPortalHook karateRuntimeHook = new ReportPortalHook(); // Initialize ReportPortal runtime Karate hook
 		Results results = Runner // Regular Karate runner
 				.path("classpath:features") // Path with feature files
-				.hook(karateHook) // Add Karate hook
+				.hook(karateRuntimeHook) // Add Karate hook
 				.outputCucumberJson(true) // Generate cucumber report
 				.tags("~@ignore") // Ignore tests marked with the tag
 				.parallel(2); // Run in 2 Threads
 		// Here you can additionally run tests, retries, etc.
-		karateHook.finishLaunch(); // Finish execution on ReportPortal
+		karateRuntimeHook.finishLaunch(); // Finish execution on ReportPortal
 		Assertions.assertEquals(0, results.getFailCount(), "Non-zero fail count.\n Errors:\n" + results.getErrorMessages());
 	}
 }
