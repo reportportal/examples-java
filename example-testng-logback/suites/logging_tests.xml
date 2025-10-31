@@ -22,6 +22,12 @@
         </classes>
     </test>
 
+    <test name="Custom Log Level">
+        <classes>
+            <class name="com.epam.reportportal.example.testng.logback.logging.CustomLogLevelTest" />
+        </classes>
+    </test>
+
     <test verbose="1" name="Different logging types">
         <classes>
             <class name="com.epam.reportportal.example.testng.logback.logging.LoggingTest"/>
