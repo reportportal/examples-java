@@ -13,7 +13,7 @@
             <AppenderRef ref="ConsoleAppender"/>
             <AppenderRef ref="ReportPortalAppender"/>
         </Root>
-        <Logger name="com.epam.reportportal.example" level="TRACE" additivity="false">
+        <Logger name="com.epam.reportportal.example" level="ALL" additivity="false">
             <AppenderRef ref="ConsoleAppender"/>
             <AppenderRef ref="ReportPortalAppender"/>
         </Logger>
