@@ -12,14 +12,13 @@
 
     <groupId>com.epam.reportportal.example</groupId>
     <artifactId>example-testng-logback</artifactId>
-    <version>1.0-SNAPSHOT</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
         <aspectj.version>1.9.19</aspectj.version>
-        <selenium.version>4.17.0</selenium.version>
+        <selenium.version>4.13.0</selenium.version> <!-- Higher Selenium versions has no support by Selenide 6.19.1 -->
     </properties>
 
     <dependencies>
@@ -44,7 +43,7 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.5.18</version>
+            <version>1.5.26</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -52,11 +51,6 @@
             <version>2.0.7</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-api</artifactId>
-            <version>${selenium.version}</version>
-        </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
@@ -119,7 +113,7 @@
         <dependency>
             <groupId>org.wiremock</groupId>
             <artifactId>wiremock</artifactId>
-            <version>3.10.0</version>
+            <version>3.13.2</version>
         </dependency>
     </dependencies>
 

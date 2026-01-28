@@ -28,7 +28,6 @@
 
     <groupId>com.epam.reportportal.example</groupId>
     <artifactId>example-cucumber6-testng</artifactId>
-    <version>1.0-SNAPSHOT</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
