@@ -29,6 +29,10 @@
     <groupId>com.epam.reportportal.example</groupId>
     <artifactId>example-cucumber6-testng</artifactId>
 
+    <properties>
+        <cucumber.version>7.15.0</cucumber.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.epam.reportportal</groupId>
