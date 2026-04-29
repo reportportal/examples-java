@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 EPAM Systems
+ * Copyright 2026 EPAM Systems
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,9 @@
 
 package com.epam.reportportal.example.karate;
 
-import com.epam.reportportal.karate.ReportPortalHook;
-import com.intuit.karate.Results;
-import com.intuit.karate.Runner;
+import com.epam.reportportal.karate.ReportPortalRunListener;
+import io.karatelabs.core.Runner;
+import io.karatelabs.core.SuiteResult;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -26,15 +26,15 @@ public class KarateRunnerTest {
 
 	@Test
 	public void testAll() {
-		ReportPortalHook karateRuntimeHook = new ReportPortalHook(); // Initialize ReportPortal runtime Karate hook
-		Results results = Runner // Regular Karate runner
+		ReportPortalRunListener karateRunHook = new ReportPortalRunListener(); // Initialize ReportPortal runtime Karate listener
+		SuiteResult results = Runner // Regular Karate runner
 				.path("classpath:features") // Path with feature files
-				.hook(karateRuntimeHook) // Add Karate hook
+				.listener(karateRunHook) // Add Karate listener
 				.outputCucumberJson(true) // Generate cucumber report
 				.tags("~@ignore") // Ignore tests marked with the tag
 				.parallel(2); // Run in 2 Threads
 		// Here you can additionally run tests, retries, etc.
-		karateRuntimeHook.finishLaunch(); // Finish execution on ReportPortal
-		Assertions.assertEquals(0, results.getFailCount(), "Non-zero fail count.\n Errors:\n" + results.getErrorMessages());
+		karateRunHook.finishLaunch(); // Finish execution on ReportPortal
+		Assertions.assertEquals(0, results.getFeatureFailedCount(), "Non-zero fail count.\n Errors:\n" + results.getErrors());
 	}
 }
