@@ -36,7 +36,9 @@ public class LaunchUrlLogging {
 		ofNullable(Launch.currentLaunch()).ifPresent(l -> {
 			ListenerParameters parameters = l.getParameters();
 			String launchUuid = l.getLaunch().blockingGet();
-			LOGGER.info("Launch URL: {}/ui/#{}/launches/all/{}", parameters.getBaseUrl(), parameters.getProjectName(), launchUuid);
+			String baseUrl = parameters.getBaseUrl();
+			baseUrl = baseUrl.endsWith("/") ? baseUrl.substring(0, baseUrl.length() - 1) : baseUrl;
+			LOGGER.info("Launch URL: {}/ui/#{}/launches/all/{}", baseUrl, parameters.getProjectName(), launchUuid);
 		});
 	}
 }
