@@ -42,17 +42,17 @@ public class TestCaseIdTest {
 	@TestCaseId(parametrized = true)
 	@Test(dataProvider = "numbersProvider")
 	public void parametrizedTestWithKey(@TestCaseIdKey String testCaseId, Integer expected, Integer evaluated) {
-		Assert.assertEquals(expected, evaluated);
+		Assert.assertEquals(evaluated, expected);
 	}
 
 	@Test(dataProvider = "numbersProvider")
 	public void parametrizedTestWithoutKey(String testCaseId, Integer expected, Integer evaluated) {
-		Assert.assertEquals(expected, evaluated);
+		Assert.assertEquals(evaluated, expected);
 	}
 
 	@TestCaseId("{method}-{0}")
 	@Test(dataProvider = "numbersProvider")
 	public void parametrizedTestTemplate(String testCaseId, Integer expected, Integer evaluated) {
-		Assert.assertEquals(expected, evaluated);
+		Assert.assertEquals(evaluated, expected);
 	}
 }
